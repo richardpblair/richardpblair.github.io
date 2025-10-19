@@ -1,12 +1,740 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <title>My First GitHub Website</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Index - SnapFolio Bootstrap Template</title>
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+
+  <!-- Favicons -->
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- Main CSS File -->
+  <link href="assets/css/main.css" rel="stylesheet">
+
+  <!-- =======================================================
+  * Template Name: SnapFolio
+  * Template URL: https://bootstrapmade.com/snapfolio-bootstrap-portfolio-template/
+  * Updated: Jul 21 2025 with Bootstrap v5.3.7
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
 </head>
-<body>
-  <h1>Hello World!</h1>
-  <p>This is my first GitHub Pages website so please be patient.</p>
+
+<body class="index-page">
+
+  <header id="header" class="header dark-background d-flex flex-column justify-content-center">
+    <i class="header-toggle d-xl-none bi bi-list"></i>
+
+    <div class="header-container d-flex flex-column align-items-start">
+      <nav id="navmenu" class="navmenu">
+        <ul>
+          <li><a href="#hero" class="active"><i class="bi bi-house navicon"></i>Home</a></li>
+          <li><a href="#about"><i class="bi bi-person navicon"></i> About</a></li>
+          <li><a href="#resume"><i class="bi bi-file-earmark-text navicon"></i> Resume</a></li>
+          <li><a href="#portfolio"><i class="bi bi-images navicon"></i> Portfolio</a></li>
+          <li class="dropdown"><a href="#"><i class="bi bi-menu-button navicon"></i> <span>Dropdown</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+            <ul>
+              <li><a href="#">Dropdown 1</a></li>
+              <li class="dropdown"><a href="#"><span>Deep Dropdown</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+                <ul>
+                  <li><a href="#">Deep Dropdown 1</a></li>
+                  <li><a href="#">Deep Dropdown 2</a></li>
+                  <li><a href="#">Deep Dropdown 3</a></li>
+                  <li><a href="#">Deep Dropdown 4</a></li>
+                  <li><a href="#">Deep Dropdown 5</a></li>
+                </ul>
+              </li>
+              <li><a href="#">Dropdown 2</a></li>
+              <li><a href="#">Dropdown 3</a></li>
+              <li><a href="#">Dropdown 4</a></li>
+            </ul>
+          </li>
+          <li><a href="#contact"><i class="bi bi-envelope navicon"></i> Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="social-links text-center">
+        <a href="#" class="twitter"><i class="bi bi-twitter-x"></i></a>
+        <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
+        <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
+        <a href="#" class="google-plus"><i class="bi bi-skype"></i></a>
+        <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
+      </div>
+
+    </div>
+
+  </header>
+
+  <main class="main">
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero section">
+
+      <div class="background-elements">
+        <div class="bg-circle circle-1"></div>
+        <div class="bg-circle circle-2"></div>
+      </div>
+
+      <div class="hero-content">
+
+        <div class="container">
+          <div class="row align-items-center">
+
+            <div class="col-lg-6" data-aos="fade-right" data-aos-delay="100">
+              <div class="hero-text">
+                <h1>Fortifying the Digital Frontier</span></h1>
+                <h2>Richard Blair</h2>
+                <p class="lead">I'm a <span class="typed" data-typed-items="Strategist, Innovator, Defender, Student"></span></p>
+                <p class="description">Bridging the gap between the virtual and physical, I specialize in fortifying the digital landscapes we all live in. My work is focused on proactive defense, threat intelligence, and creating a safer online experience for everyone.</p>
+
+                <div class="hero-actions">
+                  <a href="#portfolio" class="btn btn-primary">View My Work</a>
+                  <a href="#contact" class="btn btn-outline">Get In Touch</a>
+                </div>
+
+                <div class="social-links">
+                  <a href="https://github.com/richardpblair/richardpblair"><i class="bi bi-github"></i></a>
+                  <a href="https://www.linkedin.com/in/richardpblair/"><i class="bi bi-linkedin"></i></a>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-6" data-aos="fade-left" data-aos-delay="200">
+              <div class="hero-visual">
+                <div class="profile-container">
+                  <div class="profile-background"></div>
+                  <img src="assets/img/profile/profile-2.webp" alt="Richard Blair" class="profile-image">
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+    </section><!-- /Hero Section -->
+
+    <!-- About Section -->
+    <section id="about" class="about section">
+
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+        <div class="row">
+          <div class="col-lg-5" data-aos="zoom-in" data-aos-delay="200">
+            <div class="profile-card">
+              <div class="profile-header">
+                <div class="profile-image">
+                  <img src="assets/img/profile/Richtropical.webp" alt="Profile Image" class="img-fluid">
+                </div>
+                <div class="profile-badge">
+                  <i class="bi bi-check-circle-fill"></i>
+                </div>
+              </div>
+
+              <div class="profile-content">
+                <h3>Richard Blair</h3>
+                <p class="profession">Cybersecurity Student</p>
+
+                <div class="contact-links">
+                  <a href="mailto:marcus@example.com" class="contact-item">
+                    <i class="bi bi-envelope"></i>
+                    richardpblair@gmail.com
+                  </a>
+                  <a href="tel:+15094996854" class="contact-item">
+                    <i class="bi bi-telephone"></i>
+                    +1 (509) 499-6854
+                  </a>
+                  <a href="#" class="contact-item">
+                    <i class="bi bi-geo-alt"></i>
+                    Dallas, Texas
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-7" data-aos="fade-left" data-aos-delay="300">
+            <div class="about-content">
+              <div class="section-header">
+                <span class="badge-text">Get to Know Me</span>
+                <h2>Passionate About Creating A More Secure World</h2>
+              </div>
+
+              <div class="description">
+                <p>For over two decades in the military and law enforcement, I have honed a deep understanding of threat analysis, human behavior, and proactive defense. This extensive real-world experience has uniquely prepared me to identify and neutralize threats—not just in the physical world, but also in the digital one. As I pivot into a new career, I am eager to apply this knowledge to cybersecurity and information assurance, contributing my perspective to a field where a vigilant and strategic mindset is critical.</p>
+
+                <p>I am a new student of cybersecurity, but I am not new to the principles of protecting people and assets. My career has been built on a foundation of vigilance, integrity, and a commitment to security. I am ready to translate this foundation into the digital realm, helping to build robust defenses and secure the information that powers our world.</p>
+
+              </div>
+
+              <div class="details-grid">
+                <div class="detail-row">
+                  <div class="detail-item">
+                    <span class="detail-label">Specialization</span>
+                    <span class="detail-value">Threat Analysis</span>
+                  </div>
+                  <div class="detail-item">
+                    <span class="detail-label">Experience Level</span>
+                    <span class="detail-value">Student</span>
+                  </div>
+                </div>
+                <div class="detail-row">
+                  <div class="detail-item">
+                    <span class="detail-label">Education</span>
+                    <span class="detail-value">Cyber Security and Information Assurance, Western Governers University</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="cta-section">
+                <a href="assets/docs/My Resume.pdf" class="btn btn-primary" download>
+                  <i class="bi bi-download"></i>
+                  Download Resume
+                </a>
+                <a href="#" class="btn btn-outline">
+                  <i class="bi bi-chat-dots"></i>
+                  Let's Talk
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </section><!-- /About Section -->
+
+    <!-- Skills Section -->
+    <section id="skills" class="skills section">
+
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Skills</h2>
+        <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
+      </div><!-- End Section Title -->
+
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+        <div class="row">
+          <div class="col-lg-6">
+            <div class="skills-category" data-aos="fade-up" data-aos-delay="200">
+              <h3>Front-end Development</h3>
+              <div class="skills-animation">
+                <div class="skill-item">
+                  <div class="d-flex justify-content-between align-items-center">
+                    <h4>HTML/CSS</h4>
+                    <span class="skill-percentage">95%</span>
+                  </div>
+                  <div class="progress">
+                    <div class="progress-bar" role="progressbar" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100"></div>
+                  </div>
+                  <div class="skill-tooltip">Expert level knowledge of semantic HTML5 and modern CSS3 techniques</div>
+                </div>
+
+                <div class="skill-item">
+                  <div class="d-flex justify-content-between align-items-center">
+                    <h4>JavaScript</h4>
+                    <span class="skill-percentage">85%</span>
+                  </div>
+                  <div class="progress">
+                    <div class="progress-bar" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"></div>
+                  </div>
+                  <div class="skill-tooltip">Strong proficiency in ES6+, DOM manipulation, and modern frameworks</div>
+                </div>
+
+                <div class="skill-item">
+                  <div class="d-flex justify-content-between align-items-center">
+                    <h4>React</h4>
+                    <span class="skill-percentage">80%</span>
+                  </div>
+                  <div class="progress">
+                    <div class="progress-bar" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+                  </div>
+                  <div class="skill-tooltip">Experience with React hooks, state management, and component architecture</div>
+                </div>
+              </div>
+            </div><!-- End Frontend Skills -->
+          </div>
+
+          <div class="col-lg-6">
+            <div class="skills-category" data-aos="fade-up" data-aos-delay="300">
+              <h3>Back-end Development</h3>
+              <div class="skills-animation">
+                <div class="skill-item">
+                  <div class="d-flex justify-content-between align-items-center">
+                    <h4>Node.js</h4>
+                    <span class="skill-percentage">75%</span>
+                  </div>
+                  <div class="progress">
+                    <div class="progress-bar" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                  </div>
+                  <div class="skill-tooltip">Server-side JavaScript development with Express and REST APIs</div>
+                </div>
+
+                <div class="skill-item">
+                  <div class="d-flex justify-content-between align-items-center">
+                    <h4>Python</h4>
+                    <span class="skill-percentage">70%</span>
+                  </div>
+                  <div class="progress">
+                    <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"></div>
+                  </div>
+                  <div class="skill-tooltip">Python development with Django and data analysis tools</div>
+                </div>
+
+                <div class="skill-item">
+                  <div class="d-flex justify-content-between align-items-center">
+                    <h4>SQL</h4>
+                    <span class="skill-percentage">65%</span>
+                  </div>
+                  <div class="progress">
+                    <div class="progress-bar" role="progressbar" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"></div>
+                  </div>
+                  <div class="skill-tooltip">Database design, optimization, and complex queries</div>
+                </div>
+              </div>
+            </div><!-- End Backend Skills -->
+          </div>
+        </div>
+
+      </div>
+
+    </section><!-- /Skills Section -->
+
+    <!-- Resume Section -->
+    <section id="resume" class="resume section">
+
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Resume</h2>
+        <p>I am a new student of cybersecurity, but I am not new to the principles of protecting people and assets. My career has been built on a foundation of vigilance, integrity, and a commitment to security. I am ready to translate this foundation into the digital realm, helping to build robust defenses and secure the information that powers our world.</p>
+      </div><!-- End Section Title -->
+
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+        <div class="row gy-4">
+          <!-- Left column with contact, skills, and intrests -->
+          <div class="col-lg-4">
+            <div class="resume-side" data-aos="fade-right" data-aos-delay="100">
+              <h3 class="mt-4">Contact Information</h3>
+              <ul class="contact-info list-unstyled">
+                <li><i class="bi bi-geo-alt"></i> 3131 Main St. Apt 821 Dallas, TX 75226</li>
+                <li><i class="bi bi-envelope"></i> richardpblair@gmail.com</li>
+                <li><i class="bi bi-phone"></i> +1 (509) 499-6854</li>
+                <li><i class="bi bi-linkedin"></i> linkedin.com/in/richardpblair</li>
+              </ul>
+
+              <div class="skills-animation mt-4">
+                <h3>Technical Skills</h3>
+                <div class="skill-item">
+                  <div class="d-flex justify-content-between">
+                    <span>Threat Assesment</span>
+                    <span>15%</span>
+                  </div>
+                  <div class="progress">
+                    <div class="progress-bar" role="progressbar" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
+                  </div>
+                </div>
+
+                <div class="skill-item">
+                  <div class="d-flex justify-content-between">
+                    <span>Teaching</span>
+                    <span>85%</span>
+                  </div>
+                  <div class="progress">
+                    <div class="progress-bar" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"></div>
+                  </div>
+                </div>
+
+                <div class="skill-item">
+                  <div class="d-flex justify-content-between">
+                    <span>Cloud Security</span>
+                    <span>10%</span>
+                  </div>
+                  <div class="progress">
+                    <div class="progress-bar" role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
+                  </div>
+                </div>
+
+                <div class="skill-item">
+                  <div class="d-flex justify-content-between">
+                    <span>Project Management</span>
+                    <span>80%</span>
+                  </div>
+                  <div class="progress">
+                    <div class="progress-bar" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="intrests-section mt-4">
+                  <h3>Intrests</h3>
+                  <ul class="list-unstyled">
+                    <li><i class="bi bi-flag"></i> Veterans Non-Profit Volunteering</li>
+                    <li><i class="bi bi-clipboard-check"></i> Teaching</li>
+                    <li><i class="bi bi-pencil"></i> Continues Learning</li>
+                    <li><i class="bi bi-leaf"></i> Outdoor Activities</li>
+                    <li><i class="bi bi-backpack"></i> Traveling Abroad</li>
+                  </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right column with experience and education -->
+          <div class="col-lg-8 ps-4 ps-lg-5">
+            <!-- Experience Section -->
+            <div class="resume-section" data-aos="fade-up">
+              <h3><i class="bi bi-briefcase me-2"></i>Professional Experience</h3>
+
+              <div class="resume-item">
+                <h4>Education Technician</h4>
+                <h5>04/2024 - 02/2005</h5>
+                <p class="company"><i class="bi bi-building"></i> United States Department Of Veteran Affairs</p>
+                <ul>
+                  <li>Proactive Security and Compliance: Developed and delivered training on safety protocols to over 1,500 staff, ensuring full compliance with federal standards and mitigating risks.</li>
+                  <li>Data-Driven Analysis: Utilized Power Bi to create a tracking platform for staff training completions, enabling proactive monitoring and intervention to maintain safety compliance and identify potential risks. </li>
+                  <li>Process Improvement: Researched and integrated critical safety and compliance information into new employee orientation, ensuring a smooth and secure onboarding process.</li>
+                </ul>
+              </div>
+
+              <div class="resume-item">
+                <h4>Rural Carrier Assistant</h4>
+                <h5>05/2023-10/2023</h5>
+                <p class="company"><i class="bi bi-building"></i> United States Postal Service</p>
+                <ul>
+                  <li>Maintained strict adherence to protocols and schedules, demonstrating a commitment to procedural compliance and timely execution.</li>
+                  <li>Resolved customer delivery issues and inquiries, showcasing strong communication and problem-solving skills critical for help desk environments.</li>
+                </ul>
+              </div>
+
+              <div class="resume-item">
+                <h4>Corrections Officer</h4>
+                <h5>09/2006-05/2022</h5>
+                <p class="company"><i class="bi bi-building"></i> Spokane County</p>
+                <ul>
+                  <li>Security & Risk Mitigation: Maintained a secure environment for inmates, enforcing safety policies, conducting risk assessments, and implementing preventative measures to minimize incidents.</li> 
+                  <li>Training & Mentorship: Served as a Field Training Officer and Academy Instructor, developing and delivering training programs on de-escalation techniques, emergency response, and safety procedures.</li>
+                  <li>Procedural Adherence: Performed detailed forensic identification work as an Identification Officer, demonstrating meticulous attention to detail and strict adherence to established procedures.</li> 
+                </ul>
+              </div>
+            </div>
+
+            <!-- Education Section -->
+            <div class="resume-section" data-aos="fade-up" data-aos-delay="100">
+              <h3><i class="bi bi-mortarboard me-2"></i>Education</h3>
+
+              <div class="resume-item">
+                <h4>Bachelor of Cybersecurity and Information Assurance</h4>
+                <h5>2025 - Current</h5>
+                <p class="company"><i class="bi bi-building"></i> Western Governors University</p>
+              </div>
+
+              <div class="resume-item">
+                <h4>Associates of Law Enforcement</h4>
+                <h5>2001-2005</h5>
+                <p class="company"><i class="bi bi-building"></i> Spokane Community College</p>
+                <p>Vice Presidents Honor Roll 4 Qtrs and Presidents Honor Roll 2 Qtrs</p>
+              </div>
+            </div>
+
+            <!-- Certifications Section -->
+            <div class="resume-section" data-aos="fade-up" data-aos-delay="200">
+              <h3><i class="bi bi-award me-2"></i>Certifications</h3>
+
+              <div class="resume-item">
+                <h4>Google Cybersecurity</h4>
+                <h5>2024</h5>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </section><!-- /Resume Section -->
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="portfolio section">
+
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Portfolio</h2>
+        <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
+      </div><!-- End Section Title -->
+
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+        <div class="isotope-layout" data-default-filter="*" data-layout="masonry" data-sort="original-order">
+
+          <div class="row">
+            <div class="col-lg-3 filter-sidebar">
+              <div class="filters-wrapper" data-aos="fade-right" data-aos-delay="150">
+                <ul class="portfolio-filters isotope-filters">
+                  <li data-filter="*" class="filter-active">All Projects</li>
+                  <li data-filter=".filter-photography">Photography</li>
+                  <li data-filter=".filter-design">Design</li>
+                  <li data-filter=".filter-automotive">Automotive</li>
+                  <li data-filter=".filter-nature">Nature</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="col-lg-9">
+              <div class="row gy-4 portfolio-container isotope-container" data-aos="fade-up" data-aos-delay="200">
+
+                <div class="col-lg-6 col-md-6 portfolio-item isotope-item filter-photography">
+                  <div class="portfolio-wrap">
+                    <img src="assets/img/portfolio/portfolio-portrait-1.webp" class="img-fluid" alt="Portfolio Image" loading="lazy">
+                    <div class="portfolio-info">
+                      <div class="content">
+                        <span class="category">Photography</span>
+                        <h4>Capturing Moments</h4>
+                        <div class="portfolio-links">
+                          <a href="assets/img/portfolio/portfolio-portrait-1.webp" class="glightbox" title="Capturing Moments"><i class="bi bi-plus-lg"></i></a>
+                          <a href="portfolio-details.html" title="More Details"><i class="bi bi-arrow-right"></i></a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div><!-- End Portfolio Item -->
+
+                <div class="col-lg-6 col-md-6 portfolio-item isotope-item filter-design">
+                  <div class="portfolio-wrap">
+                    <img src="assets/img/portfolio/portfolio-2.webp" class="img-fluid" alt="Portfolio Image" loading="lazy">
+                    <div class="portfolio-info">
+                      <div class="content">
+                        <span class="category">Web Design</span>
+                        <h4>Woodcraft Design</h4>
+                        <div class="portfolio-links">
+                          <a href="assets/img/portfolio/portfolio-2.webp" class="glightbox" title="Woodcraft Design"><i class="bi bi-plus-lg"></i></a>
+                          <a href="portfolio-details.html" title="More Details"><i class="bi bi-arrow-right"></i></a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div><!-- End Portfolio Item -->
+
+                <div class="col-lg-6 col-md-6 portfolio-item isotope-item filter-automotive">
+                  <div class="portfolio-wrap">
+                    <img src="assets/img/portfolio/portfolio-portrait-2.webp" class="img-fluid" alt="Portfolio Image" loading="lazy">
+                    <div class="portfolio-info">
+                      <div class="content">
+                        <span class="category">Automotive</span>
+                        <h4>Classic Beauty</h4>
+                        <div class="portfolio-links">
+                          <a href="assets/img/portfolio/portfolio-portrait-2.webp" class="glightbox" title="Classic Beauty"><i class="bi bi-plus-lg"></i></a>
+                          <a href="portfolio-details.html" title="More Details"><i class="bi bi-arrow-right"></i></a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div><!-- End Portfolio Item -->
+
+                <div class="col-lg-6 col-md-6 portfolio-item isotope-item filter-nature">
+                  <div class="portfolio-wrap">
+                    <img src="assets/img/portfolio/portfolio-portrait-4.webp" class="img-fluid" alt="Portfolio Image" loading="lazy">
+                    <div class="portfolio-info">
+                      <div class="content">
+                        <span class="category">Nature</span>
+                        <h4>Natural Growth</h4>
+                        <div class="portfolio-links">
+                          <a href="assets/img/portfolio/portfolio-portrait-4.webp" class="glightbox" title="Natural Growth"><i class="bi bi-plus-lg"></i></a>
+                          <a href="portfolio-details.html" title="More Details"><i class="bi bi-arrow-right"></i></a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div><!-- End Portfolio Item -->
+
+                <div class="col-lg-6 col-md-6 portfolio-item isotope-item filter-photography">
+                  <div class="portfolio-wrap">
+                    <img src="assets/img/portfolio/portfolio-5.webp" class="img-fluid" alt="Portfolio Image" loading="lazy">
+                    <div class="portfolio-info">
+                      <div class="content">
+                        <span class="category">Photography</span>
+                        <h4>Urban Stories</h4>
+                        <div class="portfolio-links">
+                          <a href="assets/img/portfolio/portfolio-5.webp" class="glightbox" title="Urban Stories"><i class="bi bi-plus-lg"></i></a>
+                          <a href="portfolio-details.html" title="More Details"><i class="bi bi-arrow-right"></i></a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div><!-- End Portfolio Item -->
+
+                <div class="col-lg-6 col-md-6 portfolio-item isotope-item filter-design">
+                  <div class="portfolio-wrap">
+                    <img src="assets/img/portfolio/portfolio-6.webp" class="img-fluid" alt="Portfolio Image" loading="lazy">
+                    <div class="portfolio-info">
+                      <div class="content">
+                        <span class="category">Web Design</span>
+                        <h4>Digital Experience</h4>
+                        <div class="portfolio-links">
+                          <a href="assets/img/portfolio/portfolio-6.webp" class="glightbox" title="Digital Experience"><i class="bi bi-plus-lg"></i></a>
+                          <a href="portfolio-details.html" title="More Details"><i class="bi bi-arrow-right"></i></a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div><!-- End Portfolio Item -->
+
+              </div><!-- End Portfolio Container -->
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section><!-- /Portfolio Section -->
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact section">
+
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Contact</h2>
+      </div><!-- End Section Title -->
+
+      <div class="container">
+
+        <div class="row g-4 g-lg-5">
+          <div class="col-lg-5">
+            <div class="info-box">
+              <h3>Contact Info</h3>
+
+              <div class="info-item">
+                <div class="icon-box">
+                  <i class="bi bi-geo-alt"></i>
+                </div>
+                <div class="content">
+                  <h4>My Location</h4>
+                  <p>3131 Main St. Apt 821</p>
+                  <p>Dallas, TX 75226</p>
+                </div>
+              </div>
+
+              <div class="info-item">
+                <div class="icon-box">
+                  <i class="bi bi-telephone"></i>
+                </div>
+                <div class="content">
+                  <h4>Phone Number</h4>
+                  <p>+1 (509) 499-6854</p>
+                </div>
+              </div>
+
+              <div class="info-item">
+                <div class="icon-box">
+                  <i class="bi bi-envelope"></i>
+                </div>
+                <div class="content">
+                  <h4>Email Address</h4>
+                  <p>richardpblair@gmail.com</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-7">
+            <div class="contact-form">
+              <h3>Get In Touch</h3>
+              <p>Leave a message and I will get back to you as soon as I can.</p>
+
+              <form action="forms/contact.php" method="post" class="php-email-form">
+                <div class="row gy-4">
+
+                  <div class="col-md-6">
+                    <input type="text" name="name" class="form-control" placeholder="Your Name" required="">
+                  </div>
+
+                  <div class="col-md-6 ">
+                    <input type="email" class="form-control" name="email" placeholder="Your Email" required="">
+                  </div>
+
+                  <div class="col-12">
+                    <input type="text" class="form-control" name="subject" placeholder="Subject" required="">
+                  </div>
+
+                  <div class="col-12">
+                    <textarea class="form-control" name="message" rows="6" placeholder="Message" required=""></textarea>
+                  </div>
+
+                  <div class="col-12 text-center">
+                    <div class="loading">Loading</div>
+                    <div class="error-message"></div>
+                    <div class="sent-message">Your message has been sent. Thank you!</div>
+
+                    <button type="submit" class="btn">Send Message</button>
+                  </div>
+
+                </div>
+              </form>
+
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section><!-- /Contact Section -->
+
+  </main>
+
+  <footer id="footer" class="footer position-relative">
+
+    <div class="container">
+      <div class="copyright text-center ">
+        <p>© <span>Copyright</span> <strong class="px-1 sitename">iPortfolio</strong> <span>All Rights Reserved</span></p>
+      </div>
+      <div class="credits">
+        <!-- All the links in the footer should remain intact. -->
+        <!-- You can delete the links only if you've purchased the pro version. -->
+        <!-- Licensing information: https://bootstrapmade.com/license/ -->
+        <!-- Purchase the pro version with working PHP/AJAX contact form: [buy-url] -->
+        Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+      </div>
+    </div>
+
+  </footer>
+
+  <!-- Scroll Top -->
+  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Preloader -->
+  <div id="preloader"></div>
+
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="assets/vendor/typed.js/typed.umd.js"></script>
+  <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
+  <script src="assets/vendor/waypoints/noframework.waypoints.js"></script>
+  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+
+  <!-- Main JS File -->
+  <script src="assets/js/main.js"></script>
+
 </body>
+
 </html>
