@@ -1,0 +1,85 @@
+name: Build & Deploy Pages
+
+on:
+  push:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install deps
+        run: |
+          npm init -y
+          npm i -D esbuild svgo sharp globby
+
+      - name: Build CSS/JS
+        run: |
+          npx esbuild assets/js/main.js --bundle --minify --outfile=dist/assets/js/main.min.js
+          npx esbuild assets/css/style.css --minify --outfile=dist/assets/css/site.min.css
+
+      - name: Optimize images
+        run: |
+          node - <<'NODE'
+          import fs from 'fs/promises';
+          import path from 'path';
+          import sharp from 'sharp';
+          import { globby } from 'globby';
+          const sizes = [480, 768, 1200, 1920];
+          const inDir = 'assets/img';
+          const outDir = 'dist/assets/img';
+          const originals = await globby([`${inDir}/**/*.{jpg,jpeg,png,webp}`]);
+          for (const f of originals) {
+            const rel = path.relative(inDir, f);
+            const baseNoExt = path.join(outDir, rel.replace(/\.[^.]+$/, ''));
+            await fs.mkdir(path.dirname(baseNoExt), { recursive: true });
+            // If already webp, just copy
+            if (/\.webp$/i.test(f)) {
+              await fs.copyFile(f, `${baseNoExt}.webp`);
+              continue;
+            }
+            for (const w of sizes) {
+              await sharp(f).resize({ width: w }).webp({ quality: 78 }).toFile(`${baseNoExt}-${w}.webp`);
+            }
+          }
+          NODE
+
+      - name: Copy HTML and other static files
+        run: |
+          mkdir -p dist
+          rsync -av --exclude 'assets/css' --exclude 'assets/js' --exclude 'assets/img' ./ dist/
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy
+        id: deployment
+        uses: actions/deploy-pages@v4
