@@ -1,21 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="utf-8">
-  <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <title>Index - MyPage Bootstrap Template</title>
-  <meta name="description" content="">
-  <meta name="keywords" content="">
-
-  <!-- Favicons -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Richard Blair — Cybersecurity Portfolio</title>
+  <meta name="description" content="Cybersecurity student and veteran — projects in network defense, endpoint hardening, SIEM, and more.">
+  <meta name="keywords" content="cybersecurity, SOC, SIEM, network defense, risk assessment, portfolio">
   <link href="assets/img/favicon.png" rel="icon">
   <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
-
-  <!-- Fonts -->
   <link href="https://fonts.googleapis.com" rel="preconnect">
   <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&family=Raleway:wght@300;400;500;700;900&family=Ubuntu:wght@300;400;500;700&display=swap" rel="stylesheet">
+
 
   <!-- Vendor CSS Files -->
   <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -26,7 +22,6 @@
 
   <!-- Main CSS File -->
   <link href="assets/css/main.css" rel="stylesheet">
-
 </head>
 
 <body class="index-page" data-anim="on">
@@ -34,13 +29,14 @@
   <canvas id="bg-net"></canvas>
   <div class="bg-overlay"></div>
   <div class = "twinkle-overlay" aria-hidden="true"></div>
-
-  <header id="header" class="header dark-background d-flex flex-column justify-content-between">
-    <i class="header-toggle d-xl-none bi bi-list"></i>
+    <button class="header-toggle d-xl-none bi bi-list" aria-label="Toggle navigation" aria-controls="navmenu" aria-expanded="false"></button>
 
     <div class="header-top">
       <div class="profile-img">
-        <img src="assets/img/profile/Headshot.webp" alt="" class="img-fluid">
+        <img src="assets/img/profile/Headshot.webp"
+             alt="Portrait of Richard Blair"
+             width="300" height="300"
+             class="img-fluid">
       </div>
 
       <div class="logo-wrapper d-flex flex-column align-items-center">
@@ -49,12 +45,10 @@
         </a>
         
         <div class="veteran-status d-flex flex-column align-items-center">
-          <img src="assets/img/portfolio/army_logo.webp" alt="US Army Logo" class="veteran-logo">
+          <img src="assets/img/portfolio/army_logo.webp" alt="US Army Logo" class="veteran-logo" width="150" height="150">
           <span class="veteran-text">US Army Veteran</span>
         </div> 
       </div>
-      </div>
-
     </div>
 
     <nav id="navmenu" class="navmenu">
@@ -63,13 +57,12 @@
         <li><a href="#about"><i class="bi bi-person navicon"></i> About</a></li>
         <li><a href="#resume"><i class="bi bi-file-earmark-text navicon"></i> Resume</a></li>
         <li><a href="#portfolio"><i class="bi bi-images navicon"></i> Portfolio</a></li>
-        </li>
         <li><a href="#contact"><i class="bi bi-envelope navicon"></i> Contact</a></li>
       </ul>
     </nav>
 
     <div class="social-links text-center">
-      <a href="https://github.com/richardpblair/richardpblair" class="Github"><i class="bi bi-github"></i></a>
+      <a href="https://github.com/richardpblair/richardpblair" class="github" aria-label="GitHub: richardpblair" target="_blank" rel="noopener noreferrer"><i calss="bi bi-github"></i>
       <a href="https://www.linkedin.com/in/richardpblair/" class="linkedin"><i class="bi bi-linkedin"></i></a>
     </div>
   </header>
@@ -87,7 +80,7 @@
               <h1 data-aos="fade-up" data-aos-delay="200">
                  Fortifying the Digital Frontier For
                  <br>
-                 <span class="typed" data-typed-items="Yesterday!, Today!, Tommorow!, The Future!"></span>
+                 <span class="typed" data-typed-items="Yesterday!, Today!, Tomorrow!, The Future!"></span>
               </h1>
               <p class="hero-description" data-aos="fade-up" data-aos-delay="300">
                 Bridging the gap between the virtual and physical, I specialize in fortifying the digital landscapes we all live in. My work is focused on proactive defense, threat intelligence, and creating a safer online experience for everyone.
@@ -103,7 +96,7 @@
                 </div>
                 <div class="stat-item">
                   <span class="stat-number">Student</span>
-                  <span class="stat-label">Years Experience</span>
+                  <span class="stat-label">Current Status</span>
                 </div>
                 <div class="stat-item">
                   <span class="stat-number">1</span>
@@ -117,10 +110,10 @@
           <div class="col-lg-6 order-1 order-lg-2">
             <div class="hero-image" data-aos="fade-up" data-aos-delay="300">
               <div class="image-wrapper">
-                <img src="assets/img/Shield.webp" alt="Creative Designer Portfolio" class="img-fluid main-image">
+                <img src="assets/img/Shield.webp" alt="Defense of Cyber World" class="img-fluid main-image">
                 <div class="floating-card card-1" data-aos="fade-up" data-aos-delay="600">
                   <i class="bi bi-clipboard-check"></i>
-                  <span>Risk Assesment</span>
+                  <span>Risk Assessment</span>
                 </div>
                 <div class="floating-card card-2" data-aos="fade-up" data-aos-delay="700">
                   <i class="bi bi-hdd-network"></i>
@@ -134,22 +127,17 @@
             </div>
           </div>
         </div>
-
       </div>
-
     </section><!-- /Hero Section -->
 
     <!-- About Section -->
     <section id="about" class="about section">
-
       <div class="container" data-aos="fade-up" data-aos-delay="100">
-
         <div class="row justify-content-center">
           <div class="col-lg-10">
-
             <div class="intro-header text-center" data-aos="fade-up" data-aos-delay="150">
               <h1>Hi, I'm Richard Blair</h1>
-              <p class="subtitle">Digital Security Practioner &amp; Creative Strategist</p>
+              <p class="subtitle">Digital Security Practitioner &amp; Creative Strategist</p>
             </div>
 
             <div class="main-content-wrapper">
@@ -175,15 +163,16 @@
                       </div>
                     </div>
                   </div>
-                  <br>
-                  <br>
+
+                  <br><br>
+
                   <div class="expertise-grid">
                       <div class="expertise-item" data-aos="zoom-in" data-aos-delay="300">
                         <div class="expertise-icon">
                           <i class="bi bi-clipboard-check"></i>
                         </div>
                         <div class="expertise-content">
-                          <h4>Risk Assesment</h4>
+                          <h4>Risk Assessment</h4>
                           <p>Identifying vulnerabilities before they become threats.</p>
                         </div>
                       </div>
@@ -203,8 +192,8 @@
                           <i class="bi bi-people"></i>
                         </div>
                         <div class="expertise-content">
-                          <h4>Communication and Team Work</h4>
-                          <p>Building trust throught clear, focused collaboration</p>
+                          <h4>Communication and Teamwork</h4>
+                          <p>Building trust through clear, focused collaboration</p>
                         </div>
                       </div>
                     </div>
@@ -243,18 +232,15 @@
 
     <!-- Skills Section -->
     <section id="skills" class="skills section">
-
-      <!-- Section Title -->
       <div class="container section-title" data-aos="fade-up">
         <h2>Skills</h2>
-      </div><!-- End Section Title -->
+      </div>
 
       <div class="container" data-aos="fade-up" data-aos-delay="100">
-
         <div class="row justify-content-center">
           <div class="col-lg-10">
             <div class="intro-content text-center mb-5" data-aos="fade-up" data-aos-delay="150">
-              <p class="lead-text">Mastery achieved through continuous exploration and dedicated building on core strenghts</p>
+              <p class="lead-text">Mastery achieved through continuous exploration and dedicated building on core strengths</p>
             </div>
           </div>
         </div>
@@ -275,7 +261,7 @@
                       <span class="skill-percentage">35%</span>
                     </div>
                     <div class="progress">
-                      <div class="progress-bar" role="progressbar" aria-valuenow="35" aria-valuemin="0" aria-valuemax="100"></div>
+                     <div class="progress-bar" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
                   </div>
                   <div class="skill-row">
@@ -302,7 +288,7 @@
               <div class="skill-category skills-animation" data-aos="fade-up" data-aos-delay="250">
                 <div class="category-header">
                   <h3 class="category-title">Soft Skills</h3>
-                  <p class="category-subtitle">Communicate, colaberate and teach</p>
+                  <p class="category-subtitle">Communicate, collaborate and teach</p>
                 </div>
                 <div class="skills-list">
                   <div class="skill-row">
@@ -352,7 +338,7 @@
                   </div>
                   <div class="skill-row">
                     <div class="skill-info">
-                      <span class="skill-name">Risk Assesment & Mitigation Planning</span>
+                      <span class="skill-name">Risk Assessment & Mitigation Planning</span>
                       <span class="skill-percentage">80%</span>
                     </div>
                     <div class="progress">
@@ -370,13 +356,11 @@
                   </div>
                 </div>
               </div>
-
             </div>
           </div>
 
           <div class="col-lg-4">
             <div class="skills-sidebar">
-
               <div class="expertise-highlight" data-aos="fade-up" data-aos-delay="350">
                 <div class="highlight-icon">
                   <i class="bi bi-trophy"></i>
@@ -410,11 +394,11 @@
                   </div>
                   <div class="tech-item">
                     <i class="bi bi-badge-vr"></i>
-                    <span>Virtualizaion</span>
+                    <span>Virtualization</span>
                   </div>
                   <div class="tech-item">
                     <i class="bi bi-github"></i>
-                    <span>Github</span>
+                    <span>GitHub</span>
                   </div>
                 </div>
               </div>
@@ -440,15 +424,12 @@
 
     <!-- Resume Section -->
     <section id="resume" class="resume section">
-
-      <!-- Section Title -->
       <div class="container section-title" data-aos="fade-up">
         <h2>Resume</h2>
         <p>Driven cybersecurity professional in training with 24 years of military and law enforcement experience, skilled in risk assessment, compliance, and team leadership. Currently pursuing a B.S. in Cybersecurity and Information Assurance at Western Governors University and certified through Google Cybersecurity, with hands-on proficiency in threat detection, vulnerability management, and Microsoft 365 administration. Recognized for developing data-driven training systems and fostering secure, efficient operations. Dedicated to continuous learning, collaboration, and applying a mission-first mindset to modern cybersecurity challenges.</p>
-      </div><!-- End Section Title -->
+      </div>
 
       <div class="container" data-aos="fade-up" data-aos-delay="100">
-
         <div class="row align-items-start">
           <div class="col-lg-5" data-aos="fade-right" data-aos-delay="200">
             <div class="professional-journey">
@@ -520,7 +501,7 @@
                       <i class="bi bi-cpu"></i>
                     </div>
                     <div class="degree-info">
-                      <h3>Bachelors fo Cybersecurity and Information Assurance</h3>
+                      <h3>Bachelor fo Cybersecurity and Information Assurance</h3>
                       <p class="institution">Western Governors University</p>
                       <span class="graduation-year">2025 - Current</span>
                     </div>
@@ -546,8 +527,8 @@
                   <div class="education-details">
                     <p>Earned a degree emphasizing ethics, criminal justice procedures, and crisis management, establishing a strong foundation in discipline, compliance, and situational awareness. Developed leadership, investigation, and communication skills that now strengthen a proactive and analytical approach to cybersecurity and risk mitigation.</p>
                      <div class="honors">
-                      <span class="honor-badge">Presidents Honnor Role x 2</span>
-                      <span class="honor-badge">Vice Presidents Honor Role x 4 </span>
+                      <span class="honor-badge">President's Honnor Role x 2</span>
+                      <span class="honor-badge">Vice President's Honor Role x 4 </span>
                      </div>
                   </div>
                 </div>
@@ -566,7 +547,6 @@
 
                   <div class="certification-section">
                     <div class="certifications">
-                      <!-- your existing cert-item blocks -->
                       <div class="cert-item">
                         <i class="bi bi-patch-check"></i>
                         <div class="cert-details">
@@ -581,7 +561,6 @@
             </div>
           </div>
         </div>
-
       </div>
 
     </section><!-- /Resume Section -->
@@ -590,17 +569,13 @@
 
     <!-- Portfolio Section -->
     <section id="portfolio" class="portfolio section">
-
-      <!-- Section Title -->
       <div class="container section-title" data-aos="fade-up">
         <h2>Portfolio</h2>
-        <p><b>Welcome to my digital sandbox — where curiosity meets caffeine and code meets chaos. This portfolio is a living project, constantly changing as I learn, break, fix, and teach along the way. Stop by often; I promise at least one new experiment and a few fewer bugs each time. I believe learning is best shared, so each project comes with a story — not just about what worked, but what didn’t. After all, in cybersecurity and life, every “oops” is just a prequel to innovation.</p></b>
-      </div><!-- End Section Title -->
+        <p><strong>Welcome to my digital sandbox — where curiosity meets caffeine and code meets chaos. This portfolio is a living project, constantly changing as I learn, break, fix, and teach along the way. Stop by often; I promise at least one new experiment and a few fewer bugs each time. I believe learning is best shared, so each project comes with a story — not just about what worked, but what didn’t. After all, in cybersecurity and life, every “oops” is just a prequel to innovation.</p></strong>
+      </div>
 
       <div class="container" data-aos="fade-up" data-aos-delay="100">
-
         <div class="isotope-layout" data-default-filter="*" data-layout="fitRows" data-sort="original-order">
-
           <div class="filters-wrapper" data-aos="fade-up" data-aos-delay="200">
             <ul class="portfolio-filters isotope-filters">
               <li data-filter="*" class="filter-active">All Work</li>
@@ -650,35 +625,29 @@
                     <span class="portfolio-category">Lab & Portfolio </span>
                     <span class="portfolio-year">2025</span>
                   </div>
-                  <h3 class="portfolio-title">Github Setup</h3>
+                  <h3 class="portfolio-title">GitHub Setup</h3>
                   <p class="portfolio-description">Coming Soon</p>
                 </div>
               </div>
             </div><!-- End Portfolio Item -->
 
-
           </div><!-- End Portfolio Container -->
-
         </div>
-
       </div>
-
     </section><!-- /Portfolio Section -->
 
     <hr class="section-divider" data-aos="fade-up" data-aos-delay="100">
 
     <!-- Contact Section -->
     <section id="contact" class="contact section">
-      <!-- Section Title -->
       <div class="container section-title" data-aos="fade-up">
         <h2>Contact</h2>
         <p>If you have a project inquiry or just want to connect, please don't hesitate to reach out. I may not have the perfect answer right away (let's be real, that's a 50/50 chance), but I can absolutely promise you 110% effort and a quick response time</p>
-      </div><!-- End Section Title -->
+      </div>
 
       <div class="container" data-aos="fade-up">
         <div class="row gy-4">
           <div class="col-lg-5">
-
             <div class="info-item">
               <div class="info-icon">
                 <i class="bi bi-chat-dots"></i>
@@ -689,7 +658,6 @@
             </div>
 
             <div class="contact-details">
-
               <div class="detail-item">
                 <div class="detail-icon">
                   <i class="bi bi-envelope-open"></i>
@@ -709,9 +677,7 @@
                   <span class="detail-value">Dallas, TX 75226</span>
                 </div>
               </div>
-
             </div>
-
           </div>
 
           <div class="col-lg-7">
@@ -721,7 +687,6 @@
               </div>
 
               <form action="https://formspree.io/f/mblzvpbq" method="POST">
-
                 <div class="row">
                   <div class="col-md-6">
                     <div class="form-group">
@@ -751,18 +716,12 @@
                   <span>Send Message</span>
                   <i class="bi bi-arrow-right"></i>
                 </button>
-
               </form>
-
             </div>
-
           </div>
-
         </div>
       </div>
-
     </section><!-- /Contact Section -->
-
   </main>
 
   <footer id="footer" class="footer light-background">
@@ -770,12 +729,12 @@
       <h3 class="sitename">Richard Blair</h3>
       <p>Cybersecurity Student • Continuous Learner • Mission-Driven Innovator<br>Building a safer digital world, one project at a time.</p>
       <div class="social-links d-flex justify-content-center">
-        <a href="https://github.com/richardpblair/richardpblair" class="Github"><i class="bi bi-github"></i></a>
+        <a href="https://github.com/richardpblair/richardpblair" class="GitHub"><i class="bi bi-github"></i></a>
         <a href="https://www.linkedin.com/in/richardpblair/" class="linkedin"><i class="bi bi-linkedin"></i></a>
       </div>
       <div class="container">
         <div class="copyright">
-          <span>Copyright</span> <strong class="px-1 sitename">Ricard Blair</strong> <span>All Rights Reserved</span>
+          <span>Copyright</span> <strong class="px-1 sitename">Richard Blair</strong> <span>All Rights Reserved</span>
         </div>
         <div class="credits">
           <!-- All the links in the footer should remain intact. -->
@@ -805,6 +764,7 @@
   <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js" defer></script>
   <script src="assets/vendor/glightbox/js/glightbox.min.js" defer></script>
   <script src="assets/vendor/swiper/swiper-bundle.min.js" defer></script>
+  <script src="assets/js/typed-fixes.js" defer></script>
 
   <script>
     document.addEventListener('DOMContentLoaded', () => {
