@@ -172,6 +172,9 @@ h6 {
   overflow-y: auto;
   z-index: 997;
   box-shadow: 0 0 20px 0px var(--li-blue-light);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .header .profile-img img {
@@ -199,8 +202,17 @@ h6 {
   text-shadow: 0 0 2px var(--default-color);
 }
 
+.header .logo .sitename {
+  font-size: 30px;
+  margin: 0;
+  font-weight: 400;
+  color: var(--accent-color);
+  text-shadow: 0 0 2px var(--default-color);
+}
+
 .header .social-links {
-  margin: 0 0 20px 0;
+  margin-top: auto;
+  margin-bottom: 20px;
 }
 
 .header .social-links a {
@@ -282,7 +294,7 @@ aside.sidebar {
 }
 
 .header .veteran-status {
-  margin-top: 50px; /* Tiny space below the h1 */
+  margin-top: 15px; /* Tiny space below the h1 */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -298,7 +310,7 @@ aside.sidebar {
   width: 150px;   /* Adjusted size for a badge look */
   height: 150px;  /* Adjusted size for a badge look */
   object-fit: contain;
-  margin-bottom: 50px;
+  margin-bottom: 10px;
  
   filter: drop-shadow(0 0 2px var(--default-color));
 }
@@ -313,6 +325,16 @@ aside.sidebar {
   text-shadow: 0 0 3px var(--default-color);
 }
 /* --- END NEW CODE FOR VETERAN STATUS --- */
+
+@media (max-width: 1199px) {
+  .header .social-links {
+    position: absolute;
+    bottom: 20px;
+    left: 0;
+    width: 100%;
+  }
+}
+
 
 /*--------------------------------------------------------------
 # Navigation Menu
@@ -340,7 +362,7 @@ aside.sidebar {
 .navmenu a:focus {
   color: var(--nav-color);
   padding: 15px 10px;
-  font-family: var(--nav-font);
+  font-family: var(--default-font);
   font-size: 25px;
   font-weight: 400;
   display: flex;
@@ -557,6 +579,10 @@ aside.sidebar {
   }
 }
 
+@media (max-width: 768px) {
+  [data-aos] { transition-duration: 400ms !important; }
+}
+
 /*--------------------------------------------------------------
 # Global Page Titles & Breadcrumbs
 --------------------------------------------------------------*/
@@ -635,13 +661,15 @@ section,
       var(--li-blue) 25%,
       var(--li-blue-light) 100%
     ),
-    radial-gradient(1100px 700px at 80% 20%, rgba(255,255,255,0.05), transparent 60%),
-    radial-gradient(900px 600px  at 20% 80%, rgba(255,255,255,0.03), transparent 60%);
+    radial-gradient(1100px 700px at 80% 20%, rgba(255,255,255,0.05), transparent 20%),
+    radial-gradient(900px 600px  at 20% 80%, rgba(255,255,255,0.03), transparent 20%);
   mix-blend-mode: normal;
-  background: radial-gradient(1100px 700px at 80% 20%, rgba(255,255,255,0.03), transparent 60%);
   pointer-events: none;
 }
 
+.bg-overlay {
+  opacity: 0.4; /* 0 = invisible, 1 = solid; try 0.5–0.8 range */
+}
 /* Metallic twinkle overlay */
 .twinkle-overlay{
   position: fixed;
@@ -941,7 +969,7 @@ section,
 
 @media (max-width: 768px) {
   .hero .hero-image .image-wrapper .floating-card.card-1 {
-    left: 1;
+    left: 1%;
     top: 10%;
   }
 }
@@ -990,6 +1018,13 @@ section,
     margin-top: 2rem;
   }
 }
+
+@media (max-width: 480px) {
+  .hero .hero-image .image-wrapper .floating-card {
+    transform: translateY(0) !important;
+  }
+}
+
 
 .typed {
   color: var(--accent-color);
@@ -4078,4 +4113,30 @@ section:not(.hero) p {
     display: flex;
     flex-direction: column;
     height: 100%;
+}
+/* Universal responsive images */
+img { max-width: 100%; height: auto; }
+
+/* Portfolio tiles: consistent aspect ratio + no stretching */
+.portfolio-image { position: relative; width: 100%; aspect-ratio: 16 / 10; overflow: hidden; }
+.portfolio-image img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+/* Ensure equal heights for portfolio cards on grid wrap */
+.portfolio-card { height: 100%; display: flex; flex-direction: column; }
+.portfolio-content { margin-top: auto; }
+
+/* Keyboard focus visibility (accessibility) */
+a:focus-visible, button:focus-visible { outline: 2px solid var(--accent-color); outline-offset: 2px; }
+
+/* Small-screen polish */
+@media (max-width: 576px) {
+  .hero .hero-actions { flex-direction: column; gap: 0.75rem; }
+  .hero .hero-content h1 { font-size: clamp(1.8rem, 4vw + 1rem, 2.2rem); }
+}
+
+/* Respect reduce-motion for more elements */
+@media (prefers-reduced-motion: reduce) {
+  .hero .hero-image .image-wrapper .floating-card,
+  .skills .progress .progress-bar { transition: none !important; }
+  .twinkle-overlay { animation: none !important; }
 }

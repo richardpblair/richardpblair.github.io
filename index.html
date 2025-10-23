@@ -29,8 +29,8 @@
   <canvas id="bg-net"></canvas>
   <div class="bg-overlay"></div>
   <div class = "twinkle-overlay" aria-hidden="true"></div>
+  <header class="header">
     <button class="header-toggle d-xl-none bi bi-list" aria-label="Toggle navigation" aria-controls="navmenu" aria-expanded="false"></button>
-
     <div class="header-top">
       <div class="profile-img">
         <img src="assets/img/profile/Headshot.webp"
@@ -41,7 +41,7 @@
 
       <div class="logo-wrapper d-flex flex-column align-items-center">
         <a href="index.html" class="logo d-flex align-items-center justify-content-center">
-          <h1 class="sitename">Richard Blair</h1>
+        <span class="sitename">Richard Blair</span>
         </a>
         
         <div class="veteran-status d-flex flex-column align-items-center">
@@ -53,7 +53,7 @@
 
     <nav id="navmenu" class="navmenu">
       <ul>
-        <li><a href="#hero" class="active"><i class="bi bi-house navicon"></i>Home</a></li>
+        <li><a href="#hero" class="active" aria-current="page"><i class="bi bi-house navicon"></i>Home</a></li>
         <li><a href="#about"><i class="bi bi-person navicon"></i> About</a></li>
         <li><a href="#resume"><i class="bi bi-file-earmark-text navicon"></i> Resume</a></li>
         <li><a href="#portfolio"><i class="bi bi-images navicon"></i> Portfolio</a></li>
@@ -62,8 +62,8 @@
     </nav>
 
     <div class="social-links text-center">
-      <a href="https://github.com/richardpblair/richardpblair" class="github" aria-label="GitHub: richardpblair" target="_blank" rel="noopener noreferrer"><i calss="bi bi-github"></i>
-      <a href="https://www.linkedin.com/in/richardpblair/" class="linkedin"><i class="bi bi-linkedin"></i></a>
+      <a href="https://github.com/richardpblair/richardpblair" class="github" aria-label="GitHub: richardpblair" target="_blank" rel="noopener noreferrer"><i class="bi bi-github"></i></a>
+      <a href="https://www.linkedin.com/in/richardpblair/" class="linkedin" aria-label="LinkedIn: Richard Blair" target="_blank" rel="noopener noreferrer"><i class="bi bi-linkedin"></i></a>
     </div>
   </header>
 
@@ -136,7 +136,7 @@
         <div class="row justify-content-center">
           <div class="col-lg-10">
             <div class="intro-header text-center" data-aos="fade-up" data-aos-delay="150">
-              <h1>Hi, I'm Richard Blair</h1>
+              <h2>Hi, I'm Richard Blair</h2>
               <p class="subtitle">Digital Security Practitioner &amp; Creative Strategist</p>
             </div>
 
@@ -146,7 +146,7 @@
                 <div class="col-lg-4" data-aos="fade-right" data-aos-delay="200">
                   <div class="profile-section">
                     <div class="profile-image-container">
-                      <img src="assets/img/profile/Richtropical.webp" class="img-fluid">
+                      <img src="assets/img/profile/Richtropical.webp" alt="Richard Blair Watching Sunrise" class="img-fluid">
                     </div>
                     <div class="profile-meta">
                       <div class="location">
@@ -207,7 +207,7 @@
 
                       <p class="lead-text"> Currently pursuing a B.S. in Cybersecurity and Information Assurance at Western Governors University, I’m expanding my technical toolkit through hands-on labs and certifications like the Google Cybersecurity Certificate. My work with the U.S. Department of Veterans Affairs and Spokane County strengthened my skills in compliance, incident response, and security training — experiences that translate directly into threat detection, analysis, and prevention.</p>
 
-                      <p class="lead-text"> I’m passionate about continuous learning, mentoring others, and contributing to secure and resilient IT systems. My current focus areas include SOC operations, endpoint hardening, and the role of cybersecurity in AI</p>
+                      <p class="lead-text"> I’m passionate about continuous learning, mentoring others, and contributing to secure and resilient IT systems. My current focus areas include SOC operations, endpoint hardening, and the role of cybersecurity in AI.</p>
 
                       <p class="lead-text"> When I’m not studying or working on my home cybersecurity lab, I’m mentoring veterans, collaborating with nonprofit teams, and enjoying the open road with fellow members of the Combat Veterans Motorcycle Association.</p>
 
@@ -258,7 +258,7 @@
                   <div class="skill-row">
                     <div class="skill-info">
                       <span class="skill-name">Network Defense & Monitoring</span>
-                      <span class="skill-percentage">35%</span>
+                      <span class="skill-percentage">45%</span>
                     </div>
                     <div class="progress">
                      <div class="progress-bar" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100"></div>
@@ -448,7 +448,7 @@
                       <span class="timeline-year">2024 - 2025</span>
                     </div>
                     <h3>Education Technician</h3>
-                    <h4>United States Department of Veteran Affairs</h4>
+                    <h4>United States Department of Veterans Affairs</h4>
                     <p>Delivered data-driven security and compliance training for over 1,500 staff across multiple departments, ensuring adherence to federal safety and privacy standards. Developed a Power BI tracking system to monitor training completion and proactively identify compliance risks, strengthening institutional readiness. Integrated cybersecurity awareness and risk mitigation practices into new employee onboarding, demonstrating initiative, analytical thinking, and the ability to apply technical solutions to operational challenges.</p>
                     <div class="key-achievements">
                       <span class="achievement-tag">Team Leadership</span>
@@ -501,7 +501,7 @@
                       <i class="bi bi-cpu"></i>
                     </div>
                     <div class="degree-info">
-                      <h3>Bachelor fo Cybersecurity and Information Assurance</h3>
+                      <h3>Bachelor of Cybersecurity and Information Assurance</h3>
                       <p class="institution">Western Governors University</p>
                       <span class="graduation-year">2025 - Current</span>
                     </div>
@@ -519,7 +519,7 @@
                       <i class="bi bi-shield-fill"></i>
                     </div>
                     <div class="degree-info">
-                      <h3>Associates of Applied Science in Law Enforcement</h3>
+                      <h3>Associate of Applied Science in Law Enforcement</h3>
                       <p class="institution">Spokane Community College</p>
                       <span class="graduation-year">2001 - 2005</span>
                     </div>
@@ -527,8 +527,8 @@
                   <div class="education-details">
                     <p>Earned a degree emphasizing ethics, criminal justice procedures, and crisis management, establishing a strong foundation in discipline, compliance, and situational awareness. Developed leadership, investigation, and communication skills that now strengthen a proactive and analytical approach to cybersecurity and risk mitigation.</p>
                      <div class="honors">
-                      <span class="honor-badge">President's Honnor Role x 2</span>
-                      <span class="honor-badge">Vice President's Honor Role x 4 </span>
+                      <span class="honor-badge">President's Honor Roll x 2</span>
+                      <span class="honor-badge">Vice President's Honor Roll x 4 </span>
                      </div>
                   </div>
                 </div>
@@ -571,7 +571,7 @@
     <section id="portfolio" class="portfolio section">
       <div class="container section-title" data-aos="fade-up">
         <h2>Portfolio</h2>
-        <p><strong>Welcome to my digital sandbox — where curiosity meets caffeine and code meets chaos. This portfolio is a living project, constantly changing as I learn, break, fix, and teach along the way. Stop by often; I promise at least one new experiment and a few fewer bugs each time. I believe learning is best shared, so each project comes with a story — not just about what worked, but what didn’t. After all, in cybersecurity and life, every “oops” is just a prequel to innovation.</p></strong>
+        <p><strong>Welcome to my digital sandbox — where curiosity meets caffeine and code meets chaos. This portfolio is a living project, constantly changing as I learn, break, fix, and teach along the way. Stop by often; I promise at least one new experiment and a few fewer bugs each time. I believe learning is best shared, so each project comes with a story — not just about what worked, but what didn’t. After all, in cybersecurity and life, every “oops” is just a prequel to innovation.</strong></p>
       </div>
 
       <div class="container" data-aos="fade-up" data-aos-delay="100">
@@ -579,7 +579,7 @@
           <div class="filters-wrapper" data-aos="fade-up" data-aos-delay="200">
             <ul class="portfolio-filters isotope-filters">
               <li data-filter="*" class="filter-active">All Work</li>
-              <li data-filter=".filter-branding">Lab Setup & Portfolio</li>
+              <li data-filter=".filter-branding">Lab & Portfolio</li>
               <li data-filter=".filter-web">Cloud & Infrastructure</li>
               <li data-filter=".filter-photography">Tools & Scripts</li>
               <li data-filter=".filter-print">Learning & Education</li>
@@ -590,7 +590,7 @@
             <div class="col-12 col-md-6 col-lg-4 portfolio-item isotope-item filter-branding">
               <div class="portfolio-card">
                 <div class="portfolio-image">
-                  <img src="assets/img/portfolio/Coming_soon.webp" class="img-fluid" alt="Brand Identity Project" loading="lazy">
+                  <img src="assets/img/portfolio/Coming_soon.webp" class="img-fluid" alt="Brand Identity Project" loading="lazy" decoding="async">
                   <div class="portfolio-overlay">
                     <div class="portfolio-actions">
                       <a href="assets/img/portfolio/Coming_soon.webp" class="glightbox action-btn preview-btn" title="Elemental Branding"><i class="bi bi-eye"></i></a>
@@ -612,7 +612,7 @@
             <div class="col-12 col-md-6 col-lg-4 portfolio-item isotope-item filter-branding">
               <div class="portfolio-card">
                 <div class="portfolio-image">
-                  <img src="assets/img/portfolio/Coming_soon.webp" class="img-fluid" alt="Digital Platform" loading="lazy">
+                  <img src="assets/img/portfolio/Coming_soon.webp" class="img-fluid" alt="Digital Platform" loading="lazy" decoding="async">
                   <div class="portfolio-overlay">
                     <div class="portfolio-actions">
                       <a href="assets/img/portfolio/Coming_soon.webp" class="glightbox action-btn preview-btn" title="Digital Workspace"><i class="bi bi-eye"></i></a>
@@ -622,7 +622,7 @@
                 </div>
                 <div class="portfolio-content">
                   <div class="portfolio-meta">
-                    <span class="portfolio-category">Lab & Portfolio </span>
+                    <span class="portfolio-category">Lab & Portfolio</span>
                     <span class="portfolio-year">2025</span>
                   </div>
                   <h3 class="portfolio-title">GitHub Setup</h3>
@@ -673,7 +673,7 @@
                   <i class="bi bi-geo-alt-fill"></i>
                 </div>
                 <div class="detail-content">
-                  <span class="detail-label">Visit us</span>
+                  <span class="detail-label">Visit me</span>
                   <span class="detail-value">Dallas, TX 75226</span>
                 </div>
               </div>
@@ -683,33 +683,34 @@
           <div class="col-lg-7">
             <div class="form-wrapper">
               <div class="form-header">
-                <h3>Send us a message</h3>
+                <h3>Send me a message</h3>
               </div>
 
               <form action="https://formspree.io/f/mblzvpbq" method="POST">
                 <div class="row">
                   <div class="col-md-6">
                     <div class="form-group">
-                      <label>Full Name</label>
-                      <input type="text" name="name" required="">
+                      <label for="fullName">Full Name</label>
+                      <input id="fullName" name="name" type="text" required autocomplete="name">
                     </div>
                   </div>
+
                   <div class="col-md-6">
                     <div class="form-group">
-                      <label>Email Address</label>
-                      <input type="email" name="email" required="">
+                      <label for="emailAddress">Email Address</label>
+                      <input id="emailAddress" name="email" type="email" required autocomplete="email">
                     </div>
                   </div>
                 </div>
 
                 <div class="form-group">
-                  <label>Subject</label>
-                  <input type="text" name="subject" required="">
+                  <label for="subject">Subject</label>
+                  <input id="subject" name="subject" type="text" required autocomplete="organization-title">
                 </div>
 
                 <div class="form-group">
                   <label for="projectMessage">Message</label>
-                  <textarea name="message" id="projectMessage" rows="5" required=""></textarea>
+                  <textarea id="projectMessage" name="message" rows="5" required></textarea>
                 </div>
 
                 <button type="submit" class="submit-btn">
@@ -729,19 +730,15 @@
       <h3 class="sitename">Richard Blair</h3>
       <p>Cybersecurity Student • Continuous Learner • Mission-Driven Innovator<br>Building a safer digital world, one project at a time.</p>
       <div class="social-links d-flex justify-content-center">
-        <a href="https://github.com/richardpblair/richardpblair" class="GitHub"><i class="bi bi-github"></i></a>
-        <a href="https://www.linkedin.com/in/richardpblair/" class="linkedin"><i class="bi bi-linkedin"></i></a>
+        <a href="https://github.com/richardpblair/richardpblair" class="github" aria-label="GitHub: richardpblair" target="_blank" rel="noopener noreferrer"><i class="bi bi-github"></i></a>
+        <a href="https://www.linkedin.com/in/richardpblair/" class="linkedin" aria-label="LinkedIn: Richard Blair" target="_blank" rel="noopener noreferrer"><i class="bi bi-linkedin"></i></a>
       </div>
       <div class="container">
         <div class="copyright">
           <span>Copyright</span> <strong class="px-1 sitename">Richard Blair</strong> <span>All Rights Reserved</span>
         </div>
         <div class="credits">
-          <!-- All the links in the footer should remain intact. -->
-          <!-- You can delete the links only if you've purchased the pro version. -->
-          <!-- Licensing information: https://bootstrapmade.com/license/ -->
-          <!-- Purchase the pro version with working PHP/AJAX contact form: [buy-url] -->
-          Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+          Designed by <a href="https://bootstrapmade.com/mypage-bootstrap-personal-template/" rel="noopener noreferrer">BootstrapMade with template MyPage</a>
         </div>
       </div>
     </div>
@@ -759,7 +756,6 @@
   <script src="assets/vendor/aos/aos.js" defer></script>
   <script src="assets/vendor/purecounter/purecounter_vanilla.js" defer></script>
   <script src="assets/vendor/typed.js/typed.umd.js" defer></script>
-  <script src="assets/vendor/waypoints/noframework.waypoints.js" defer></script>
   <script src="assets/vendor/imagesloaded/imagesloaded.pkgd.min.js" defer></script>
   <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js" defer></script>
   <script src="assets/vendor/glightbox/js/glightbox.min.js" defer></script>
@@ -777,7 +773,7 @@
 
         if (typedStrings) {
           // Split the comma-separated string into an array of strings
-          const stringsArray = typedStrings.split(',');
+          const stringsArray = typedStrings.split(',').map(s => s.trim());
 
           // Initialize Typed.js
           new Typed('.typed', {
@@ -798,12 +794,6 @@
   <script src="assets/js/main.js" defer></script>
 
   <script>
-  // Right 25% of the screen (full height)
-  BGNet.setCustomPercents({ xMin: 0.60, xMax: 1.00, yMin: 0.00, yMax: 1.00 });
-  BGNet.setMode('custom');
-  </script>
-
-  <script>
   (() => {
     const canvas = document.getElementById('bg-net');
     const ctx = canvas.getContext('2d');
@@ -812,9 +802,9 @@
     const CONFIG = {
       density: 0.00009,         // overall dot count (per pixel)
       layers: [                 // depth layers (front first)
-        { speed: 0.65, size: [1.6, 2.4], linkDist: 160, linkAlpha: 0.30 },
-        { speed: 0.40, size: [1.5, 2.1], linkDist: 140, linkAlpha: 0.24 },
-        { speed: 0.22, size: [1.3, 1.8], linkDist: 120,  linkAlpha: 0.20 }
+        { speed: 0.70, size: [1.6, 2.4], linkDist: 160, linkAlpha: 0.30 },
+        { speed: 0.45, size: [1.5, 2.1], linkDist: 140, linkAlpha: 0.24 },
+        { speed: 0.30, size: [1.3, 1.8], linkDist: 120,  linkAlpha: 0.20 }
       ],
       fieldScale: 0.005,        // flow field "frequency" (lower = broader waves)
       fieldSpeed: 0.00025,      // how fast the field moves through time
@@ -1411,7 +1401,7 @@
   </script>
 
   <script>
-    const basePreset   = { density: 0.00009, glow: 6, linkAdjust: -25 };  // calm & steady
+    const basePreset   = { density: 0.00009, glow: 4, linkAdjust: -8 };  // calm & steady
     const targetPreset = { ...basePreset }; // no ramp
 
     // Mobile / high-DPI guardrails (keeps things smooth on small devices)
@@ -1426,7 +1416,7 @@
       BGNet.config.density = preset.density;
       BGNet.config.glow = preset.glow;
       BGNet.config.layers.forEach(L => {
-        L.linkDist = Math.max(80, (L.linkDist || 120) + preset.linkAdjust);
+        L.linkDist = Math.max(60, (L.linkDist || 120) + preset.linkAdjust);
       });
     }
 
@@ -1438,7 +1428,7 @@
     document.addEventListener('visibilitychange', () => {
       if (document.hidden && BGNet?.config) {
         const d = BGNet.config.density;
-        BGNet.config.density = 0.00002;
+        BGNet.config.density = 0.000015;
         BGNet.setMode('custom');
         BGNet.config._resumeDensity = d;
       } else if (BGNet?.config?._resumeDensity) {
@@ -1450,10 +1440,20 @@
   </script>
 
   <script>
+  window.addEventListener('load', () => {
+       if (!window.BGNet) return;
+    BGNet.config.density = 0.00013;
+    BGNet.config.layers.forEach(L => L.linkDist = 110);
+    BGNet.config.glow = 8;
+    BGNet.setMode('custom');
+  });
+  </script>
+
+  <script>
   // --- SPEED DIALS ---
-  BGNet.config.fieldSpeed   = 0.0004; // 0.00008 – 0.00020  (lower = slower field evolution)
-  BGNet.config.flowStrength = 0.05;  // 0.015 – 0.040      (lower = gentler push per step)
-  BGNet.config.damping      = 1.5;  // 0.985 – 0.995      (higher = more glide / slower)
+  BGNet.config.fieldSpeed   = 0.00020; // 0.00008 – 0.00020  (lower = slower field evolution)
+  BGNet.config.flowStrength = 0.40;  // 0.015 – 0.040      (lower = gentler push per step)
+  BGNet.config.damping      = 0.995;  // 0.985 – 0.995      (higher = more glide / slower)
 
   BGNet.config.layers.forEach((L, i) => {
     // Front layer can be slightly livelier for depth; others calmer
@@ -1557,6 +1557,8 @@
     window.addEventListener('pointermove', onPointerMove, { passive: true });
     window.addEventListener('touchmove',   onPointerMove, { passive: true });
 
+    
+
     // Add a subtle “tilting” class for the shadow cue (optional)
     wrapper.classList.add('tilting');
 
@@ -1571,4 +1573,57 @@
     });
     ro.observe(document.documentElement);
   })();
+  
   </script>
+
+  <script>
+  const header = document.querySelector('.header');
+  const toggle = document.querySelector('.header-toggle');
+  const nav = document.getElementById('navmenu');
+
+  if (toggle && header && nav) {
+    toggle.addEventListener('click', () => {
+      const open = header.classList.toggle('header-show');
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+  }
+  </script>
+  <script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const header = document.querySelector('.header');
+    const toggle = document.querySelector('.header-toggle');
+    if (!header || !toggle) return;
+
+    toggle.addEventListener('click', () => {
+      const open = header.classList.toggle('header-show');
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+  });
+  </script>
+
+  <script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const section = document.querySelector('#skills');
+    if (!section) return;
+
+    const bars = section.querySelectorAll('.progress .progress-bar[aria-valuenow]');
+    let done = false;
+
+    function animate() {
+      if (done) return;
+      const r = section.getBoundingClientRect();
+      if (r.top > window.innerHeight * 0.85) return;
+      done = true;
+      bars.forEach(bar => {
+        const val = parseInt(bar.getAttribute('aria-valuenow'), 10) || 0;
+        bar.style.width = val + '%';
+      });
+    }
+
+    animate();
+    window.addEventListener('scroll', animate, { passive: true });
+  });
+  </script>
+
+</body>
+</html>
