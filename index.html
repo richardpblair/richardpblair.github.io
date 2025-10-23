@@ -21,6 +21,8 @@
   <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
   <!-- Main CSS File -->
+  <link rel="preload" href="assets/css/main.css" as="style">
+  <link href="assets/css/main.css" rel="stylesheet">
   <link href="assets/css/main.css" rel="stylesheet">
 </head>
 
@@ -110,7 +112,7 @@
           <div class="col-lg-6 order-1 order-lg-2">
             <div class="hero-image" data-aos="fade-up" data-aos-delay="300">
               <div class="image-wrapper">
-                <img src="assets/img/Shield.webp" alt="Defense of Cyber World" class="img-fluid main-image">
+                <img src="assets/img/Shield.webp" alt="Defense of Cyber World" class="img-fluid main-image" width="1200" height="800">
                 <div class="floating-card card-1" data-aos="fade-up" data-aos-delay="600">
                   <i class="bi bi-clipboard-check"></i>
                   <span>Risk Assessment</span>
@@ -146,7 +148,7 @@
                 <div class="col-lg-4" data-aos="fade-right" data-aos-delay="200">
                   <div class="profile-section">
                     <div class="profile-image-container">
-                      <img src="assets/img/profile/Richtropical.webp" alt="Richard Blair Watching Sunrise" class="img-fluid">
+                      <img src="assets/img/profile/Richtropical.webp" alt="Richard Blair Watching Sunrise" class="img-fluid" loading="lazy" decoding="async">
                     </div>
                     <div class="profile-meta">
                       <div class="location">
@@ -1573,7 +1575,7 @@
     });
     ro.observe(document.documentElement);
   })();
-  
+
   </script>
 
   <script>
