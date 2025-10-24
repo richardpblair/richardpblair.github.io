@@ -217,7 +217,8 @@ h6 {
   margin: 0;
   font-weight: 400;
   color: var(--accent-color);
-  text-shadow: 0 0 2px var(--default-color);
+  text-shadow: 0 0 3px var(--default-color);
+  margin-bottom: 10px;
 }
 
 .header .social-links {
@@ -317,16 +318,16 @@ aside.sidebar {
 
 /* New Image Styling with Gold Filter */
 .header .veteran-status .veteran-logo { 
-  width: 150px;   /* Adjusted size for a badge look */
-  height: 150px;  /* Adjusted size for a badge look */
+  width: 135px;   /* Adjusted size for a badge look */
+  height: 135px;  /* Adjusted size for a badge look */
   object-fit: contain;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
  
   filter: drop-shadow(0 0 2px var(--default-color));
 }
 
 .header .veteran-status .veteran-text {
-  font-size: 25px;
+  font-size: 28px;
   font-weight: 400;
   color: var(--accent-color);
   letter-spacing: 0.5px;
