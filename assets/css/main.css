@@ -4148,8 +4148,31 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--accent-color); 
 
 /* Small-screen polish */
 @media (max-width: 576px) {
+    .hero {
+    padding: 80px 0 60px;
+    min-height: auto;
+  }
+
+  .hero .container {
+    padding: 40px 20px;
+  }
+
   .hero .hero-actions { flex-direction: column; gap: 0.75rem; }
   .hero .hero-content h1 { font-size: clamp(1.8rem, 4vw + 1rem, 2.2rem); }
+  
+  .header {
+    width: 100%;
+    max-width: none;
+  }
+
+  .header .profile-img img {
+    max-width: 180px;
+  }
+
+  .header .veteran-status .veteran-logo {
+    width: 110px;
+    height: 110px;
+  }
 }
 
 /* Respect reduce-motion for more elements */
