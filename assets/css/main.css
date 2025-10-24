@@ -44,9 +44,9 @@
   --nav-dropdown-hover-color: #FFD166; /* Similar to --nav-hover-color, this color is applied to dropdown navigation links when they are hovered over. */
 
   /* Dark LinkedIn blues (from cover image) */
-  --li-blue-dark:  #062a5c00;  /* deep navy base */
-  --li-blue:       #062a5c80;  /* main mid blue */
-  --li-blue-light: #094a99bf;  /* highlight tint */
+  --li-blue-dark:  #031c46;  /* deep navy base */
+  --li-blue:       #062a5c;  /* main mid blue */
+  --li-blue-light: #0a4f9f;  /* highlight tint */
 
   /* Golds for particles/lines (match CONFIG above) */
   --gold-1: #FFD166; /* dot A */
@@ -325,6 +325,20 @@ aside.sidebar {
     var(--li-blue-light) 100%
   );
   color: #fff;
+}
+
+@media (min-width: 1200px) {
+  .header,
+  .sidebar,
+  .offcanvas,
+  aside.sidebar {
+    background: linear-gradient(
+      180deg,
+      rgba(3, 28, 70, 0) 0%,
+      rgba(6, 42, 92, 0.5) 50%,
+      rgba(10, 79, 159, 0.75) 100%
+    );
+  }
 }
 
 /* --- NEW CODE FOR VETERAN STATUS --- */
@@ -983,6 +997,7 @@ section,
   font-weight: 500;
   color: var(--heading-color);
   transition: all 0.3s ease;
+  animation: hero-card-bob 9s ease-in-out infinite;
 }
 
 .hero .hero-image .image-wrapper .floating-card:hover {
@@ -993,6 +1008,29 @@ section,
 .hero .hero-image .image-wrapper .floating-card i {
   font-size: 1.25rem;
   color: var(--accent-color);
+}
+
+.hero .hero-image .image-wrapper .floating-card.card-2 {
+  animation-duration: 10.5s;
+}
+
+.hero .hero-image .image-wrapper .floating-card.card-3 {
+  animation-duration: 8s;
+}
+
+.hero .hero-image .image-wrapper .floating-card::before {
+  content: none;
+}
+
+@keyframes hero-card-bob {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-8px);
+  }
 }
 
 .hero .hero-image .image-wrapper .floating-card.card-1 {
@@ -1081,6 +1119,11 @@ section,
   }
 
   .hero .hero-image .image-wrapper {
+    max-width: min(300px, 85vw);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
     max-width: 320px;
     display: flex;
     flex-direction: column;
@@ -1094,6 +1137,18 @@ section,
     right: auto;
     bottom: auto;
     left: auto;
+    width: min(100%, 240px);
+    justify-content: center;
+    text-align: center;
+    padding: 0.65rem 0.9rem;
+    gap: 0.6rem;
+    font-size: 0.95rem;
+    margin-inline: auto;
+    animation: none;
+  }
+
+  .hero .hero-image .image-wrapper .floating-card i {
+    font-size: 1.05rem;
     width: 100%;
     justify-content: center;
     text-align: center;
@@ -1119,6 +1174,12 @@ section,
 @media (max-width: 480px) {
   .hero .hero-image .image-wrapper .floating-card {
     transform: translateY(0) !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero .hero-image .image-wrapper .floating-card {
+    animation: none !important;
   }
 }
 
@@ -3806,191 +3867,6 @@ section,
   /* Add your styles here */
 }
 
-/* ===================== */
-/* Hero 3D tilt + clouds */
-/* ===================== */
-
-/* Tuning variables (adjust later) */
-:root{
-  --tilt-max-deg: 16;       /* max rotation for the main image */
-  --tilt-scale: 1.02;       /* tiny zoom during hover/tilt */
-  --tilt-damping: 0.15;     /* 0.05 = very smooth, 0.2 = snappier */
-  --parallax-shift: 10px;   /* how far the cards parallax while you tilt */
-  --cloud-blur: 14px;       /* softness of the cloud under cards */
-  --cloud-alpha: 0.30;      /* opacity of cloud blob */
-  --bob-range: 10px;        /* vertical bobbing distance */
-  --bob-speed-1: 6s;        /* card-1 bob cycle */
-  --bob-speed-2: 7.5s;      /* card-2 bob cycle */
-  --bob-speed-3: 5.8s;      /* card-3 bob cycle */
-}
-
-/* Give the wrapper a 3D context; doesn't change layout */
-.hero .hero-image .image-wrapper{
-  perspective: 900px;
-  transform-style: preserve-3d;
-  will-change: transform;
-}
-
-/* Main image is the thing we rotate in JS */
-.hero .hero-image .image-wrapper .main-image{
-  transform-style: preserve-3d;
-  backface-visibility: hidden;
-  will-change: transform, box-shadow;
-  transition: box-shadow .25s ease;
-}
-
-/* Soft "lift" when tilting (shadow deepens slightly) */
-.hero .hero-image .image-wrapper.tilting .main-image{
-  box-shadow: 0 28px 80px color-mix(in srgb, var(--heading-color, #000), transparent 82%);
-}
-
-/* ================= */
-/* Floating card FX  */
-/* ================= */
-.hero .hero-image .image-wrapper .floating-card{
-  /* keep your absolute positions; we only add gentle motion */
-  transform: translate3d(0,0,0);
-  will-change: transform, filter;
-}
-
-/* Cloudy cushion under each card (pure CSS, no images) */
-.hero .hero-image .image-wrapper .floating-card::before{
-  content: "";
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  bottom: -18px;
-  width: 140%;
-  height: 32px;
-  pointer-events: none;
-  filter: blur(var(--cloud-blur));
-  opacity: var(--cloud-alpha);
-  /* layered radial blobs = simple cloud */
-  background:
-    radial-gradient(60% 80% at 30% 50%, #fff8 20%, transparent 55%),
-    radial-gradient(70% 90% at 70% 50%, #fff8 20%, transparent 55%);
-}
-
-/* Gentle up-down bobbing (anchored around your existing coordinates) */
-@keyframes bob {
-  0%   { transform: translate3d(0,  0, 0); }
-  50%  { transform: translate3d(0, calc(-1 * var(--bob-range)), 0); }
-  100% { transform: translate3d(0,  0, 0); }
-}
-
-/* Each card gets its own tempo so they don't sync */
-.hero .hero-image .image-wrapper .floating-card.card-1{
-  animation: bob var(--bob-speed-1) ease-in-out infinite;
-}
-.hero .hero-image .image-wrapper .floating-card.card-2{
-  animation: bob var(--bob-speed-2) ease-in-out infinite;
-}
-.hero .hero-image .image-wrapper .floating-card.card-3{
-  animation: bob var(--bob-speed-3) ease-in-out infinite;
-}
-
-/* Parallax shift is applied by JS via CSS vars, but we provide defaults */
-.hero .hero-image .image-wrapper{
-  --parX: 0px;
-  --parY: 0px;
-}
-.hero .hero-image .image-wrapper .floating-card{
-  /* adds a tiny parallax on tilt without changing anchor coords */
-  translate: var(--parX) var(--parY);
-}
-
-/* Respect Reduced Motion */
-@media (prefers-reduced-motion: reduce){
-  .hero .hero-image .image-wrapper .floating-card{
-    animation: none !important;
-  }
-}
-.hero .hero-image .image-wrapper .floating-card{
-  translate: 0 0 !important; /* ensures no parallax shift is applied */
-}
-/* Cloud under the shield (main-image) */
-.hero .hero-image .image-wrapper .main-image{
-  position: relative;    /* anchor pseudo-element */
-  z-index: 2;            /* keep shield above its cloud */
-  isolation: isolate;    /* clean stacking context */
-}
-
-/* Soft white cloud pad for the shield */
-.hero .hero-image .image-wrapper .main-image::after{
-  content: "";
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  bottom: -18px;                 /* lower = move cloud down */
-  width: 160%;                   /* wider/narrower cloud */
-  height: 40px;                  /* thicker/thinner cloud */
-  pointer-events: none;
-
-  /* Two overlapping radial blobs = cloud */
-  background:
-    radial-gradient(60% 80% at 30% 50%, rgba(255,255,255,0.75) 22%, transparent 60%),
-    radial-gradient(70% 90% at 70% 50%, rgba(255,255,255,0.65) 22%, transparent 60%);
-  filter: blur(var(--cloud-blur, 14px));
-  opacity: var(--cloud-alpha, 0.30);
-  z-index: -1;                   /* under the shield */
-}
-
-/* Optional: gentle glow + natural drop shadow to lift the shield */
-.hero .hero-image .image-wrapper .main-image{
-  filter:
-    drop-shadow(0 16px 24px rgba(255,255,255,0.22))   /* soft white glow */
-    drop-shadow(0 22px 46px rgba(0,0,0,0.22));        /* natural shadow */
-}
-/* Avoid transform fighting with JS tilt */
-.hero .hero-image .image-wrapper .main-image:hover {
-  transform: none !important;
-}
-/* Cloud under the shield (main image) */
-.hero .hero-image .image-wrapper .main-image{
-  position: relative;   /* anchor pseudo-element */
-  z-index: 2;           /* keep shield above its cloud */
-  isolation: isolate;   /* clean stacking context */
-  /* Optional lift: subtle glow + natural shadow (tweak to taste) */
-  filter:
-    drop-shadow(0 16px 24px rgba(255,255,255,0.20))   /* soft white glow */
-    drop-shadow(0 22px 46px rgba(0,0,0,0.22));        /* natural shadow */
-}
-
-/* Soft white cloud pad */
-.hero .hero-image .image-wrapper .main-image::after{
-  content: "";
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  bottom: -18px;             /* lower = move cloud down */
-  width: 160%;               /* wider/narrower cloud (relative to shield) */
-  height: 40px;              /* cloud thickness */
-  pointer-events: none;
-
-  /* Two overlapping radial “puffs” = cloud */
-  background:
-    radial-gradient(60% 80% at 30% 50%, rgba(255,255,255,0.75) 22%, transparent 60%),
-    radial-gradient(70% 90% at 70% 50%, rgba(255,255,255,0.65) 22%, transparent 60%);
-  /* Reuse your existing tuning vars if present; otherwise use fallbacks */
-  filter: blur(var(--cloud-blur, 14px));
-  opacity: var(--cloud-alpha, 0.30);
-  z-index: -1;               /* under the shield */
-}
-
-/* Avoid transform conflict: if hover scale exists, neutralize it so JS tilt stays crisp */
-.hero .hero-image .image-wrapper .main-image:hover{
-  transform: none !important;
-}
-/* ==== Remove ALL shield shadows/clouds ==== */
-.hero .hero-image .image-wrapper .main-image,
-.hero .hero-image .image-wrapper.tilting .main-image {
-  box-shadow: none !important;   /* kills base & tilting box-shadows */
-  filter: none !important;       /* kills both drop-shadows */
-}
-
-.hero .hero-image .image-wrapper .main-image::after {
-  display: none !important;      /* kills the white cloud pad */
-}
 
 /* ======================================== */
 /* Transparent backgrounds for non-hero sections */
@@ -4012,91 +3888,6 @@ section:not(.hero) p {
   color: var(--default-color);
 }
 
-/* =======================================================
-   FINAL OVERRIDE: Shield = clean dark shadow (no boxes)
-   Paste at the VERY END of main.css
-   ======================================================= */
-
-/* Ensure stacking order: shield above cards/clouds */
-.hero .hero-image .image-wrapper { position: relative; }
-.hero .hero-image .image-wrapper .main-image { z-index: 3; }
-.hero .hero-image .image-wrapper .floating-card { z-index: 1; }
-.hero .hero-image .image-wrapper .floating-card::before { z-index: -1; }
-
-/* Remove any boxy artifacts on the shield itself */
-.hero .hero-image .image-wrapper .main-image,
-.hero .hero-image .image-wrapper.tilting .main-image {
-  background: transparent !important;
-  border: 0 !important;
-  outline: 0 !important;
-
-  /* Kill ANY box-shadows that render as rectangles */
-  box-shadow: none !important;
-
-  /* Apply ONLY a soft, natural drop-shadow via filter */
-  filter:
-    drop-shadow(0 18px 36px rgba(255, 223, 138, 0.70))
-    drop-shadow(0 4px 8px rgba(255, 255, 255, 0.50)) !important;
-}
-
-/* Make sure NO pseudo-elements draw behind the shield */
-.hero .hero-image .image-wrapper .main-image::before,
-.hero .hero-image .image-wrapper .main-image::after {
-  content: none !important;
-  display: none !important;
-}
-
-/* If you previously hid a floating card behind the shield,
-   KEEP that rule (replace X with 1/2/3 as you identified) */
-/* .floating-card.card-X { display: none !important; } */
-
-/* Prevent any hover transform from fighting your JS tilt */
-.hero .hero-image .image-wrapper .main-image:hover {
-  transform: none !important;
-}
-/* ===============================
-   Shield behind cards + no hover snap
-   =============================== */
-
-/* Make sure the wrapper forms a stacking context */
-.hero .hero-image .image-wrapper { position: relative; }
-
-/* Put the shield (main-image) BEHIND the three cards */
-.hero .hero-image .image-wrapper .main-image {
-  position: relative;
-  z-index: 1;              /* behind cards */
-  pointer-events: none;    /* prevents :hover rules from firing = no snap-back */
-  /* keep whatever shadow you decided on; example: */
-  filter:
-    drop-shadow(0 18px 36px rgba(0,0,0,0.40))
-    drop-shadow(0 4px 8px rgba(0,0,0,0.25));
-}
-
-/* Ensure cards (and their clouds) render above the shield */
-.hero .hero-image .image-wrapper .floating-card {
-  position: absolute;      /* you already use abs positioning */
-  z-index: 3;              /* above the shield */
-}
-.hero .hero-image .image-wrapper .floating-card::before {
-  /* stays within the card's stacking context but that whole context
-     is above the shield thanks to the card's z-index */
-  z-index: -1;
-}
-
-/* Neutralize any hover styles that were changing transform/filters.
-   We DO NOT touch inline transforms from JS (higher priority). */
-.hero .hero-image .image-wrapper:hover .main-image,
-.hero .hero-image .image-wrapper .main-image:hover,
-.hero .hero-image .image-wrapper .main-image:focus,
-.hero .hero-image .image-wrapper .main-image:active {
-  /* Don’t set transform here (JS controls it).
-     Just ensure no CSS hover effects override visuals. */
-  box-shadow: none;
-  /* If you previously had hover-based filters, reset them: */
-  filter:
-    drop-shadow(0 18px 36px rgba(0,0,0,0.40))
-    drop-shadow(0 4px 8px rgba(0,0,0,0.25));
-}
 
 /* --- About → Resume gap fixes (put at file bottom) --- */
 
@@ -4137,90 +3928,48 @@ section:not(.hero) p {
 }
 /* ===== Portfolio: even tile heights, isotope-friendly ===== */
 
-/* 1) Let Bootstrap row stretch columns (you already have align-items-stretch in HTML) */
-/* 2) Make each column act like a flex item holder */
-.portfolio-item {
-  display: flex;            /* don't touch .portfolio-container to avoid isotope conflicts */
+.portfolio .portfolio-item {
+  display: flex;
 }
 
-/* 3) Make the card fill the column height and stack neatly */
-.portfolio-card {
+.portfolio .portfolio-card {
   display: flex;
   flex-direction: column;
   height: 100%;
 }
 
-/* 4) Normalize image block height (same top block on all cards) */
-.portfolio-card .portfolio-image {
-  aspect-ratio: 16 / 9;     /* pick 4/3 or 1/1 if you prefer */
-  overflow: hidden;
-}
-
-.portfolio-card .portfolio-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;        /* consistent crop without distortion */
-  display: block;
-}
-
-/* 5) Let the content stretch and push the description to a predictable size */
-.portfolio-card .portfolio-content {
-  display: flex;
-  flex-direction: column;
-  gap: .5rem;
-  padding: 1rem;            /* adjust if you already have padding elsewhere */
-  flex: 1;                  /* fill remaining height so cards match */
-}
-
-/* 6) Clamp long descriptions so they don't make cards taller */
-.portfolio-card .portfolio-description {
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 3;    /* show up to 3 lines; tweak as desired */
-  overflow: hidden;
-  min-height: calc(1.5em * 3); /* preserves equal height even when shorter */
-}
-
-/* === Portfolio thumbnails: simple, robust fit === */
 .portfolio .portfolio-image {
+  position: relative;
   width: 100%;
+  aspect-ratio: 16 / 9;
   overflow: hidden;
   border-radius: 10px;
-  /* Important: use an aspect ratio to control the height of the image container */
-  aspect-ratio: 4 / 3; /* You can try 16 / 9 if you want wider thumbnails */
-  height: auto; /* Ensure height is determined by aspect-ratio, not fixed pixel value */
-  margin-bottom: 24px; /* Adjust spacing below the image */
+  margin-bottom: 24px;
 }
 
 .portfolio .portfolio-image img {
   display: block;
   width: 100%;
   height: 100%;
-  /* The key fix: use 'cover' to fill the container, cropping as needed */
   object-fit: cover;
   object-position: center;
 }
 
-/* Fix for the portfolio card to ensure even column stretching */
-.portfolio .portfolio-item {
-    display: flex;
+.portfolio .portfolio-card .portfolio-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1rem;
+  flex: 1;
 }
 
-.portfolio .portfolio-card {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
+.portfolio .portfolio-card .portfolio-description {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+  min-height: calc(1.5em * 3);
 }
-/* Universal responsive images */
-img { max-width: 100%; height: auto; }
-
-/* Portfolio tiles: consistent aspect ratio + no stretching */
-.portfolio-image { position: relative; width: 100%; aspect-ratio: 16 / 10; overflow: hidden; }
-.portfolio-image img { width: 100%; height: 100%; object-fit: cover; display: block; }
-
-/* Ensure equal heights for portfolio cards on grid wrap */
-.portfolio-card { height: 100%; display: flex; flex-direction: column; }
-.portfolio-content { margin-top: auto; }
 
 /* Keyboard focus visibility (accessibility) */
 a:focus-visible, button:focus-visible { outline: 2px solid var(--accent-color); outline-offset: 2px; }
