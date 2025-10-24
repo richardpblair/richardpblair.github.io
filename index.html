@@ -31,7 +31,7 @@
   <canvas id="bg-net"></canvas>
   <div class="bg-overlay"></div>
   <div class = "twinkle-overlay" aria-hidden="true"></div>
-  <header class="header">
+  <header id="header" class="header">
     <button class="header-toggle d-xl-none bi bi-list" aria-label="Toggle navigation" aria-controls="navmenu" aria-expanded="false"></button>
     <div class="header-top">
       <div class="profile-img">
@@ -1403,15 +1403,22 @@
   </script>
 
   <script>
-    const basePreset   = { density: 0.00009, glow: 4, linkAdjust: -8 };  // calm & steady
-    const targetPreset = { ...basePreset }; // no ramp
-
-    // Mobile / high-DPI guardrails (keeps things smooth on small devices)
-    const smallScreen = matchMedia('(max-width: 480px)').matches;
+    const presetDefaults = { density: 0.00009, glow: 4, linkAdjust: -8 };  // calm & steady
+    const reduceMotionQuery = matchMedia('(prefers-reduced-motion: reduce)');
+    const compactScreenQuery = matchMedia('(max-width: 576px)');
     const hiDPI = (window.devicePixelRatio || 1) > 2;
-    if (smallScreen || hiDPI) {
-      targetPreset.density = 0.00009; // keep target gentler on small/hiDPI
-      targetPreset.glow = 6;
+
+    function buildPreset() {
+      const preset = { ...presetDefaults };
+      if (compactScreenQuery.matches || hiDPI) {
+        preset.density = 0.00009; // keep target gentler on small/hiDPI
+        preset.glow = 6;
+      }
+      if (reduceMotionQuery.matches) {
+        preset.density = Math.min(preset.density, 0.00007);
+        preset.glow = Math.min(preset.glow, 5);
+      }
+      return preset;
     }
 
     function applyPreset(preset) {
@@ -1423,8 +1430,35 @@
     }
 
     // Apply lightweight → paint ASAP
-    applyPreset(basePreset);
+    applyPreset(buildPreset());
     BGNet.setMode('custom'); // or 'right' | 'full'
+
+    let automationSyncHandle = 0;
+    const queueAutomationSync = () => {
+      if (automationSyncHandle) cancelAnimationFrame(automationSyncHandle);
+      automationSyncHandle = requestAnimationFrame(() => {
+        automationSyncHandle = 0;
+        if (!window.BGNet?.config) return;
+        const lowMotion = reduceMotionQuery.matches;
+        const compact = compactScreenQuery.matches;
+        BGNet.config.twinkleEnabled = !lowMotion;
+        BGNet.config.twinkleIntensity = lowMotion ? 0.28 : 0.45;
+        BGNet.config.twinkleSpeed = lowMotion ? 4.5 : 6.0;
+        BGNet.config.runnersEnabled = !(lowMotion || compact);
+        BGNet.config.runnerSpeed = lowMotion ? 0.6 : 0.85;
+        BGNet.config.runnerGlow = lowMotion ? 5 : 8;
+        BGNet.setMode('custom');
+      });
+    };
+
+    window.__queueBgAutomationSync = queueAutomationSync;
+    queueAutomationSync();
+
+    const reapplyPreset = () => {
+      applyPreset(buildPreset());
+      BGNet.setMode('custom');
+      queueAutomationSync();
+    };
 
     // Bonus: pause work when tab isn’t visible (saves CPU on laptops)
     document.addEventListener('visibilitychange', () => {
@@ -1438,7 +1472,11 @@
         delete BGNet.config._resumeDensity;
         BGNet.setMode('custom');
       }
+      queueAutomationSync();
     });
+
+    reduceMotionQuery.addEventListener('change', reapplyPreset);
+    compactScreenQuery.addEventListener('change', reapplyPreset);
   </script>
 
   <script>
@@ -1448,6 +1486,7 @@
     BGNet.config.layers.forEach(L => L.linkDist = 110);
     BGNet.config.glow = 8;
     BGNet.setMode('custom');
+    window.__queueBgAutomationSync?.();
   });
   </script>
 
@@ -1467,6 +1506,7 @@
   // BGNet.config.layers.forEach(L => { L.size = [L.size[0]*0.9, L.size[1]*0.9]; });
 
   BGNet.setMode('custom'); // rebuild with new settings
+  window.__queueBgAutomationSync?.();
   </script>
 
   <script>
@@ -1490,6 +1530,7 @@
       BGNet.config.lineColor = hexToRgba(goldL, /* alpha placeholder */ 1).replace(/,1\)$/, ',ALPHA)');
 
       BGNet.setMode('custom');      // rebuild with new colors
+      window.__queueBgAutomationSync?.();
     })();
   </script>
 
