@@ -13,25 +13,65 @@
    * Header toggle
    */
   const headerToggleBtn = document.querySelector('.header-toggle');
+  const siteHeader = document.querySelector('#header') || document.querySelector('.header');
 
-  function headerToggle() {
-    document.querySelector('#header').classList.toggle('header-show');
-    headerToggleBtn.classList.toggle('bi-list');
-    headerToggleBtn.classList.toggle('bi-x');
-  }
-  headerToggleBtn.addEventListener('click', headerToggle);
+  if (headerToggleBtn && siteHeader) {
+    let navBackdrop = document.querySelector('.nav-backdrop');
+    if (!navBackdrop) {
+      navBackdrop = document.createElement('div');
+      navBackdrop.className = 'nav-backdrop';
+      navBackdrop.setAttribute('aria-hidden', 'true');
+      document.body.appendChild(navBackdrop);
+    }
 
-  /**
-   * Hide mobile nav on same-page/hash links
-   */
-  document.querySelectorAll('#navmenu a').forEach(navmenu => {
-    navmenu.addEventListener('click', () => {
-      if (document.querySelector('.header-show')) {
+    const syncToggleState = (isExpanded) => {
+      headerToggleBtn.classList.toggle('bi-list', !isExpanded);
+      headerToggleBtn.classList.toggle('bi-x', isExpanded);
+      headerToggleBtn.setAttribute('aria-expanded', isExpanded ? 'true' : 'false');
+      headerToggleBtn.setAttribute('aria-label', isExpanded ? 'Close navigation' : 'Open navigation');
+      document.body.classList.toggle('nav-open', isExpanded);
+      navBackdrop.classList.toggle('active', isExpanded);
+    };
+
+    function headerToggle() {
+      const isExpanded = siteHeader.classList.toggle('header-show');
+      syncToggleState(isExpanded);
+    }
+
+    headerToggleBtn.addEventListener('click', headerToggle);
+    navBackdrop.addEventListener('click', headerToggle);
+
+    /**
+     * Hide mobile nav on same-page/hash links
+     */
+    document.querySelectorAll('#navmenu a').forEach(navmenu => {
+      navmenu.addEventListener('click', () => {
+        if (siteHeader.classList.contains('header-show')) {
+          headerToggle();
+        }
+      });
+
+    });
+
+    /**
+     * Close the navigation with the Escape key for accessibility
+     */
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && siteHeader.classList.contains('header-show')) {
         headerToggle();
       }
     });
 
-  });
+    window.addEventListener('resize', () => {
+      if (window.innerWidth >= 1200 && siteHeader.classList.contains('header-show')) {
+        siteHeader.classList.remove('header-show');
+        syncToggleState(false);
+      }
+    });
+
+    // Ensure the button reflects the initial collapsed state
+    syncToggleState(siteHeader.classList.contains('header-show'));
+  }
 
   /**
    * Toggle mobile nav dropdowns
