@@ -824,7 +824,7 @@
       containMode: 'wrapX',     // 'wrapX' wraps left↔right; 'wrap' wraps both axes
       wallMargin: 10,           // only used by 'steer' (Option B)
       wallForce: 0.04,          // only used by 'steer' (Option B)
-      maxSpeed: 0.4,            // how fast are the particles moving
+      maxSpeed: 0.6,            // how fast are the particles moving
       keepConnected: true,      // turn on nearest-neighbor fallback
       kNearest: 1,              // guarantee up to 2 links per particle
       minLinkAlpha: 0.16,       // floor opacity so fallbacks are visible
@@ -855,15 +855,15 @@
       specularWarmth: 0.15,           // adds a hint of warm gold into the highlight
       // optional sparkle “star” on peak twinkles
       sparkleThreshold: 0.92,         // trigger when twinkle > 92%
-      sparkleSize: 1.35,               // star arm length factor (× particle radius)
+      sparkleSize: 2.0,               // star arm length factor (× particle radius)
       // --- link runners (data packets) ---
       runnersEnabled: true,  // master switch
-      runnersPerLink: 2.5,     // 1–2 keeps it tasteful
+      runnersPerLink: 3.0,     // 1–2 keeps it tasteful
       runnerSpeed: 0.85,     // higher = faster travel along lines
       runnerSize: 6.0,       // base radius in px (depth scales it)
-      runnerGlow: 12,         // shadowBlur for glow
+      runnerGlow: 8,         // shadowBlur for glow
       runnerColor: '#FFD44D',// warm gold streak
-      runnerTail: 0.18       // 0.08–0.16 fraction of the link as a “streak”
+      runnerTail: 0.16       // 0.08–0.16 fraction of the link as a “streak”
 
     };
 
