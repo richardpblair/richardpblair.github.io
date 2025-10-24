@@ -74,6 +74,16 @@
   scroll-behavior: smooth;
 }
 
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+
 /*--------------------------------------------------------------
 # General Styling & Shared Classes
 --------------------------------------------------------------*/
@@ -333,6 +343,13 @@ aside.sidebar {
     left: 0;
     width: 100%;
   }
+}
+
+/* Background visual layers must not intercept taps and must sit behind */
+#bg-net, .bg-overlay, .twinkle-overlay {
+  position: fixed; inset: 0;
+  z-index: -1;
+  pointer-events: none;
 }
 
 

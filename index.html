@@ -23,7 +23,7 @@
   <!-- Main CSS File -->
   <link rel="preload" href="assets/css/main.css" as="style">
   <link href="assets/css/main.css" rel="stylesheet">
-  <link href="assets/css/main.css" rel="stylesheet">
+
 </head>
 
 <body class="index-page" data-anim="on">
@@ -1626,6 +1626,54 @@
     window.addEventListener('scroll', animate, { passive: true });
   });
   </script>
+
+  <script>
+  (() => {
+    const btn = document.querySelector('.header-toggle');
+    const nav = document.querySelector('#navmenu');
+    if (!btn || !nav) return;
+
+    const open = () => {
+      nav.classList.add('is-open');
+      btn.setAttribute('aria-expanded', 'true');
+      document.documentElement.classList.add('nav-open');
+      document.body.classList.add('nav-open');
+    };
+    const close = () => {
+      nav.classList.remove('is-open');
+      btn.setAttribute('aria-expanded', 'false');
+      document.documentElement.classList.remove('nav-open');
+      document.body.classList.remove('nav-open');
+    };
+    const toggle = () => (nav.classList.contains('is-open') ? close() : open());
+
+    // Wire it up
+    btn.addEventListener('click', toggle);
+    nav.addEventListener('click', e => { if (e.target.closest('a')) close(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
+    matchMedia('(min-width: 992px)').addEventListener('change', close);
+  })();
+  </script>
+
+  <script>
+  // After your BG/particle config is initialized
+  (function () {
+    const small = matchMedia('(max-width: 480px)').matches;
+    const hiDPI = (window.devicePixelRatio || 1) > 2;
+
+    if ((window.BGNet || window.CONFIG) && (small || hiDPI)) {
+      // If you have a CONFIG object:
+      if (window.CONFIG) {
+        CONFIG.density = 0.00002;        // was ~0.00009
+        CONFIG.glow = Math.min(CONFIG.glow || 8, 4);
+        CONFIG.maxSpeed = Math.min(CONFIG.maxSpeed || 0.6, 0.45);
+        CONFIG.parallax = Math.min(CONFIG.parallax || 0.5, 0.25);
+      }
+      // If you have a BGNet API, do equivalent setters here.
+    }
+  })();
+</script>
+
 
 </body>
 </html>
