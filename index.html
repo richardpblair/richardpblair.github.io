@@ -1579,31 +1579,6 @@
   </script>
 
   <script>
-  const header = document.querySelector('.header');
-  const toggle = document.querySelector('.header-toggle');
-  const nav = document.getElementById('navmenu');
-
-  if (toggle && header && nav) {
-    toggle.addEventListener('click', () => {
-      const open = header.classList.toggle('header-show');
-      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
-    });
-  }
-  </script>
-  <script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const header = document.querySelector('.header');
-    const toggle = document.querySelector('.header-toggle');
-    if (!header || !toggle) return;
-
-    toggle.addEventListener('click', () => {
-      const open = header.classList.toggle('header-show');
-      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
-    });
-  });
-  </script>
-
-  <script>
   document.addEventListener('DOMContentLoaded', () => {
     const section = document.querySelector('#skills');
     if (!section) return;
@@ -1625,34 +1600,6 @@
     animate();
     window.addEventListener('scroll', animate, { passive: true });
   });
-  </script>
-
-  <script>
-  (() => {
-    const btn = document.querySelector('.header-toggle');
-    const nav = document.querySelector('#navmenu');
-    if (!btn || !nav) return;
-
-    const open = () => {
-      nav.classList.add('is-open');
-      btn.setAttribute('aria-expanded', 'true');
-      document.documentElement.classList.add('nav-open');
-      document.body.classList.add('nav-open');
-    };
-    const close = () => {
-      nav.classList.remove('is-open');
-      btn.setAttribute('aria-expanded', 'false');
-      document.documentElement.classList.remove('nav-open');
-      document.body.classList.remove('nav-open');
-    };
-    const toggle = () => (nav.classList.contains('is-open') ? close() : open());
-
-    // Wire it up
-    btn.addEventListener('click', toggle);
-    nav.addEventListener('click', e => { if (e.target.closest('a')) close(); });
-    document.addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
-    matchMedia('(min-width: 992px)').addEventListener('change', close);
-  })();
   </script>
 
   <script>

@@ -1082,21 +1082,9 @@ section,
 
   .hero .hero-image .image-wrapper {
     max-width: 320px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.85rem;
   }
 
   .hero .hero-image .image-wrapper .floating-card {
-    position: relative;
-    top: auto;
-    right: auto;
-    bottom: auto;
-    left: auto;
-    width: 100%;
-    justify-content: center;
-    text-align: center;
     padding: 0.75rem 1rem;
     font-size: 1rem;
   }
@@ -3802,9 +3790,6 @@ section,
 /*--------------------------------------------------------------
 # Starter Section Section
 --------------------------------------------------------------*/
-.starter-section {
-  /* Add your styles here */
-}
 
 /* ===================== */
 /* Hero 3D tilt + clouds */
@@ -4177,6 +4162,7 @@ section:not(.hero) p {
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 3;    /* show up to 3 lines; tweak as desired */
+  line-clamp: 3;
   overflow: hidden;
   min-height: calc(1.5em * 3); /* preserves equal height even when shorter */
 }
@@ -4259,4 +4245,74 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--accent-color); 
   .hero .hero-image .image-wrapper .floating-card,
   .skills .progress .progress-bar { transition: none !important; }
   .twinkle-overlay { animation: none !important; }
+}
+
+/* ================================================= */
+/* Custom Ultrawide Breakpoint Optimizations (FIXED)
+/* ================================================= */
+
+/*
+  This code fixes the previous issue by re-including
+  Bootstrap's default container widths, then *adding*
+  our new, larger ones for ultrawide screens.
+*/
+
+/* Default: Mobile screens */
+.container {
+  max-width: 100%;
+  padding-right: var(--bs-gutter-x, 0.75rem);
+  padding-left: var(--bs-gutter-x, 0.75rem);
+  margin-right: auto;
+  margin-left: auto;
+}
+
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) {
+  .container {
+    max-width: 540px;
+  }
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+  .container {
+    max-width: 720px;
+  }
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+  .container {
+    max-width: 960px;
+  }
+}
+
+/* X-Large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+  .container {
+    max-width: 1140px;
+  }
+}
+
+/* XX-Large devices (larger desktops, 1400px and up) */
+@media (min-width: 1400px) {
+  .container {
+    max-width: 1320px;
+  }
+}
+
+/* === OUR NEW CUSTOM SIZES === */
+
+/* 1. For Widescreen Desktops (1600px and up) */
+@media (min-width: 1600px) {
+  .container {
+    max-width: 1540px;
+  }
+}
+
+/* 2. For Large Widescreen/4K (1920px and up) */
+@media (min-width: 1920px) {
+  .container {
+    max-width: 1700px;
+  }
 }
