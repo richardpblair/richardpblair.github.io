@@ -1124,6 +1124,11 @@ section,
     flex-direction: column;
     align-items: center;
     gap: 0.75rem;
+    max-width: 320px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.85rem;
   }
 
   .hero .hero-image .image-wrapper .floating-card {
@@ -1144,6 +1149,11 @@ section,
 
   .hero .hero-image .image-wrapper .floating-card i {
     font-size: 1.05rem;
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
   }
 }
 
@@ -3966,6 +3976,18 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--accent-color); 
 
 /* Small-screen polish */
 @media (max-width: 576px) {
+    .hero {
+    padding: 80px 0 60px;
+    min-height: auto;
+  }
+
+  .hero .container {
+    padding: 40px 20px;
+  }
+
+  .hero .hero-actions { flex-direction: column; gap: 0.75rem; }
+  .hero .hero-content h1 { font-size: clamp(1.8rem, 4vw + 1rem, 2.2rem); }
+  
   .header {
     width: 100%;
     max-width: none;
