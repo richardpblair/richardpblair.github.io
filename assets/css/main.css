@@ -2109,6 +2109,11 @@ section,
   font-family: var(--heading-font);
 }
 
+.portfolio .portfolio-filters li:focus-visible {
+  outline: 2px solid var(--accent-color);
+  outline-offset: 4px;
+}
+
 .portfolio .portfolio-filters li::after {
   content: "";
   position: absolute;
@@ -4126,6 +4131,10 @@ section:not(.hero) p {
 /* 2) Make each column act like a flex item holder */
 .portfolio-item {
   display: flex;            /* don't touch .portfolio-container to avoid isotope conflicts */
+}
+
+.portfolio-item.is-hidden {
+  display: none !important;
 }
 
 /* 3) Make the card fill the column height and stack neatly */
