@@ -366,34 +366,13 @@ aside.sidebar {
 /* --- END NEW CODE FOR VETERAN STATUS --- */
 
 @media (max-width: 1199px) {
-  .header {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    height: 100vh;
-    overflow-y: auto;
-    position: fixed;
-    top: 0;
-    left: 0;
-    bottom: 0;
-  }
-
-  .header .navmenu {
-    flex: 1;
-  }
-
   .header .social-links {
-    margin-top: auto;
-    position: sticky;
-    bottom: 0;
+    position: bottom;
+    bottom: 20px;
     left: 0;
     width: 100%;
-    text-align: center;
-    background: var(--nav-mobile-background-color);
-    padding-bottom: 15px;
   }
 }
-
 
 /* Background visual layers must not intercept taps and must sit behind */
 #bg-net, .bg-overlay, .twinkle-overlay {
