@@ -18,7 +18,6 @@
   <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
   <link href="assets/vendor/aos/aos.css" rel="stylesheet">
   <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
   <!-- Main CSS File -->
   <link rel="preload" href="assets/css/main.css" as="style">
@@ -82,7 +81,11 @@
               <h1 data-aos="fade-up" data-aos-delay="200">
                  Fortifying the Digital Frontier For
                  <br>
-                 <span class="typed" data-typed-items="Yesterday!, Today!, Tomorrow!, The Future!"></span>
+                 <span class="typed"
+                       data-typed-items="Yesterday!, Today!, Tomorrow!, The Future!"
+                       data-type-speed="100"
+                       data-back-speed="50"
+                       data-hold-delay="2000"></span>
               </h1>
               <p class="hero-description" data-aos="fade-up" data-aos-delay="300">
                 Bridging the gap between the virtual and physical, I specialize in fortifying the digital landscapes we all live in. My work is focused on proactive defense, threat intelligence, and creating a safer online experience for everyone.
@@ -369,7 +372,7 @@
                 </div>
                 <h4 class="highlight-title">Years of Experience</h4>
                 <div class="experience-number">
-                  <span data-purecounter-start="0" data-purecounter-end="10" data-purecounter-duration="1" class="purecounter"></span>
+                  <span class="experience-value" data-count="10" data-count-duration="1200">0</span>
                   <span class="experience-label">Years</span>
                 </div>
                 <p class="highlight-description">Dedicated to mastering the craft of digital security and strategic problem-solving.</p>
@@ -577,19 +580,19 @@
       </div>
 
       <div class="container" data-aos="fade-up" data-aos-delay="100">
-        <div class="isotope-layout" data-default-filter="*" data-layout="fitRows" data-sort="original-order">
+        <div class="portfolio-layout">
           <div class="filters-wrapper" data-aos="fade-up" data-aos-delay="200">
-            <ul class="portfolio-filters isotope-filters">
-              <li data-filter="*" class="filter-active">All Work</li>
-              <li data-filter=".filter-branding">Lab & Portfolio</li>
-              <li data-filter=".filter-web">Cloud & Infrastructure</li>
-              <li data-filter=".filter-photography">Tools & Scripts</li>
-              <li data-filter=".filter-print">Learning & Education</li>
+            <ul class="portfolio-filters">
+              <li data-filter="all" class="filter-active" role="button" tabindex="0" aria-pressed="true">All Work</li>
+              <li data-filter="branding" role="button" tabindex="0" aria-pressed="false">Lab &amp; Portfolio</li>
+              <li data-filter="cloud" role="button" tabindex="0" aria-pressed="false">Cloud &amp; Infrastructure</li>
+              <li data-filter="tools" role="button" tabindex="0" aria-pressed="false">Tools &amp; Scripts</li>
+              <li data-filter="learning" role="button" tabindex="0" aria-pressed="false">Learning &amp; Education</li>
             </ul>
           </div>
 
-          <div class="row gy-5 portfolio-container isotope-container align-items-stretch" data-aos="fade-up" data-aos-delay="300">
-            <div class="col-12 col-md-6 col-lg-4 portfolio-item isotope-item filter-branding">
+          <div class="row gy-5 portfolio-container align-items-stretch" data-aos="fade-up" data-aos-delay="300">
+            <div class="col-12 col-md-6 col-lg-4 portfolio-item" data-category="branding">
               <div class="portfolio-card">
                 <div class="portfolio-image">
                   <img src="assets/img/portfolio/Coming_soon.webp" class="img-fluid" alt="Brand Identity Project" loading="lazy" decoding="async">
@@ -611,7 +614,7 @@
               </div>
             </div><!-- End Portfolio Item -->
 
-            <div class="col-12 col-md-6 col-lg-4 portfolio-item isotope-item filter-branding">
+            <div class="col-12 col-md-6 col-lg-4 portfolio-item" data-category="branding">
               <div class="portfolio-card">
                 <div class="portfolio-image">
                   <img src="assets/img/portfolio/Coming_soon.webp" class="img-fluid" alt="Digital Platform" loading="lazy" decoding="async">
@@ -756,41 +759,7 @@
   <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js" defer></script>
   <script src="assets/vendor/php-email-form/validate.js" defer></script>
   <script src="assets/vendor/aos/aos.js" defer></script>
-  <script src="assets/vendor/purecounter/purecounter_vanilla.js" defer></script>
-  <script src="assets/vendor/typed.js/typed.umd.js" defer></script>
-  <script src="assets/vendor/imagesloaded/imagesloaded.pkgd.min.js" defer></script>
-  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js" defer></script>
   <script src="assets/vendor/glightbox/js/glightbox.min.js" defer></script>
-  <script src="assets/vendor/swiper/swiper-bundle.min.js" defer></script>
-  <script src="assets/js/typed-fixes.js" defer></script>
-
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      // Find the element with the class 'typed'
-      const typedElement = document.querySelector('.typed');
-
-      if (typedElement) {
-        // Get the list of strings from the data-typed-items attribute
-        const typedStrings = typedElement.getAttribute('data-typed-items');
-
-        if (typedStrings) {
-          // Split the comma-separated string into an array of strings
-          const stringsArray = typedStrings.split(',').map(s => s.trim());
-
-          // Initialize Typed.js
-          new Typed('.typed', {
-            strings: stringsArray,
-            loop: true,           // Keeps the animation repeating
-            typeSpeed: 100,       // Typing speed in milliseconds
-            backSpeed: 50,        // Backspacing speed
-            backDelay: 2000       // Pause before starting to backspace
-          });
-        }
-      }
-    });
-  </script>
-
-  <script src="assets/vendor/waypoints/noframework.waypoints.js" defer></script>
 
   <!-- Main JS File -->
   <script src="assets/js/main.js?v=1.1" defer></script>
@@ -1578,31 +1547,6 @@
 
   </script>
 
-  <script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const section = document.querySelector('#skills');
-    if (!section) return;
-
-    const bars = section.querySelectorAll('.progress .progress-bar[aria-valuenow]');
-    let done = false;
-
-    function animate() {
-      if (done) return;
-      const r = section.getBoundingClientRect();
-      if (r.top > window.innerHeight * 0.85) return;
-      done = true;
-      bars.forEach(bar => {
-        const val = parseInt(bar.getAttribute('aria-valuenow'), 10) || 0;
-        bar.style.width = val + '%';
-      });
-    }
-
-    animate();
-    window.addEventListener('scroll', animate, { passive: true });
-  });
-  </script>
-
-  <script>
   // After your BG/particle config is initialized
   (function () {
     const small = matchMedia('(max-width: 480px)').matches;
