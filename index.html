@@ -1565,6 +1565,32 @@
   })();
 </script>
 
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const navLinks = document.querySelectorAll('#navmenu a[href^="#"]');
+    const header = document.querySelector('#header');
+    const toggleButton = document.querySelector('.header-toggle');
+    if (navLinks.length > 0 && header && toggleButton) {
+      navLinks.forEach(link => {
+        link.addEventListener('click', function(event) {
+          event.preventDefault();
+          const hash = this.hash;
+          const targetElement = document.querySelector(hash);
+          if (targetElement) {
+            if (header.classList.contains('header-show')) {
+              toggleButton.click();
+            }
+            setTimeout(() => {
+              targetElement.scrollIntoView({
+                behavior: 'smooth'
+              });
+            }, 350); // 300ms animation + 50ms buffer
+          }
+        });
+      });
+    }
+  });
+</script>
 
 </body>
 </html>
