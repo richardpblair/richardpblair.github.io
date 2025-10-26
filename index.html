@@ -115,7 +115,7 @@
           <div class="col-lg-6 order-1 order-lg-2">
             <div class="hero-image" data-aos="fade-up" data-aos-delay="300">
               <div class="image-wrapper">
-                <img src="assets/img/Shield.webp" alt="Defense of Cyber World" class="img-fluid main-image" width="1200" height="800">
+                <img src="assets/img/Shield.webp" alt="Defense of Cyber World" class="img-fluid main-image" width="1200" height="800" fetchpriority="high" loading="eager" decoding="async">
                 <div class="floating-card card-1" data-aos="fade-up" data-aos-delay="600">
                   <i class="bi bi-clipboard-check"></i>
                   <span>Risk Assessment</span>
@@ -913,7 +913,9 @@
     }
 
     function resize() {
-      const DPR_CAP = 1.75;                              // ← cap GPU work
+
+      const isCoarse = matchMedia('(pointer: coarse)').matches;
+      const DPR_CAP = isCoarse ? 1.25 : 1.75;   // tighter on phones/tablets
       const dpr = Math.min(DPR_CAP, Math.max(1, devicePixelRatio || 1));
 
       W = canvas.width  = Math.floor(innerWidth  * dpr);
@@ -1359,17 +1361,38 @@
         customRegionPercents.yMax = p.yMax ?? customRegionPercents.yMax;
         regionMode = 'custom'; resize();
       },
+      pause: () => { if (rafId) { cancelAnimationFrame(rafId); rafId = 0; } },
+      resume: () => { if (!rafId) { rafId = requestAnimationFrame(step); } },
+      isRunning: () => !!rafId,
       config: CONFIG,
       region: () => ({ ...REGION })
     };
-
-    // Always run the loop (ignore Reduce Motion while debugging)
-    cancelAnimationFrame(rafId);
-    rafId = requestAnimationFrame(step);
+    if (!rafId) rafId = requestAnimationFrame(step);
 
 
   })();
   </script>
+
+  <script>
+  (function () {
+    const prefersReduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const saveData = navigator.connection && navigator.connection.saveData === true;
+
+    if (prefersReduce || saveData) {
+      BGNet.pause();
+      // Optional: hide canvas entirely:
+      // document.getElementById('bg-net').style.display = 'none';
+    }
+
+    // Pause when tab hidden; resume when visible (you already have a density tweak later;
+    // this is cleaner and saves true CPU)
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) BGNet.pause();
+      else BGNet.resume();
+    });
+  })();
+  </script>
+
 
   <script>
     const basePreset   = { density: 0.00009, glow: 4, linkAdjust: -8 };  // calm & steady
@@ -1409,6 +1432,27 @@
       }
     });
   </script>
+
+  <script>
+  (function () {
+    const isCoarse = matchMedia('(pointer: coarse)').matches;
+    const hiDPI = (window.devicePixelRatio || 1) > 2;
+
+    // A gentle "lite" preset for mobile/hiDPI
+    function applyLitePreset() {
+      BGNet.config.density        = Math.min(BGNet.config.density, 0.00005);
+      BGNet.config.glow           = Math.min(BGNet.config.glow ?? 8, 6);
+      BGNet.config.runnerGlow     = Math.min(BGNet.config.runnerGlow ?? 8, 6);
+      BGNet.config.runnersPerLink = Math.min(BGNet.config.runnersPerLink ?? 2, 1);
+      BGNet.config.runnerSpeed    = Math.min(BGNet.config.runnerSpeed ?? 0.3, 0.22);
+      BGNet.config.flowStrength   = Math.min(BGNet.config.flowStrength ?? 0.04, 0.028);
+      BGNet.setMode('custom');
+    }
+
+    if (isCoarse || hiDPI) applyLitePreset();
+  })();
+  </script>
+
 
   <script>
   window.addEventListener('load', () => {
@@ -1591,6 +1635,17 @@
     }
   });
 </script>
+
+<script>
+(function () {
+  const prefersReduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const isCoarse = matchMedia('(pointer: coarse)').matches;
+  if (prefersReduce || isCoarse) {
+    document.querySelectorAll('[data-aos]').forEach(el => el.removeAttribute('data-aos'));
+  }
+})();
+</script>
+
 
 </body>
 </html>
