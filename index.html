@@ -1425,6 +1425,64 @@
       else BGNet.resume();
     });
   })();
+  
+  </script>
+
+  <script>
+    (() => {
+      const canvas = document.getElementById('bg-net');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+
+      /* === PERF GUARDS === */
+      const DPR = Math.min(window.devicePixelRatio || 1, 1.25);  // clamp pixels
+      const MAX_PARTICLES = 1200;                                 // hard cap
+
+      // ... keep your existing CONFIG; then immediately after CONFIG = {...} add:
+      if (window.innerWidth >= 1600) {
+        // lighter links on huge canvases
+        CONFIG.layers.forEach(l => {
+          l.linkDist = Math.min(l.linkDist || 140, 110);
+          l.maxLinks = Math.min(l.maxLinks || 2, 1);
+        });
+        // slightly lower density for ultra-wide
+        if (CONFIG.density) CONFIG.density = Math.min(CONFIG.density, 0.00005);
+      }
+
+      // Wherever you compute particles from density * width * height:
+      // let desired = Math.floor(CONFIG.density * W * H);
+      // replace with:
+      let desired = Math.floor(CONFIG.density * W * H);
+      desired = Math.min(desired, MAX_PARTICLES);
+
+      // In your resize routine, use the clamped DPR
+      function resize() {
+        const w = canvas.clientWidth, h = canvas.clientHeight;
+        canvas.width  = Math.floor(w * DPR);
+        canvas.height = Math.floor(h * DPR);
+        ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+        // ... existing resize bits
+      }
+
+      // OPTIONAL: Skip link drawing while user is actively scrolling
+      let scrolling = false, scrollTimer = 0;
+      window.addEventListener('scroll', () => {
+        scrolling = true;
+        clearTimeout(scrollTimer);
+        scrollTimer = setTimeout(() => (scrolling = false), 140);
+      }, { passive: true });
+
+      // In your draw loop, wrap the heavy link pass:
+      function drawFrame() {
+        // ... particle updates
+        if (!scrolling) {
+          // draw links between nearby particles
+          // (leave your existing link-draw code here)
+        }
+        requestAnimationFrame(drawFrame);
+      }
+      // ... kick off
+    })();
   </script>
 
 

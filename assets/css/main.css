@@ -397,6 +397,16 @@ aside.sidebar {
   .twinkle-overlay { animation: none !important; opacity: 0.05 !important; }
 }
 
+@media (min-width: 1600px) {
+  .hero .hero-image .image-wrapper .floating-card {
+    animation: none !important;                /* stop bobbing */
+    box-shadow: 0 6px 18px rgba(0,0,0,.25);    /* lighter shadow */
+  }
+  .hero .hero-image .image-wrapper .main-image {
+    box-shadow: 0 14px 40px rgba(0,0,0,.18);   /* lighter than 0 20px 60px */
+  }
+}
+
 /*--------------------------------------------------------------
 # Navigation Menu
 --------------------------------------------------------------*/
@@ -4634,5 +4644,16 @@ section.page-title::after {
   .portfolio-details .process-timeline .timeline-steps .timeline-item .step-marker {
     margin-right: 1rem !important;
     margin-bottom: 0 !important;
+  }
+}
+
+@media (min-width: 2000px) {
+  .section-title h2::after,
+  .section-title h2::before {
+    /* tiny paint savings: reduce decorative underlines on massive screens */
+    opacity: .7;
+  }
+  .hero .hero-image .image-wrapper .floating-card {
+    filter: none !important; /* remove any subtle filters that can trigger GPU work */
   }
 }
