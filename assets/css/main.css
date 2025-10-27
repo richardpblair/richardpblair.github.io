@@ -44,9 +44,9 @@
   --nav-dropdown-hover-color: #FFD166; /* Similar to --nav-hover-color, this color is applied to dropdown navigation links when they are hovered over. */
 
   /* Dark LinkedIn blues (from cover image) */
-  --li-blue-dark:  #062a5c00;  /* deep navy base */
-  --li-blue:       #062a5c80;  /* main mid blue */
-  --li-blue-light: #094a99bf;  /* highlight tint */
+  --li-blue-dark:  #062a5c;     /* opaque deep navy base */
+  --li-blue:       #0b3a7a;     /* mid blue, opaque */
+  --li-blue-light: #0f56b3;     /* highlight tint, opaque */
 
   /* Golds for particles/lines (match CONFIG above) */
   --gold-1: #FFD166; /* dot A */
@@ -375,12 +375,23 @@ aside.sidebar {
 }
 
 /* Background visual layers must not intercept taps and must sit behind */
-#bg-net, .bg-overlay, .twinkle-overlay {
+.bg-overlay{
   position: fixed; inset: 0;
-  z-index: -1;
+  z-index: -3;            /* <= furthest back */
   pointer-events: none;
 }
 
+#bg-net{
+  position: fixed; inset: 0;
+  z-index: -2;            /* <= particles above overlay */
+  pointer-events: none;
+}
+
+.twinkle-overlay{
+  position: fixed; inset: 0;
+  z-index: -1;            /* <= twinkle above particles, still behind content */
+  pointer-events: none;
+}
 
 /*--------------------------------------------------------------
 # Navigation Menu
@@ -673,12 +684,7 @@ aside.sidebar {
 --------------------------------------------------------------*/
 section,
 .section {
-  background: linear-gradient(
-    to right,
-    color-mix(in srgb, var(--li-blue-dark) 10%, transparent) 0%,
-    color-mix(in srgb, var(--li-blue) 12%, transparent) 35%,
-    color-mix(in srgb, var(--li-blue-light) 15%, transparent) 100%
-  );
+  background: var(--li-blue-dark), transparent 50;
   color: var(--default-color);
   padding: 60px 0;
   overflow: clip;
@@ -687,7 +693,7 @@ section,
 #bg-net{
   position: fixed;
   inset: 0;
-  z-index: -3;
+  z-index: -2;            /* particles in front of overlay */
   width: 100vw;
   height: 100vh;
   display: block;
@@ -697,7 +703,7 @@ section,
 .bg-overlay{
   position: fixed;
   inset: 0;
-  z-index: -2;
+  z-index: -3;            /* moved behind particles */
   pointer-events: none;
 
   background:
@@ -705,17 +711,12 @@ section,
       to right,
       var(--li-blue-dark) 0%,
       var(--li-blue) 25%,
-      var(--li-blue-light) 100%
     ),
     radial-gradient(1100px 700px at 80% 20%, rgba(255,255,255,0.05), transparent 20%),
     radial-gradient(900px 600px  at 20% 80%, rgba(255,255,255,0.03), transparent 20%);
   mix-blend-mode: normal;
-  pointer-events: none;
 }
 
-.bg-overlay {
-  opacity: 0.4; /* 0 = invisible, 1 = solid; try 0.5–0.8 range */
-}
 /* Metallic twinkle overlay */
 .twinkle-overlay{
   position: fixed;
