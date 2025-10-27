@@ -26,7 +26,7 @@
 
 /* Global Colors - The following color variables are used throughout the website. Updating them here will change the color scheme of the entire website */
 :root { 
-  --background-color: #25303f; /* Background color for the entire website, including individual sections */
+  --background-color: #262e45; /* Background color for the entire website, including individual sections */
   --default-color: #f3f4f6; /* Default color used for the majority of the text content across the entire website */
   --heading-color: #f9fafb; /* Color for headings, subheadings and title throughout the website */
   --accent-color: #FFD166; /* Accent color that represents your brand on the website. It's used for buttons, links, and other elements that need to stand out */
@@ -3022,7 +3022,7 @@ section,
   border-radius: 6px;
   width: 100%;
   height: 400px;
-  object-fit: cover;
+  object-fit: contain;
 }
 
 .portfolio-details .visual-showcase {
@@ -3085,7 +3085,7 @@ section,
 }
 
 .portfolio-details .content-section .main-content p:last-child {
-  margin-bottom: 0;
+  margin-bottom: 2rem;
 }
 
 .portfolio-details .content-section .project-specs .spec-item {
@@ -3117,7 +3117,7 @@ section,
 }
 
 .portfolio-details .process-timeline .timeline-header {
-  text-align: center;
+  text-align: left;
   margin-bottom: 4rem;
 }
 
@@ -3132,7 +3132,7 @@ section,
 
 .portfolio-details .process-timeline .timeline-steps {
   max-width: 800px;
-  margin: 0 auto;
+  margin: 0 !important;
 }
 
 .portfolio-details .process-timeline .timeline-steps .timeline-item {
@@ -3142,7 +3142,7 @@ section,
 }
 
 .portfolio-details .process-timeline .timeline-steps .timeline-item:last-child {
-  margin-bottom: 0;
+  margin-bottom: 10rem;
 }
 
 .portfolio-details .process-timeline .timeline-steps .timeline-item .step-marker {
@@ -3199,7 +3199,7 @@ section,
 }
 
 .portfolio-details .tools-section {
-  margin-bottom: var(--section-spacing);
+  margin-bottom: 10rem;
 }
 
 .portfolio-details .tools-section h2 {
@@ -3472,14 +3472,19 @@ section,
     font-size: 1.1rem;
   }
 
-  .portfolio-details .process-timeline .timeline-steps .timeline-item {
-    flex-direction: column;
-    text-align: center;
+ .portfolio-details .process-timeline .timeline-steps .timeline-item {
+    text-align: left !important;
+    flex-direction: row !important; /* number left, text right */
+    align-items: flex-start;
   }
 
   .portfolio-details .process-timeline .timeline-steps .timeline-item .step-marker {
-    margin-right: 0;
-    margin-bottom: 1rem;
+    margin-right: 1.5rem !important;
+    margin-bottom: 0 !important;
+  }
+
+  .portfolio-details .process-timeline .timeline-steps .timeline-item .step-content {
+  text-align: left !important;
   }
 
   .portfolio-details .process-timeline .timeline-steps .timeline-item .step-marker::after {
@@ -3516,6 +3521,125 @@ section,
     margin-left: -15px;
     margin-right: -15px;
     border-radius: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .portfolio-details .process-timeline .timeline-steps .timeline-item {
+    flex-direction: row;
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  .portfolio-details .process-timeline .timeline-steps .timeline-item .step-marker {
+    margin-right: 1rem;
+    margin-bottom: 0;
+  }
+
+  .portfolio-details .process-timeline .timeline-steps .timeline-item .step-content {
+    flex: 1;
+    text-align: left;
+  }
+}
+/*--------------------------------------------------------------
+# Quick Stats Section – Unified Color + Stylish Separation
+--------------------------------------------------------------*/
+.section.quick-stats {
+  /* solid, same as page */
+  background: #262e45 !important; /* (same as your --background-color) */
+  border: none !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+
+  /* subtle top/bottom separators */
+  position: relative;
+  isolation: isolate; /* ensures pseudo-elements layer correctly */
+}
+
+.section.quick-stats::before,
+.section.quick-stats::after {
+  content: "";
+  display: block;
+  height: 1px;
+  /* a soft highlight line; adjust alpha to taste */
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.10), transparent);
+}
+
+.section.quick-stats::before {
+  margin-bottom: 1.25rem;
+}
+
+.section.quick-stats::after {
+  margin-top: 1.25rem;
+}
+
+.quick-stats.section {
+  background: linear-gradient(to right, #262e45 0%, #262e45 100%) !important;
+  border: none !important;
+  backdrop-filter: none !important;
+  padding: 2.5rem 0;
+  position: relative;
+  z-index: 1;
+}
+
+/* ✨ Subtle top & bottom glow dividers */
+.quick-stats.section::before,
+.quick-stats.section::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(255, 209, 102, 0.35),
+    transparent
+  );
+  z-index: 0;
+}
+
+.quick-stats.section::before {
+  top: 0;
+  box-shadow: 0 -8px 24px rgba(255, 209, 102, 0.1);
+}
+
+.quick-stats.section::after {
+  bottom: 0;
+  box-shadow: 0 8px 24px rgba(255, 209, 102, 0.1);
+}
+.quick-stats {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+.quick-stats .card {
+  background: color-mix(in srgb, var(--surface-color), transparent 10%);
+  border: 1px solid color-mix(in srgb, var(--accent-color), transparent 80%);
+  border-radius: 12px;
+  text-align: center;
+  transition: all 0.3s ease;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+}
+
+.quick-stats .card h6 {
+  color: var(--accent-color);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.quick-stats .card:hover {
+  transform: translateY(-4px);
+  border-color: var(--accent-color);
+  box-shadow: 0 10px 30px color-mix(in srgb, var(--accent-color), transparent 80%);
+}
+
+@media (max-width: 992px) {
+  .quick-stats .card {
+    margin-bottom: 1rem;
   }
 }
 
@@ -4323,5 +4447,164 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--accent-color); 
 @media (min-width: 1920px) {
   .container {
     max-width: 1700px;
+  }
+}
+
+/*--------------------------------------------------------------
+# Page Title — force solid background
+--------------------------------------------------------------*/
+section.page-title {
+  /* your requested color (solid gradient) */
+  background: linear-gradient(to right, #262e45 0%, #262e45 100%) !important;
+  /* prevent any subtle blur/pane effects leaking in */
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  border: none !important;
+}
+
+section.page-title {
+  position: relative;
+  isolation: isolate;
+}
+
+section.page-title::after {
+  content: "";
+  display: block;
+  height: 2px;
+  margin-top: 18px; /* space below the title block */
+  background: linear-gradient(90deg, transparent, rgba(255,209,102,0.35), transparent);
+  /* soft glow */
+  box-shadow: 0 6px 18px rgba(255,209,102,0.12);
+}
+
+/*--------------------------------------------------------------
+# Page Title — Subtle Gradient + Gold Divider
+--------------------------------------------------------------*/
+.page-title {
+  /* Gradient tint across your desired base color */
+  background: linear-gradient(
+    90deg,
+    #262e45 0%,
+    #2b3550 50%,   /* slightly lighter mid-tone */
+    #262e45 100%
+  ) !important;
+
+  /* Reset any “light-background” overrides */
+  --background-color: #262e45;
+  border: none !important;
+  backdrop-filter: none !important;
+  box-shadow: none !important;
+
+  position: relative;
+  isolation: isolate; /* ensures pseudo-element layers cleanly */
+}
+
+/* ✨ Add a golden divider under the Page Title */
+.page-title::after {
+  content: "";
+  display: block;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  height: 2px;
+
+  /* Subtle gold-to-transparent gradient */
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 209, 102, 0.8),
+    transparent
+  );
+
+  box-shadow: 0 6px 20px rgba(255, 209, 102, 0.15);
+  border-radius: 2px;
+}
+
+/*--------------------------------------------------------------
+# Footer — Page Color + Golden Top Divider
+--------------------------------------------------------------*/
+.footer {
+  background: linear-gradient(
+    90deg,
+    #262e45 0%,
+    #2b3550 50%,
+    #262e45 100%
+  ) !important;
+
+  border: none;
+  box-shadow: none;
+  color: var(--default-color);
+  position: relative;
+  isolation: isolate;
+}
+
+/* Gold divider at top edge of footer */
+.footer::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 209, 102, 0.8),
+    transparent
+  );
+  box-shadow: 0 -6px 18px rgba(255, 209, 102, 0.15);
+  border-radius: 2px;
+}
+
+/*--------------------------------------------------------------
+# Process Timeline — Force Left Alignment
+--------------------------------------------------------------*/
+.portfolio-details .process-timeline .timeline-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.portfolio-details .process-timeline .timeline-steps .timeline-item {
+  display: flex !important;
+  flex-direction: row !important;  /* number left, text right */
+  align-items: flex-start !important;
+  text-align: left !important;
+  justify-content: flex-start !important;
+}
+
+.portfolio-details .process-timeline .timeline-steps .timeline-item .step-marker {
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  margin-right: 1.5rem !important;
+  margin-bottom: 0 !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  color: #262e45;
+  font-weight: 700;
+  font-size: 1.25rem;
+}
+
+.portfolio-details .process-timeline .timeline-steps .timeline-item .step-content {
+  flex: 1;
+  text-align: left !important;
+}
+
+@media (max-width: 768px) {
+  .portfolio-details .process-timeline .timeline-steps .timeline-item {
+    flex-direction: row !important;
+    align-items: flex-start !important;
+    text-align: left !important;
+  }
+
+  .portfolio-details .process-timeline .timeline-steps .timeline-item .step-marker {
+    margin-right: 1rem !important;
+    margin-bottom: 0 !important;
   }
 }

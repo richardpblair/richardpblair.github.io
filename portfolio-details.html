@@ -25,74 +25,62 @@
   <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
   <!-- Main CSS File -->
-  <link href="assets/css/main.css" rel="stylesheet">
+  <link rel="preload" href="assets/css/main.css" as="style">
+  <link href="assets/css/main.css?v=1.1" rel="stylesheet">
+
 
 </head>
 
 <body class="portfolio-details-page">
 
-  <header id="header" class="header dark-background d-flex flex-column justify-content-between">
-    <i class="header-toggle d-xl-none bi bi-list"></i>
-
+  <header id="header" class="header">
+    <button class="header-toggle d-xl-none bi bi-list" aria-label="Toggle navigation" aria-controls="navmenu" aria-expanded="false"></button>
     <div class="header-top">
       <div class="profile-img">
-        <img src="assets/img/profile/profile-square-14.webp" alt="" class="img-fluid">
+        <img src="assets/img/profile/Headshot.webp"
+             alt="Portrait of Richard Blair"
+             width="300" height="300"
+             class="img-fluid">
       </div>
 
-      <a href="index.html" class="logo d-flex align-items-center justify-content-center">
-        <!-- Uncomment the line below if you also wish to use an image logo -->
-        <!-- <img src="assets/img/logo.webp" alt=""> -->
-        <h1 class="sitename">Mark Andersen</h1>
-      </a>
-
+      <div class="logo-wrapper d-flex flex-column align-items-center">
+        <a href="index.html" class="logo d-flex align-items-center justify-content-center">
+        <span class="sitename">Richard Blair</span>
+        </a>
+        
+        <div class="veteran-status d-flex flex-column align-items-center">
+          <img src="assets/img/portfolio/army_logo.webp" alt="US Army Logo" class="veteran-logo" width="150" height="150">
+          <span class="veteran-text">US Army Veteran</span>
+        </div> 
+      </div>
     </div>
 
     <nav id="navmenu" class="navmenu">
       <ul>
-        <li><a href="#hero"><i class="bi bi-house navicon"></i>Home</a></li>
+        <li><a href="#hero" class="active" aria-current="page"><i class="bi bi-house navicon"></i>Home</a></li>
         <li><a href="#about"><i class="bi bi-person navicon"></i> About</a></li>
         <li><a href="#resume"><i class="bi bi-file-earmark-text navicon"></i> Resume</a></li>
         <li><a href="#portfolio"><i class="bi bi-images navicon"></i> Portfolio</a></li>
-        <li><a href="#services"><i class="bi bi-hdd-stack navicon"></i> Services</a></li>
-        <li class="dropdown"><a href="#"><i class="bi bi-menu-button navicon"></i> <span>Dropdown</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
-          <ul>
-            <li><a href="#">Dropdown 1</a></li>
-            <li class="dropdown"><a href="#"><span>Deep Dropdown</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
-              <ul>
-                <li><a href="#">Deep Dropdown 1</a></li>
-                <li><a href="#">Deep Dropdown 2</a></li>
-                <li><a href="#">Deep Dropdown 3</a></li>
-                <li><a href="#">Deep Dropdown 4</a></li>
-                <li><a href="#">Deep Dropdown 5</a></li>
-              </ul>
-            </li>
-            <li><a href="#">Dropdown 2</a></li>
-            <li><a href="#">Dropdown 3</a></li>
-            <li><a href="#">Dropdown 4</a></li>
-          </ul>
-        </li>
         <li><a href="#contact"><i class="bi bi-envelope navicon"></i> Contact</a></li>
       </ul>
     </nav>
 
     <div class="social-links text-center">
-      <a href="#" class="twitter"><i class="bi bi-twitter-x"></i></a>
-      <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
-      <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
-      <a href="#" class="google-plus"><i class="bi bi-skype"></i></a>
-      <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
+      <a href="https://github.com/richardpblair/richardpblair" class="github" aria-label="GitHub: richardpblair" target="_blank" rel="noopener noreferrer"><i class="bi bi-github"></i></a>
+      <a href="https://www.linkedin.com/in/richardpblair/" class="linkedin" aria-label="LinkedIn: Richard Blair" target="_blank" rel="noopener noreferrer"><i class="bi bi-linkedin"></i></a>
     </div>
   </header>
 
   <main class="main">
 
     <!-- Page Title -->
-    <div class="page-title light-background">
+    <div class="page-title">
       <div class="container">
         <h1>Portfolio Details</h1>
         <nav class="breadcrumbs">
           <ol>
             <li><a href="index.html">Home</a></li>
+            <!-- This will be the same name as above-->
             <li class="current">Portfolio Details</li>
           </ol>
         </nav>
@@ -110,35 +98,25 @@
               <div class="project-header">
                 <div class="project-meta">
                   <span class="category">Digital Design</span>
-                  <span class="year">2024</span>
+                  <span class="year">2025</span>
                 </div>
                 <h1 class="project-title">Sustainable Living Platform</h1>
                 <p class="project-summary">Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt neque porro quisquam est.</p>
                 <div class="project-tags">
-                  <span class="tag">UI/UX Design</span>
-                  <span class="tag">Sustainability</span>
-                  <span class="tag">Platform</span>
+                  <section class="quick-stats section">
+                    <div class="row g-3">
+                      <div class="col-md-4"><div class="card p-3"><h6>Objective</h6><p>Baseline + IDS tuning</p></div></div>
+                      <div class="col-md-4"><div class="card p-3"><h6>Stack</h6><p>pfSense • Kali • Suricata • Zeek</p></div></div>
+                      <div class="col-md-4"><div class="card p-3"><h6>Results</h6><p>↓63% FP • 100% test catches</p></div></div>
+                    </div>
+                  </section>
                 </div>
               </div>
             </div>
             <div class="col-lg-6" data-aos="fade-left" data-aos-delay="200">
               <div class="hero-image">
-                <img src="assets/img/portfolio/portfolio-3.webp" alt="Project showcase" class="img-fluid" loading="lazy">
+                <img src="assets/img/portfolio/Coming_soon.webp" alt="Project showcase" class="img-fluid" loading="lazy">
               </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="visual-showcase" data-aos="fade-up" data-aos-delay="100">
-          <div class="showcase-gallery">
-            <div class="gallery-item large" data-aos="zoom-in" data-aos-delay="150">
-              <img src="assets/img/portfolio/portfolio-7.webp" alt="Design showcase" class="img-fluid glightbox">
-            </div>
-            <div class="gallery-item" data-aos="fade-up" data-aos-delay="200">
-              <img src="assets/img/portfolio/portfolio-5.webp" alt="Design showcase" class="img-fluid glightbox">
-            </div>
-            <div class="gallery-item" data-aos="fade-up" data-aos-delay="250">
-              <img src="assets/img/portfolio/portfolio-8.webp" alt="Design showcase" class="img-fluid glightbox">
             </div>
           </div>
         </div>
@@ -147,7 +125,7 @@
           <div class="row">
             <div class="col-lg-7" data-aos="fade-up" data-aos-delay="100">
               <div class="main-content">
-                <h2>Design Philosophy</h2>
+                <h2>The Project</h2>
                 <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium totam rem aperiam eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
                 <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt neque porro quisquam est qui dolorem ipsum quia dolor sit amet consectetur adipisci velit.</p>
                 <p>Ut enim ad minima veniam quis nostrum exercitationem ullam corporis suscipit laboriosam nisi ut aliquid ex ea commodi consequatur quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur.</p>
@@ -156,23 +134,15 @@
             <div class="col-lg-4 offset-lg-1" data-aos="fade-up" data-aos-delay="200">
               <div class="project-specs">
                 <div class="spec-item">
-                  <h5>Client</h5>
-                  <p>EcoLife Solutions</p>
-                </div>
-                <div class="spec-item">
-                  <h5>Timeline</h5>
-                  <p>8 Months</p>
+                  <h5>Time Commitment</h5>
+                  <p>~6–8 hours</p>
                 </div>
                 <div class="spec-item">
                   <h5>My Role</h5>
-                  <p>Product Designer</p>
+                  <p>Student Analyst</p>
                 </div>
                 <div class="spec-item">
-                  <h5>Team</h5>
-                  <p>7 Members</p>
-                </div>
-                <div class="spec-item">
-                  <h5>Deliverables</h5>
+                  <h5>Tools used</h5>
                   <p>Web Platform, Mobile App</p>
                 </div>
               </div>
@@ -182,7 +152,7 @@
 
         <div class="process-timeline" data-aos="fade-up" data-aos-delay="100">
           <div class="timeline-header">
-            <h2>Design Process</h2>
+            <h2>The Process</h2>
           </div>
           <div class="timeline-steps">
             <div class="timeline-item" data-aos="fade-up" data-aos-delay="150">
@@ -233,7 +203,7 @@
             <div class="col-lg-6 offset-lg-1">
               <div class="tools-grid">
                 <div class="tool-category" data-aos="fade-up" data-aos-delay="150">
-                  <h5>Design</h5>
+                  <h5>Systems</h5>
                   <div class="tool-list">
                     <span class="tool-item">Figma</span>
                     <span class="tool-item">Sketch</span>
@@ -242,7 +212,7 @@
                   </div>
                 </div>
                 <div class="tool-category" data-aos="fade-up" data-aos-delay="200">
-                  <h5>Development</h5>
+                  <h5>Applications</h5>
                   <div class="tool-list">
                     <span class="tool-item">React</span>
                     <span class="tool-item">Node.js</span>
@@ -262,32 +232,7 @@
           </div>
         </div>
 
-        <div class="impact-metrics" data-aos="fade-up" data-aos-delay="100">
-          <div class="metrics-container">
-            <div class="metrics-header">
-              <h2>Project Impact</h2>
-              <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores.</p>
-            </div>
-            <div class="metrics-grid">
-              <div class="metric-card" data-aos="fade-up" data-aos-delay="150">
-                <div class="metric-value">92%</div>
-                <div class="metric-label">User Satisfaction</div>
-              </div>
-              <div class="metric-card" data-aos="fade-up" data-aos-delay="200">
-                <div class="metric-value">18k+</div>
-                <div class="metric-label">Monthly Users</div>
-              </div>
-              <div class="metric-card" data-aos="fade-up" data-aos-delay="250">
-                <div class="metric-value">4.9</div>
-                <div class="metric-label">App Store Rating</div>
-              </div>
-              <div class="metric-card" data-aos="fade-up" data-aos-delay="300">
-                <div class="metric-value">65%</div>
-                <div class="metric-label">Conversion Increase</div>
-              </div>
-            </div>
-          </div>
-        </div>
+        <br><br>
 
         <div class="additional-gallery" data-aos="fade-up" data-aos-delay="100">
           <div class="gallery-slider swiper init-swiper">
@@ -333,27 +278,6 @@
           </div>
         </div>
 
-        <div class="project-nav" data-aos="fade-up" data-aos-delay="100">
-          <div class="nav-wrapper">
-            <a href="#" class="nav-link prev-project">
-              <div class="nav-content">
-                <span class="nav-direction">← Previous</span>
-                <span class="nav-title">Digital Banking Solution</span>
-              </div>
-            </a>
-            <a href="#" class="nav-link all-projects">
-              <i class="bi bi-grid-3x3-gap"></i>
-              <span>All Projects</span>
-            </a>
-            <a href="#" class="nav-link next-project">
-              <div class="nav-content">
-                <span class="nav-direction">Next →</span>
-                <span class="nav-title">Healthcare Mobile App</span>
-              </div>
-            </a>
-          </div>
-        </div>
-
       </div>
 
     </section><!-- /Portfolio Details Section -->
@@ -365,11 +289,8 @@
       <h3 class="sitename">Richard Blair</h3>
       <p>Cybersecurity Student • Continuous Learner • Mission-Driven Innovator<br>Building a safer digital world, one project at a time.</p>
       <div class="social-links d-flex justify-content-center">
-        <a href=""><i class="bi bi-twitter-x"></i></a>
-        <a href=""><i class="bi bi-facebook"></i></a>
-        <a href=""><i class="bi bi-instagram"></i></a>
-        <a href=""><i class="bi bi-skype"></i></a>
-        <a href=""><i class="bi bi-linkedin"></i></a>
+        <a href="https://github.com/richardpblair/richardpblair" class="github" aria-label="GitHub: richardpblair" target="_blank" rel="noopener noreferrer"><i class="bi bi-github"></i></a>
+        <a href="https://www.linkedin.com/in/richardpblair/" class="linkedin" aria-label="LinkedIn: Richard Blair" target="_blank" rel="noopener noreferrer"><i class="bi bi-linkedin"></i></a>
       </div>
       <div class="container">
         <div class="copyright">
