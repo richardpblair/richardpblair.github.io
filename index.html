@@ -29,7 +29,6 @@
   <!--Animated Backgroud-->
   <canvas id="bg-net"></canvas>
   <div class="bg-overlay"></div>
-  <div class = "twinkle-overlay" aria-hidden="true"></div>
   <header id="header" class="header">
     <button class="header-toggle d-xl-none bi bi-list" aria-label="Toggle navigation" aria-controls="navmenu" aria-expanded="false"></button>
     <div class="header-top">
@@ -115,7 +114,13 @@
           <div class="col-lg-6 order-1 order-lg-2">
             <div class="hero-image" data-aos="fade-up" data-aos-delay="300">
               <div class="image-wrapper">
-                <img src="assets/img/Shield.webp" alt="Defense of Cyber World" class="img-fluid main-image" width="1200" height="800" fetchpriority="high" loading="eager" decoding="async">
+                <img 
+                  src="assets/img/Shield.webp" 
+                  alt="Defense of Cyber World"
+                  class="img-fluid main-image"
+                  width="1200" height="800"
+                  fetchpriority="high" loading="eager" decoding="async"
+                  sizes="(max-width: 576px) 320px, (max-width: 992px) 500px, 800px">
                 <div class="floating-card card-1" data-aos="fade-up" data-aos-delay="600">
                   <i class="bi bi-clipboard-check"></i>
                   <span>Risk Assessment</span>
@@ -769,9 +774,14 @@
     const canvas = document.getElementById('bg-net');
     const ctx = canvas.getContext('2d');
 
+    // === NEW: perf helpers ===
+    const DPR = Math.min(window.devicePixelRatio || 1, 1.5);   // clamp DPI
+    const AREA = () => Math.max(1, canvas.clientWidth * canvas.clientHeight);
+    const MAX_PARTICLES = 2200; // hard cap for ultra-wide monitors
+
     // ========================== TUNING PANEL ==========================
     const CONFIG = {
-      density: 0.00009,         // overall dot count (per pixel)
+      density: 0.00007,         // overall dot count (per pixel)
       layers: [                 // depth layers (front first)
         { speed: 0.70, size: [1.6, 2.4], linkDist: 160, linkAlpha: 0.30 },
         { speed: 0.45, size: [1.5, 2.1], linkDist: 140, linkAlpha: 0.24 },
@@ -779,7 +789,7 @@
       ],
       fieldScale: 0.005,        // flow field "frequency" (lower = broader waves)
       fieldSpeed: 0.00025,      // how fast the field moves through time
-      parallax: 0.5,            // mouse sway
+      parallax: 0.45,            // mouse sway
       dotColorA: '#FFD166',     // gradient start
       dotColorB: '#F5B000',     // gradient end
       lineColor: '#FFDF8A',     // ALPHA replaced dynamically
@@ -788,12 +798,12 @@
       drawTriangles: false,     // set true to add triangle mesh accents
       triangleAlpha: 0.05,      // opacity of triangle fill when enabled
       flowStrength: 0.05,       // you said 0.05 — this is the multiplier for fx/fy
-      damping: 0.999,            // 0.96–0.99; higher = smoother
+      damping: 0.99,            // 0.96–0.99; higher = smoother
       jitter: 0.002,            // set to 0.001–0.003 if you want subtle randomness
       containMode: 'wrapX',     // 'wrapX' wraps left↔right; 'wrap' wraps both axes
       wallMargin: 10,           // only used by 'steer' (Option B)
-      wallForce: 0.04,          // only used by 'steer' (Option B)
-      maxSpeed: 0.6,            // how fast are the particles moving
+      wallForce: 0.1,          // only used by 'steer' (Option B)
+      maxSpeed: 0.55,            // how fast are the particles moving
       keepConnected: true,      // turn on nearest-neighbor fallback
       kNearest: 1,              // guarantee up to 2 links per particle
       minLinkAlpha: 0.16,       // floor opacity so fallbacks are visible
@@ -827,14 +837,26 @@
       sparkleSize: 2.0,               // star arm length factor (× particle radius)
       // --- link runners (data packets) ---
       runnersEnabled: true,  // master switch
-      runnersPerLink: 3.0,     // 1–2 keeps it tasteful
+      runnersPerLink: 1.5,     // 1–2 keeps it tasteful
       runnerSpeed: 0.85,     // higher = faster travel along lines
       runnerSize: 6.0,       // base radius in px (depth scales it)
       runnerGlow: 8,         // shadowBlur for glow
       runnerColor: '#FFD44D',// warm gold streak
-      runnerTail: 0.16       // 0.08–0.16 fraction of the link as a “streak”
+      runnerTail: 0.16,       // 0.08–0.16 fraction of the link as a “streak”
+      runnersEnabled: window.innerWidth >= 768, // off on mobile
+      twinkleEnabled: window.innerWidth >= 768, // off on mobile
 
     };
+
+    // Respect prefers-reduced-motion (force calm mode)
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduceMotion) {
+      CONFIG.runnersEnabled = false;
+      CONFIG.twinkleEnabled = false;
+      CONFIG.glow = Math.min(CONFIG.glow, 6);
+      CONFIG.layers.forEach(l => { l.linkDist = Math.min(l.linkDist, 110); });
+    }
+
 
     // Region modes: 'full' | 'right' | 'topRight' | 'custom'
     let regionMode = 'right';
@@ -918,11 +940,11 @@
       const DPR_CAP = isCoarse ? 1.25 : 1.75;   // tighter on phones/tablets
       const dpr = Math.min(DPR_CAP, Math.max(1, devicePixelRatio || 1));
 
-      W = canvas.width  = Math.floor(innerWidth  * dpr);
-      H = canvas.height = Math.floor(innerHeight * dpr);
+      W = canvas.width  = Math.floor(innerWidth  * DPR);
+      H = canvas.height = Math.floor(innerHeight * DPR);
       canvas.style.width = innerWidth + 'px';
       canvas.style.height = innerHeight + 'px';
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
 
       computeRegionPixels();
 
@@ -1369,6 +1391,18 @@
     };
     if (!rafId) rafId = requestAnimationFrame(step);
 
+    let running = true;
+      document.addEventListener('visibilitychange', () => {
+        running = document.visibilityState === 'visible';
+        if (running && !rafId) rafId = requestAnimationFrame(tick);
+      });
+
+      // In your animation loop, early return if not running:
+      function tick(ts) {
+        if (!running) { rafId = null; return; }
+        // ...rest of your draw/update...
+        rafId = requestAnimationFrame(tick);
+      }
 
   })();
   </script>
@@ -1646,6 +1680,51 @@
 })();
 </script>
 
+<script>
+  (function () {
+    // Respect reduced motion
+    const prefersReduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    const bars = document.querySelectorAll('#skills .progress-bar');
+    if (!bars.length) return;
+
+    // Helper to set the width from aria-valuenow
+    const fillBar = (bar) => {
+      const val = parseFloat(bar.getAttribute('aria-valuenow')) || 0;
+      // If reduced motion, set instantly without transition
+      if (prefersReduce) {
+        const prev = bar.style.transition;
+        bar.style.transition = 'none';
+        bar.style.width = val + '%';
+        // Force reflow, then restore transition so future changes still animate
+        void bar.offsetWidth;
+        bar.style.transition = prev || '';
+      } else {
+        bar.style.width = val + '%';
+      }
+      bar.dataset.filled = 'true';
+    };
+
+    // If IntersectionObserver exists, animate when visible
+    if ('IntersectionObserver' in window) {
+      const io = new IntersectionObserver((entries, obs) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const bar = entry.target;
+            if (bar.dataset.filled === 'true') return;
+            fillBar(bar);
+            obs.unobserve(bar);
+          }
+        });
+      }, { root: null, threshold: 0.15 });
+
+      bars.forEach(bar => io.observe(bar));
+    } else {
+      // Fallback: just fill on DOM ready
+      bars.forEach(fillBar);
+    }
+  })();
+</script>
 
 </body>
 </html>

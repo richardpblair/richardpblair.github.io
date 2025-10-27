@@ -18,9 +18,9 @@
 }
 /* Twinkle knobs */
 :root{
-  --twinkle-opacity: 0.50;  /* a touch subtler */
-  --twinkle-scale: 1000px;   /* slightly larger sparkle “grain” */
-  --twinkle-speed: 24s;     /* slower drift */
+  --twinkle-opacity: 0.08;  /* a touch subtler */
+  --twinkle-scale: 1400px;   /* slightly larger sparkle “grain” */
+  --twinkle-speed: 36s;     /* slower drift */
 }
 
 
@@ -320,9 +320,9 @@ body.nav-open {
 aside.sidebar {
   background: linear-gradient(
     180deg,
-    var(--li-blue-dark) 0%,
-    var(--li-blue) 50%,
-    var(--li-blue-light) 100%
+    var(--li-blue-dark) 50%,
+    var(--li-blue) 80%,
+    var(--li-blue-light) 99%
   );
   color: #fff;
 }
@@ -391,6 +391,10 @@ aside.sidebar {
   position: fixed; inset: 0;
   z-index: -1;            /* <= twinkle above particles, still behind content */
   pointer-events: none;
+}
+
+@media (max-width: 576px) {
+  .twinkle-overlay { animation: none !important; opacity: 0.05 !important; }
 }
 
 /*--------------------------------------------------------------
@@ -640,6 +644,14 @@ aside.sidebar {
   [data-aos] { transition-duration: 400ms !important; }
 }
 
+@media (max-width: 576px) {
+  [data-aos] {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
+
 /*--------------------------------------------------------------
 # Global Page Titles & Breadcrumbs
 --------------------------------------------------------------*/
@@ -688,6 +700,15 @@ section,
   color: var(--default-color);
   padding: 60px 0;
   overflow: clip;
+}
+
+.about.section,
+.skills.section,
+.resume.section,
+.portfolio.section,
+.contact.section {
+  content-visibility: auto;
+  contain-intrinsic-size: 1000px; /* reserve space to prevent jumps */
 }
 
 #bg-net{
@@ -1114,6 +1135,12 @@ section,
 
 .typed {
   color: var(--accent-color);
+  display: inline-block;       /* Prevent collapse */
+  min-width: 8ch;              /* Adjust based on longest word (Tomorrow! = 9ch) */
+  line-height: 1.1em;          /* Keep vertical space stable */
+  white-space: nowrap;         /* Prevent wrapping */
+  vertical-align: top;         /* Align smoothly with baseline */
+  transition: opacity 0.2s ease;
 }
 
 /*--------------------------------------------------------------
