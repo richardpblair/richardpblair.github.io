@@ -30,7 +30,7 @@ layers: [
 { speed: 0.30, size: [1.3, 1.8], linkDist: 120,  linkAlpha: 0.20 }
 ],
 fieldScale: 0.005,
-fieldSpeed: 0.00025,
+fieldSpeed: 0,
 parallax: 0.45,
 dotColorA: '#FFD166',
 dotColorB: '#F5B000',
@@ -39,9 +39,9 @@ glow: 14,
 containToRegion: true,
 drawTriangles: false,
 triangleAlpha: 0.05,
-flowStrength: 0.05,
-damping: 0.99,
-jitter: 0.002,
+flowStrength: 0,
+damping: 1,
+jitter: 0,
 containMode: 'wrapX',
 wallMargin: 10,
 wallForce: 0.1,
@@ -61,7 +61,7 @@ depthZBias: 1.8,
 parallaxEnabled: true,
 parallaxStrength: 50,
 parallaxFollow: 0.10,
-twinkleEnabled: true,
+twinkleEnabled: false,
 twinkleSpeed: 6.0,
 twinkleDepthBoost: 0.99,
 twinkleIntensity: 0.45,
@@ -78,8 +78,9 @@ runnerSize: 6.0,
 runnerGlow: 8,
 runnerColor: '#FFD44D',
 runnerTail: 0.16,
+runnerChain: true,
 runnersEnabled: window.innerWidth >= 768,
-twinkleEnabled: window.innerWidth >= 768,
+twinkleEnabled: false,
 };
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 if (reduceMotion) {
@@ -117,6 +118,7 @@ let REGION = { xMin: 0, xMax: 0, yMin: 0, yMax: 0 };
 let particles = [];
 let layerIndexOffsets = [];
 let drawOrder = [];
+let packetRunners = [];
 let mouse = { x: 0.7, y: 0.3, sx: 0.7, sy: 0.3 };
 addEventListener('pointermove', (e) => {
 const r = canvas.getBoundingClientRect();
@@ -168,6 +170,54 @@ REGION.xMax = Math.floor(innerWidth  * pct.xMax);
 REGION.yMin = Math.floor(innerHeight * pct.yMin);
 REGION.yMax = Math.floor(innerHeight * pct.yMax);
 }
+function layerRange(layerIndex) {
+const start = layerIndexOffsets[layerIndex];
+const end = (layerIndex + 1 < layerIndexOffsets.length)
+? layerIndexOffsets[layerIndex + 1]
+: particles.length;
+return [start, end];
+}
+function nearestNeighbor(index) {
+const p = particles[index];
+if (!p) return -1;
+const [start, end] = layerRange(p.layer);
+const layerConfig = CONFIG.layers[p.layer] || {};
+const reach = (layerConfig.linkDist || 120) + (CONFIG.extraReach || 0);
+let best = -1;
+let bestDist = Infinity;
+for (let i = start; i < end; i++) {
+if (i === index) continue;
+const q = particles[i];
+const dx = p.x - q.x;
+const dy = p.y - q.y;
+const dist = Math.hypot(dx, dy);
+if (dist < bestDist && dist <= reach) {
+bestDist = dist;
+best = i;
+}
+}
+if (best === -1) {
+if (index + 1 < end) return index + 1;
+if (start < end && start !== index) return start;
+return -1;
+}
+return best;
+}
+function rebuildPacketRunners() {
+packetRunners = [];
+if (!CONFIG.runnersEnabled || !CONFIG.runnerChain) return;
+particles.forEach((p, idx) => {
+const next = nearestNeighbor(idx);
+p.nextIndex = next;
+if (next !== -1) {
+packetRunners.push({
+from: idx,
+to: next,
+progress: Math.random()
+});
+}
+});
+}
 function resize() {
 const isCoarse = matchMedia('(pointer: coarse)').matches;
 const DPR_CAP = isCoarse ? 1.25 : 1.75;
@@ -207,6 +257,7 @@ idx++;
 }
 });
 drawOrder = particles.map((_, idx) => idx).sort((a, b) => particles[a].z - particles[b].z);
+rebuildPacketRunners();
 cachedGrad = null;
 }
 function contain(p) {
@@ -277,6 +328,57 @@ ctx.globalCompositeOperation = prevComp;
 ctx.shadowBlur = prevBlur;
 ctx.globalAlpha = prevAlpha;
 }
+function ensurePacketTarget(packet) {
+const fromParticle = particles[packet.from];
+const toParticle = particles[packet.to];
+if (!fromParticle) return false;
+if (toParticle && toParticle.layer === fromParticle.layer) {
+return true;
+}
+const next = nearestNeighbor(packet.from);
+if (next === -1) return false;
+packet.to = next;
+return true;
+}
+function advancePacket(packet, dt) {
+if (!ensurePacketTarget(packet)) return;
+const speed = CONFIG.runnerSpeed || 0.3;
+packet.progress += speed * dt;
+while (packet.progress >= 1) {
+packet.progress -= 1;
+packet.from = packet.to;
+const next = nearestNeighbor(packet.from);
+if (next === -1 || next === packet.from) {
+packet.progress = Math.random();
+return;
+}
+packet.to = next;
+if (!ensurePacketTarget(packet)) return;
+}
+}
+function drawPacketRunners(vx, vy) {
+if (!CONFIG.runnersEnabled || !CONFIG.runnerChain) return;
+packetRunners.forEach(packet => {
+if (!ensurePacketTarget(packet)) return;
+const pa = particles[packet.from];
+const pb = particles[packet.to];
+if (!pa || !pb) return;
+const zPair = ((pa.z || 0) + (pb.z || 0)) * 0.5;
+const layerConfig = CONFIG.layers[pa.layer] || {};
+const reach = (layerConfig.linkDist || 120) + (CONFIG.extraReach || 0);
+const dist = Math.hypot(pa.x - pb.x, pa.y - pb.y);
+const alpha = Math.max(CONFIG.minLinkAlpha || 0.18, 1 - Math.min(1, dist / reach));
+let pax = pa.x, pay = pa.y, pbx = pb.x, pby = pb.y;
+if (CONFIG.parallaxEnabled) {
+const s = CONFIG.parallaxStrength || 18;
+const za = (pa.z - 0.5) * s;
+const zb = (pb.z - 0.5) * s;
+pax += -vx * za; pay += -vy * za;
+pbx += -vx * zb; pby += -vy * zb;
+}
+drawRunner({ x: pax, y: pay }, { x: pbx, y: pby }, packet.progress, zPair, alpha);
+});
+}
 function step(ts) {
 if (pauseReasons.size > 0) {
 rafId = 0;
@@ -301,6 +403,7 @@ const grad = gradientForRegion();
 for (let i = 0; i < particles.length; i++) {
 const p = particles[i];
 const L = CONFIG.layers[p.layer];
+if (CONFIG.flowStrength && CONFIG.fieldSpeed) {
 const { vx: fx, vy: fy } = flowVec(
 p.x + p.seed * 13.7,
 p.y - p.seed * 9.1,
@@ -324,6 +427,7 @@ p.vy *= s;
 }
 p.x += p.vx;
 p.y += p.vy;
+}
 contain(p);
 const z = p.z || 0;
 const [sMin, sMax] = CONFIG.depthSizeRange || [0.8, 1.6];
@@ -441,7 +545,7 @@ ctx.beginPath();
 ctx.moveTo(pax, pay);
 ctx.lineTo(pbx, pby);
 ctx.stroke();
-if (CONFIG.runnersEnabled) {
+if (CONFIG.runnersEnabled && !CONFIG.runnerChain) {
 const seed = pairSeed(a, b);
 const zPair = ((pa.z || 0) + (pb.z || 0)) * 0.5;
 const spd = (CONFIG.runnerSpeed || 0.3) * (0.9 + 0.2 * zPair);
@@ -473,6 +577,10 @@ ctx.stroke();
 }
 }
 }
+}
+if (CONFIG.runnersEnabled && CONFIG.runnerChain) {
+packetRunners.forEach(packet => advancePacket(packet, dt));
+drawPacketRunners(vx, vy);
 }
 if (CONFIG.drawTriangles) {
 const start = layerIndexOffsets[0] || 0;
@@ -518,12 +626,11 @@ const basePreset = { density: 0.00009, glow: 4, linkAdjust: -8 };
 applyPreset(basePreset);
 const loadPreset = { density: 0.00013, glow: 8, linkDist: 110 };
 applyPreset(loadPreset);
-CONFIG.fieldSpeed = 0.00020;
-CONFIG.flowStrength = 0.40;
-CONFIG.damping = 0.995;
-CONFIG.layers.forEach((layer, index) => {
-const scale = index === 0 ? 0.80 : 0.70;
-layer.speed *= scale;
+CONFIG.fieldSpeed = 0;
+CONFIG.flowStrength = 0;
+CONFIG.damping = 1;
+CONFIG.layers.forEach((layer) => {
+layer.speed = layer.speed ?? 0;
 });
 const hiDPI = (window.devicePixelRatio || 1) > 2;
 if (hiDPI) {
@@ -532,7 +639,7 @@ CONFIG.glow           = Math.min(CONFIG.glow ?? 8, 6);
 CONFIG.runnerGlow     = Math.min(CONFIG.runnerGlow ?? 8, 6);
 CONFIG.runnersPerLink = Math.min(CONFIG.runnersPerLink ?? 2, 1);
 CONFIG.runnerSpeed    = Math.min(CONFIG.runnerSpeed ?? 0.3, 0.22);
-CONFIG.flowStrength   = Math.min(CONFIG.flowStrength ?? 0.04, 0.028);
+CONFIG.flowStrength   = 0;
 }
 const css = getComputedStyle(document.documentElement);
 const gold1 = (css.getPropertyValue('--gold-1').trim()) || '#FFD166';
@@ -606,4 +713,4 @@ document.addEventListener('visibilitychange', updateVisibility);
 updateVisibility();
 updateLoop();
 }
-//# sourceMappingURL=bg-net-359c1082.js.map
+//# sourceMappingURL=bg-net-48f35634.js.map
