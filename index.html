@@ -19,6 +19,10 @@
   <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
   <link href="assets/vendor/aos/aos.css" rel="stylesheet">
   <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+
+  <!-- Main CSS File -->
+  <link rel="preload" href="dist/main-b4fa8dfa.css" as="style">
+  <link href="dist/main-b4fa8dfa.css" rel="stylesheet">
   <link rel="preload" href="assets/css/main.css" as="style">
   <link href="assets/css/main.css?v=1.1" rel="stylesheet">
 
@@ -765,6 +769,94 @@
   <script src="assets/vendor/aos/aos.js" defer></script>
   <script src="assets/vendor/glightbox/js/glightbox.min.js" defer></script>
 
+  <!-- Main JS File -->
+  <script src="dist/main-6d6056c2.js" defer></script>
+  <script type="module">
+    import { initBGNet } from './dist/bg-net-d82782db.js';
+    initBGNet();
+  </script>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const navLinks = document.querySelectorAll('#navmenu a[href^="#"]');
+    const header = document.querySelector('#header');
+    const toggleButton = document.querySelector('.header-toggle');
+    if (navLinks.length > 0 && header && toggleButton) {
+      navLinks.forEach(link => {
+        link.addEventListener('click', function(event) {
+          event.preventDefault();
+          const hash = this.hash;
+          const targetElement = document.querySelector(hash);
+          if (targetElement) {
+            if (header.classList.contains('header-show')) {
+              toggleButton.click();
+            }
+            setTimeout(() => {
+              targetElement.scrollIntoView({
+                behavior: 'smooth'
+              });
+            }, 350); // 300ms animation + 50ms buffer
+          }
+        });
+      });
+    }
+  });
+</script>
+
+<script>
+(function () {
+  const prefersReduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const isCoarse = matchMedia('(pointer: coarse)').matches;
+  if (prefersReduce || isCoarse) {
+    document.querySelectorAll('[data-aos]').forEach(el => el.removeAttribute('data-aos'));
+  }
+})();
+</script>
+
+<script>
+  (function () {
+    // Respect reduced motion
+    const prefersReduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    const bars = document.querySelectorAll('#skills .progress-bar');
+    if (!bars.length) return;
+
+    // Helper to set the width from aria-valuenow
+    const fillBar = (bar) => {
+      const val = parseFloat(bar.getAttribute('aria-valuenow')) || 0;
+      // If reduced motion, set instantly without transition
+      if (prefersReduce) {
+        const prev = bar.style.transition;
+        bar.style.transition = 'none';
+        bar.style.width = val + '%';
+        // Force reflow, then restore transition so future changes still animate
+        void bar.offsetWidth;
+        bar.style.transition = prev || '';
+      } else {
+        bar.style.width = val + '%';
+      }
+      bar.dataset.filled = 'true';
+    };
+
+    // If IntersectionObserver exists, animate when visible
+    if ('IntersectionObserver' in window) {
+      const io = new IntersectionObserver((entries, obs) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const bar = entry.target;
+            if (bar.dataset.filled === 'true') return;
+            fillBar(bar);
+            obs.unobserve(bar);
+          }
+        });
+      }, { root: null, threshold: 0.15 });
+
+      bars.forEach(bar => io.observe(bar));
+    } else {
+      // Fallback: just fill on DOM ready
+      bars.forEach(fillBar);
+    }
+  })();
+</script>
   
   <script src="assets/js/main.js?v=1.1" defer></script>
   <script type="module" src="assets/js/init-bg-net.js"></script>

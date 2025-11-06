@@ -1,0 +1,14 @@
+{
+  "assets/css/main.css": {
+    "file": "dist/main-b4fa8dfa.css",
+    "map": "dist/main-b4fa8dfa.css.map"
+  },
+  "assets/js/main.js": {
+    "file": "dist/main-6d6056c2.js",
+    "map": "dist/main-6d6056c2.js.map"
+  },
+  "assets/js/bg-net.js": {
+    "file": "dist/bg-net-d82782db.js",
+    "map": "dist/bg-net-d82782db.js.map"
+  }
+}
