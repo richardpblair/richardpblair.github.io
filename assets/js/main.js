@@ -164,7 +164,7 @@
     const loadAndInit = () => {
       if (loadPromise) return loadPromise;
 
-      loadPromise = import('./vendors/aos-loader.js')
+      loadPromise = import('/assets/js/vendors/aos-loader.js')
         .then(({ loadAOS }) => loadAOS())
         .then((AOS) => {
           AOS.init({
@@ -198,7 +198,7 @@
     const loadAndInit = () => {
       if (loadPromise) return loadPromise;
 
-      loadPromise = import('./vendors/glightbox-loader.js')
+      loadPromise = import('/assets/js/vendors/glightbox-loader.js')
         .then(({ loadGLightbox }) => loadGLightbox())
         .then((GLightbox) => {
           if (typeof GLightbox === 'function') {
