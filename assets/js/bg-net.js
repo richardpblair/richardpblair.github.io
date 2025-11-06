@@ -34,9 +34,9 @@ export function initBGNet() {
   const CONFIG = {
     density: 0.00007,         // overall dot count (per pixel)
     layers: [                 // depth layers (front first)
-      { speed: 0.70, size: [1.6, 2.4], linkDist: 160, linkAlpha: 0.30 },
-      { speed: 0.45, size: [1.5, 2.1], linkDist: 140, linkAlpha: 0.24 },
-      { speed: 0.30, size: [1.3, 1.8], linkDist: 120,  linkAlpha: 0.20 }
+      { speed: 0.70, size: [1.6, 2.4], linkDist: 160, linkAlpha: 0.18 },
+      { speed: 0.45, size: [1.5, 2.1], linkDist: 140, linkAlpha: 0.14 },
+      { speed: 0.30, size: [1.3, 1.8], linkDist: 120,  linkAlpha: 0.12 }
     ],
     fieldScale: 0.005,        // flow field "frequency" (lower = broader waves)
     fieldSpeed: 0,            // freeze the flow field
@@ -57,7 +57,7 @@ export function initBGNet() {
     maxSpeed: 0.55,            // how fast are the particles moving
     keepConnected: true,      // turn on nearest-neighbor fallback
     kNearest: 1,              // guarantee up to 2 links per particle
-    minLinkAlpha: 0.16,       // floor opacity so fallbacks are visible
+    minLinkAlpha: 0.10,       // floor opacity so fallbacks are visible
     extraReach: 10,           // optional +reach for fallback links (px)
     // --- depth setting ---
     depthEnabled: true,
@@ -81,17 +81,17 @@ export function initBGNet() {
     // --- metallic specular settings ---
     lightDir: { x: -0.6, y: -0.4 }, // direction the "light" comes from (left/up)
     specularSize: 1.5,             // highlight radius as a factor of particle radius
-    specularScale: 0.65,            // how bright the specular can get (0.3–0.8)
+    specularScale: 0.45,            // how bright the specular can get (0.3–0.8)
     specularWarmth: 0.15,           // adds a hint of warm gold into the highlight
     // optional sparkle “star” on peak twinkles
     sparkleThreshold: 0.92,         // trigger when twinkle > 92%
     sparkleSize: 2.0,               // star arm length factor (× particle radius)
     // --- link runners (data packets) ---
     runnersEnabled: true,  // master switch
-    runnersPerLink: 1.5,     // 1–2 keeps it tasteful
+    runnersPerLink: 0.6,     // fewer concurrent packets per link
     runnerSpeed: 0.85,     // higher = faster travel along lines
     runnerSize: 6.0,       // base radius in px (depth scales it)
-    runnerGlow: 8,         // shadowBlur for glow
+    runnerGlow: 6,         // shadowBlur for glow
     runnerColor: '#FFD44D',// warm gold streak
     runnerTail: 0.16,       // 0.08–0.16 fraction of the link as a “streak”
     runnerChain: true,       // move packets from node to node sequentially
@@ -786,10 +786,10 @@ export function initBGNet() {
       }
     };
 
-    const basePreset = { density: 0.00009, glow: 4, linkAdjust: -8 };
+    const basePreset = { density: 0.00009, glow: 3, linkAdjust: -8 };
     applyPreset(basePreset);
 
-    const loadPreset = { density: 0.00013, glow: 8, linkDist: 110 };
+    const loadPreset = { density: 0.00013, glow: 5, linkDist: 110 };
     applyPreset(loadPreset);
 
     CONFIG.fieldSpeed = 0;
@@ -803,8 +803,8 @@ export function initBGNet() {
     if (hiDPI) {
       CONFIG.density        = Math.min(CONFIG.density, 0.00005);
       CONFIG.glow           = Math.min(CONFIG.glow ?? 8, 6);
-      CONFIG.runnerGlow     = Math.min(CONFIG.runnerGlow ?? 8, 6);
-      CONFIG.runnersPerLink = Math.min(CONFIG.runnersPerLink ?? 2, 1);
+      CONFIG.runnerGlow     = Math.min(CONFIG.runnerGlow ?? 8, 5);
+      CONFIG.runnersPerLink = Math.min(CONFIG.runnersPerLink ?? 2, 0.5);
       CONFIG.runnerSpeed    = Math.min(CONFIG.runnerSpeed ?? 0.3, 0.22);
       CONFIG.flowStrength   = 0;
     }
@@ -822,8 +822,8 @@ export function initBGNet() {
       return `rgba(${r},${g},${b},${alpha})`;
     };
 
-    CONFIG.dotColorA = hexToRgba(gold1, 0.82);
-    CONFIG.dotColorB = hexToRgba(gold2, 0.82);
+    CONFIG.dotColorA = hexToRgba(gold1, 0.6);
+    CONFIG.dotColorB = hexToRgba(gold2, 0.6);
     const lineColor = hexToRgba(goldL, 1);
     CONFIG.lineColor = typeof lineColor === 'string'
       ? lineColor.replace(/,1\)$/, ',ALPHA)')
