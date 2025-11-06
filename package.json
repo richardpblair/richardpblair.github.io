@@ -1,9 +1,0 @@
-{
-  "name": "richardpblair-portfolio",
-  "version": "1.0.0",
-  "description": "Build tooling for Richard Blair's cybersecurity portfolio site.",
-  "private": true,
-  "scripts": {
-    "build": "node build.mjs"
-  }
-}
