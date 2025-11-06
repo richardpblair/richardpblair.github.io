@@ -349,27 +349,47 @@
     const bars = section.querySelectorAll('.progress .progress-bar[aria-valuenow]');
     if (!bars.length) return;
 
-    const applyWidths = () => {
-      bars.forEach((bar) => {
-        const value = parseInt(bar.getAttribute('aria-valuenow') || '0', 10);
-        const clamped = Math.min(Math.max(value, 0), 100);
+    const fillBar = (bar) => {
+      const value = parseFloat(bar.getAttribute('aria-valuenow') || '0');
+      const clamped = Math.min(Math.max(value, 0), 100);
+
+      if (prefersReducedMotion) {
+        const previousTransition = bar.style.transition;
+        bar.style.transition = 'none';
         bar.style.width = `${clamped}%`;
-      });
+        void bar.offsetWidth;
+        bar.style.transition = previousTransition || '';
+      } else {
+        bar.style.width = `${clamped}%`;
+      }
+
+      bar.dataset.filled = 'true';
     };
 
     if (prefersReducedMotion) {
-      applyWidths();
+      bars.forEach(fillBar);
       return;
     }
 
-    const observer = new IntersectionObserver((entries, obs) => {
-      if (entries.some((entry) => entry.isIntersecting)) {
-        applyWidths();
-        obs.disconnect();
-      }
-    }, { threshold: 0.35 });
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver((entries, obs) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          const bar = entry.target;
+          if (bar.dataset.filled === 'true') {
+            obs.unobserve(bar);
+            return;
+          }
+          fillBar(bar);
+          obs.unobserve(bar);
+        });
+      }, { threshold: 0.2 });
 
-    observer.observe(section);
+      bars.forEach((bar) => observer.observe(bar));
+      return;
+    }
+
+    bars.forEach(fillBar);
   }
 
   /**
