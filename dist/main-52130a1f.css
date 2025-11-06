@@ -254,11 +254,6 @@ position: fixed; inset: 0;
 z-index: -3;
 pointer-events: none;
 }
-#bg-net{
-position: fixed; inset: 0;
-z-index: -2;
-pointer-events: none;
-}
 .twinkle-overlay{
 position: fixed; inset: 0;
 z-index: -1;
@@ -528,15 +523,6 @@ overflow: clip;
 content-visibility: auto;
 contain-intrinsic-size: 1000px;
 }
-#bg-net{
-position: fixed;
-inset: 0;
-z-index: -2;
-width: 100vw;
-height: 100vh;
-display: block;
-pointer-events: none;
-}
 .bg-overlay{
 position: fixed;
 inset: 0;
@@ -581,7 +567,6 @@ twinklePulse 4s ease-in-out infinite alternate;
 100% { opacity: calc(var(--twinkle-opacity, 0.18) * 1.15); }
 }
 @media (prefers-reduced-motion: reduce){
-body:not([data-anim="on"]) #bg-net,
 body:not([data-anim="on"]) .bg-overlay{
 display: none !important;
 }
