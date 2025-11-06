@@ -320,6 +320,40 @@ setActive(initial);
 applyFilter(initial.dataset.filter || 'all');
 }
 }
+function initNavSmoothScroll() {
+const navLinks = document.querySelectorAll('#navmenu a[href^="#"]');
+if (!navLinks.length) return;
+const header = document.querySelector('#header');
+const toggleButton = document.querySelector('.header-toggle');
+const closeMobileNavIfOpen = () => {
+if (header && header.classList.contains('header-show') && toggleButton) {
+toggleButton.click();
+return 350;
+}
+return 0;
+};
+const scrollToTarget = (target, delay) => {
+const behavior = prefersReducedMotion ? 'auto' : 'smooth';
+if (delay > 0) {
+window.setTimeout(() => {
+target.scrollIntoView({ behavior, block: 'start' });
+}, delay);
+} else {
+target.scrollIntoView({ behavior, block: 'start' });
+}
+};
+navLinks.forEach((link) => {
+link.addEventListener('click', (event) => {
+const { hash } = link;
+if (!hash || hash === '#') return;
+const target = document.querySelector(hash);
+if (!target) return;
+event.preventDefault();
+const delay = closeMobileNavIfOpen();
+scrollToTarget(target, delay);
+});
+});
+}
 function initSwiper() {
 if (typeof Swiper === 'undefined') {
 return;
@@ -340,6 +374,7 @@ initTypedText();
 initCounters();
 initSkillProgress();
 initPortfolioFilters();
+initNavSmoothScroll();
 window.addEventListener('load', function(e) {
 if (window.location.hash) {
 if (document.querySelector(window.location.hash)) {
