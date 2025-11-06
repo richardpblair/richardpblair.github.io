@@ -1,6 +1,7 @@
 (function() {
 "use strict";
 const prefersReducedMotion = window.matchMedia ? window.matchMedia('(prefers-reduced-motion: reduce)').matches : false;
+const hasCoarsePointer = window.matchMedia ? window.matchMedia('(pointer: coarse)').matches : false;
 const headerToggleBtn = document.querySelector('.header-toggle');
 const siteHeader = document.querySelector('#header') || document.querySelector('.header');
 if (headerToggleBtn && siteHeader) {
@@ -74,20 +75,83 @@ behavior: 'smooth'
 });
 window.addEventListener('load', toggleScrollTop);
 document.addEventListener('scroll', toggleScrollTop);
-function aosInit() {
+function lazyLoadOnIntersection(elements, callback, options = {}) {
+if (!elements.length) return;
+let hasLoaded = false;
+const load = () => {
+if (hasLoaded) return;
+hasLoaded = true;
+callback();
+};
+const { rootMargin = '0px 0px 0px 0px' } = options;
+if ('IntersectionObserver' in window) {
+const observer = new IntersectionObserver((entries, obs) => {
+entries.forEach((entry) => {
+if (entry.isIntersecting || entry.intersectionRatio > 0) {
+obs.disconnect();
+load();
+}
+});
+}, { rootMargin });
+elements.forEach((el) => observer.observe(el));
+} else {
+load();
+}
+}
+function configureAOS() {
+if (prefersReducedMotion || hasCoarsePointer) return;
+const aosElements = document.querySelectorAll('[data-aos]');
+if (!aosElements.length) return;
+let loadPromise;
+const loadAndInit = () => {
+if (loadPromise) return loadPromise;
+loadPromise = import('/assets/js/vendors/aos-loader.js')
+.then(({ loadAOS }) => loadAOS())
+.then((AOS) => {
 AOS.init({
 duration: 600,
 easing: 'ease-in-out',
 once: true,
 mirror: false
 });
+})
+.catch((error) => {
+console.error('Failed to initialise AOS', error);
+});
+return loadPromise;
+};
+lazyLoadOnIntersection(aosElements, loadAndInit, { rootMargin: '200px 0px' });
 }
-window.addEventListener('load', aosInit);
+configureAOS();
+function configureGLightbox() {
+const glightboxElements = document.querySelectorAll('.glightbox');
+if (!glightboxElements.length) return;
+let loadPromise;
+const loadAndInit = () => {
+if (loadPromise) return loadPromise;
+loadPromise = import('/assets/js/vendors/glightbox-loader.js')
+.then(({ loadGLightbox }) => loadGLightbox())
+.then((GLightbox) => {
 if (typeof GLightbox === 'function') {
-GLightbox({
-selector: '.glightbox'
+GLightbox({ selector: '.glightbox' });
+}
+})
+.catch((error) => {
+console.error('Failed to initialise GLightbox', error);
+});
+return loadPromise;
+};
+lazyLoadOnIntersection(glightboxElements, loadAndInit, { rootMargin: '200px 0px' });
+const eagerLoad = () => {
+loadAndInit();
+};
+glightboxElements.forEach((el) => {
+el.addEventListener('click', eagerLoad, { once: true });
+el.addEventListener('pointerenter', eagerLoad, { once: true });
+el.addEventListener('focus', eagerLoad, { once: true });
 });
 }
+configureGLightbox();
 function initTypedText() {
 const typedElement = document.querySelector('.typed');
 if (!typedElement) return;
@@ -177,24 +241,41 @@ const section = document.querySelector('#skills');
 if (!section) return;
 const bars = section.querySelectorAll('.progress .progress-bar[aria-valuenow]');
 if (!bars.length) return;
-const applyWidths = () => {
-bars.forEach((bar) => {
-const value = parseInt(bar.getAttribute('aria-valuenow') || '0', 10);
+const fillBar = (bar) => {
+const value = parseFloat(bar.getAttribute('aria-valuenow') || '0');
 const clamped = Math.min(Math.max(value, 0), 100);
+if (prefersReducedMotion) {
+const previousTransition = bar.style.transition;
+bar.style.transition = 'none';
 bar.style.width = `${clamped}%`;
-});
+void bar.offsetWidth;
+bar.style.transition = previousTransition || '';
+} else {
+bar.style.width = `${clamped}%`;
+}
+bar.dataset.filled = 'true';
 };
 if (prefersReducedMotion) {
-applyWidths();
+bars.forEach(fillBar);
 return;
 }
+if ('IntersectionObserver' in window) {
 const observer = new IntersectionObserver((entries, obs) => {
-if (entries.some((entry) => entry.isIntersecting)) {
-applyWidths();
-obs.disconnect();
+entries.forEach((entry) => {
+if (!entry.isIntersecting) return;
+const bar = entry.target;
+if (bar.dataset.filled === 'true') {
+obs.unobserve(bar);
+return;
 }
-}, { threshold: 0.35 });
-observer.observe(section);
+fillBar(bar);
+obs.unobserve(bar);
+});
+}, { threshold: 0.2 });
+bars.forEach((bar) => observer.observe(bar));
+return;
+}
+bars.forEach(fillBar);
 }
 function initPortfolioFilters() {
 const filters = document.querySelectorAll('.portfolio-filters [data-filter]');
@@ -291,4 +372,4 @@ navmenulink.classList.remove('active');
 window.addEventListener('load', navmenuScrollspy);
 document.addEventListener('scroll', navmenuScrollspy);
 })();
-//# sourceMappingURL=main-6d6056c2.js.map
+//# sourceMappingURL=main-1675978d.js.map

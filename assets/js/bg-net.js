@@ -143,6 +143,7 @@ export function initBGNet() {
   let REGION = { xMin: 0, xMax: 0, yMin: 0, yMax: 0 };
   let particles = []; // flat array of particles across all layers
   let layerIndexOffsets = []; // where each layer starts in particles[]
+  let drawOrder = []; // sorted indices for draw order (far → near)
   let mouse = { x: 0.7, y: 0.3, sx: 0.7, sy: 0.3 }; // screen-normalized; s* = smoothed
   addEventListener('pointermove', (e) => {
     const r = canvas.getBoundingClientRect();

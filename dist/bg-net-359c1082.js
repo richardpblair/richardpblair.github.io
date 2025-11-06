@@ -116,6 +116,7 @@ updateLoop();
 let REGION = { xMin: 0, xMax: 0, yMin: 0, yMax: 0 };
 let particles = [];
 let layerIndexOffsets = [];
+let drawOrder = [];
 let mouse = { x: 0.7, y: 0.3, sx: 0.7, sy: 0.3 };
 addEventListener('pointermove', (e) => {
 const r = canvas.getBoundingClientRect();
@@ -605,4 +606,4 @@ document.addEventListener('visibilitychange', updateVisibility);
 updateVisibility();
 updateLoop();
 }
-//# sourceMappingURL=bg-net-d82782db.js.map
+//# sourceMappingURL=bg-net-359c1082.js.map
