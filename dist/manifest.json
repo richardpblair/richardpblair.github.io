@@ -6,9 +6,5 @@
   "assets/js/main.js": {
     "file": "dist/main-1675978d.js",
     "map": "dist/main-1675978d.js.map"
-  },
-  "assets/js/bg-net.js": {
-    "file": "dist/bg-net-48f35634.js",
-    "map": "dist/bg-net-48f35634.js.map"
   }
 }
