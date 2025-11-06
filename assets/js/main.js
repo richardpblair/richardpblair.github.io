@@ -10,6 +10,7 @@
   "use strict";
 
   const prefersReducedMotion = window.matchMedia ? window.matchMedia('(prefers-reduced-motion: reduce)').matches : false;
+  const hasCoarsePointer = window.matchMedia ? window.matchMedia('(pointer: coarse)').matches : false;
 
   /**
    * Header toggle
@@ -119,26 +120,112 @@
   document.addEventListener('scroll', toggleScrollTop);
 
   /**
-   * Animation on scroll function and init
+   * Observe a set of elements and invoke a callback the first time any of them is revealed
    */
-  function aosInit() {
-    AOS.init({
-      duration: 600,
-      easing: 'ease-in-out',
-      once: true,
-      mirror: false
-    });
+  function lazyLoadOnIntersection(elements, callback, options = {}) {
+    if (!elements.length) return;
+
+    let hasLoaded = false;
+    const load = () => {
+      if (hasLoaded) return;
+      hasLoaded = true;
+      callback();
+    };
+
+    const { rootMargin = '0px 0px 0px 0px' } = options;
+
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver((entries, obs) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting || entry.intersectionRatio > 0) {
+            obs.disconnect();
+            load();
+          }
+        });
+      }, { rootMargin });
+
+      elements.forEach((el) => observer.observe(el));
+    } else {
+      load();
+    }
   }
-  window.addEventListener('load', aosInit);
 
   /**
-   * Initiate glightbox
+   * Animation on scroll function and init
    */
-  if (typeof GLightbox === 'function') {
-    GLightbox({
-      selector: '.glightbox'
+  function configureAOS() {
+    if (prefersReducedMotion || hasCoarsePointer) return;
+
+    const aosElements = document.querySelectorAll('[data-aos]');
+    if (!aosElements.length) return;
+
+    let loadPromise;
+
+    const loadAndInit = () => {
+      if (loadPromise) return loadPromise;
+
+      loadPromise = import('./vendors/aos-loader.js')
+        .then(({ loadAOS }) => loadAOS())
+        .then((AOS) => {
+          AOS.init({
+            duration: 600,
+            easing: 'ease-in-out',
+            once: true,
+            mirror: false
+          });
+        })
+        .catch((error) => {
+          console.error('Failed to initialise AOS', error);
+        });
+
+      return loadPromise;
+    };
+
+    lazyLoadOnIntersection(aosElements, loadAndInit, { rootMargin: '200px 0px' });
+  }
+
+  configureAOS();
+
+  /**
+   * Initiate glightbox on demand
+   */
+  function configureGLightbox() {
+    const glightboxElements = document.querySelectorAll('.glightbox');
+    if (!glightboxElements.length) return;
+
+    let loadPromise;
+
+    const loadAndInit = () => {
+      if (loadPromise) return loadPromise;
+
+      loadPromise = import('./vendors/glightbox-loader.js')
+        .then(({ loadGLightbox }) => loadGLightbox())
+        .then((GLightbox) => {
+          if (typeof GLightbox === 'function') {
+            GLightbox({ selector: '.glightbox' });
+          }
+        })
+        .catch((error) => {
+          console.error('Failed to initialise GLightbox', error);
+        });
+
+      return loadPromise;
+    };
+
+    lazyLoadOnIntersection(glightboxElements, loadAndInit, { rootMargin: '200px 0px' });
+
+    const eagerLoad = () => {
+      loadAndInit();
+    };
+
+    glightboxElements.forEach((el) => {
+      el.addEventListener('click', eagerLoad, { once: true });
+      el.addEventListener('pointerenter', eagerLoad, { once: true });
+      el.addEventListener('focus', eagerLoad, { once: true });
     });
   }
+
+  configureGLightbox();
 
   /**
    * Lightweight typed text animation
