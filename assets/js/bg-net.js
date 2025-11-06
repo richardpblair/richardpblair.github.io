@@ -39,7 +39,7 @@ export function initBGNet() {
       { speed: 0.30, size: [1.3, 1.8], linkDist: 120,  linkAlpha: 0.20 }
     ],
     fieldScale: 0.005,        // flow field "frequency" (lower = broader waves)
-    fieldSpeed: 0.00025,      // how fast the field moves through time
+    fieldSpeed: 0,            // freeze the flow field
     parallax: 0.45,            // mouse sway
     dotColorA: '#FFD166',     // gradient start
     dotColorB: '#F5B000',     // gradient end
@@ -48,9 +48,9 @@ export function initBGNet() {
     containToRegion: true,    // keep particles inside region
     drawTriangles: false,     // set true to add triangle mesh accents
     triangleAlpha: 0.05,      // opacity of triangle fill when enabled
-    flowStrength: 0.05,       // you said 0.05 — this is the multiplier for fx/fy
-    damping: 0.99,            // 0.96–0.99; higher = smoother
-    jitter: 0.002,            // set to 0.001–0.003 if you want subtle randomness
+    flowStrength: 0,          // disable velocity updates so dots stay fixed
+    damping: 1,               // no decay since particles are static
+    jitter: 0,                // remove micro motion
     containMode: 'wrapX',     // 'wrapX' wraps left↔right; 'wrap' wraps both axes
     wallMargin: 10,           // only used by 'steer' (Option B)
     wallForce: 0.1,          // only used by 'steer' (Option B)
@@ -74,8 +74,8 @@ export function initBGNet() {
     parallaxStrength: 50,   // px shift for z=1 at screen edge
     parallaxFollow: 0.10,   // smoothing (0.04–0.12 feels nice)
     // --- twinkle settings ---
-    twinkleEnabled: true,     // master switch
-    twinkleSpeed: 6.0,        // how fast they shimmer (Hz)
+    twinkleEnabled: false,    // disable sparkle to keep nodes calm
+    twinkleSpeed: 6.0,        // kept for completeness when toggled manually
     twinkleDepthBoost: 0.99,   // extra sparkle for near (z=1)
     twinkleIntensity: 0.45,    // 0.2–0.5 is subtle, >0.6 is flashy
     // --- metallic specular settings ---
@@ -94,8 +94,9 @@ export function initBGNet() {
     runnerGlow: 8,         // shadowBlur for glow
     runnerColor: '#FFD44D',// warm gold streak
     runnerTail: 0.16,       // 0.08–0.16 fraction of the link as a “streak”
+    runnerChain: true,       // move packets from node to node sequentially
     runnersEnabled: window.innerWidth >= 768, // off on mobile
-    twinkleEnabled: window.innerWidth >= 768, // off on mobile
+    twinkleEnabled: false,
   
   };
   
@@ -144,6 +145,7 @@ export function initBGNet() {
   let particles = []; // flat array of particles across all layers
   let layerIndexOffsets = []; // where each layer starts in particles[]
   let drawOrder = []; // sorted indices for draw order (far → near)
+  let packetRunners = []; // chained packet animations
   let mouse = { x: 0.7, y: 0.3, sx: 0.7, sy: 0.3 }; // screen-normalized; s* = smoothed
   addEventListener('pointermove', (e) => {
     const r = canvas.getBoundingClientRect();
@@ -210,9 +212,61 @@ export function initBGNet() {
     REGION.yMin = Math.floor(innerHeight * pct.yMin);
     REGION.yMax = Math.floor(innerHeight * pct.yMax);
   }
-  
+
+  function layerRange(layerIndex) {
+    const start = layerIndexOffsets[layerIndex];
+    const end = (layerIndex + 1 < layerIndexOffsets.length)
+      ? layerIndexOffsets[layerIndex + 1]
+      : particles.length;
+    return [start, end];
+  }
+
+  function nearestNeighbor(index) {
+    const p = particles[index];
+    if (!p) return -1;
+    const [start, end] = layerRange(p.layer);
+    const layerConfig = CONFIG.layers[p.layer] || {};
+    const reach = (layerConfig.linkDist || 120) + (CONFIG.extraReach || 0);
+    let best = -1;
+    let bestDist = Infinity;
+    for (let i = start; i < end; i++) {
+      if (i === index) continue;
+      const q = particles[i];
+      const dx = p.x - q.x;
+      const dy = p.y - q.y;
+      const dist = Math.hypot(dx, dy);
+      if (dist < bestDist && dist <= reach) {
+        bestDist = dist;
+        best = i;
+      }
+    }
+    if (best === -1) {
+      if (index + 1 < end) return index + 1;
+      if (start < end && start !== index) return start;
+      return -1;
+    }
+    return best;
+  }
+
+  function rebuildPacketRunners() {
+    packetRunners = [];
+    if (!CONFIG.runnersEnabled || !CONFIG.runnerChain) return;
+
+    particles.forEach((p, idx) => {
+      const next = nearestNeighbor(idx);
+      p.nextIndex = next;
+      if (next !== -1) {
+        packetRunners.push({
+          from: idx,
+          to: next,
+          progress: Math.random()
+        });
+      }
+    });
+  }
+
   function resize() {
-  
+
     const isCoarse = matchMedia('(pointer: coarse)').matches;
     const DPR_CAP = isCoarse ? 1.25 : 1.75;   // tighter on phones/tablets
     const dpr = Math.min(DPR_CAP, Math.max(1, devicePixelRatio || 1));
@@ -259,6 +313,7 @@ export function initBGNet() {
     });
     // Sort indices by depth once (far → near) so near draws last (on top)
     drawOrder = particles.map((_, idx) => idx).sort((a, b) => particles[a].z - particles[b].z);
+    rebuildPacketRunners();
     // Cache gradient once per resize (instead of every frame)
     cachedGrad = null;
   }
@@ -314,7 +369,7 @@ export function initBGNet() {
     }
     return cachedGrad;
   }
-  
+
       function drawRunner(pa, pb, tNorm, zPair, baseAlpha = 1) {
     // tNorm is 0..1 along the line from pa -> pb
     const x = lerp(pa.x, pb.x, tNorm);
@@ -358,7 +413,61 @@ export function initBGNet() {
     ctx.shadowBlur = prevBlur;
     ctx.globalAlpha = prevAlpha;
   }
-  
+
+  function ensurePacketTarget(packet) {
+    const fromParticle = particles[packet.from];
+    const toParticle = particles[packet.to];
+    if (!fromParticle) return false;
+    if (toParticle && toParticle.layer === fromParticle.layer) {
+      return true;
+    }
+    const next = nearestNeighbor(packet.from);
+    if (next === -1) return false;
+    packet.to = next;
+    return true;
+  }
+
+  function advancePacket(packet, dt) {
+    if (!ensurePacketTarget(packet)) return;
+    const speed = CONFIG.runnerSpeed || 0.3;
+    packet.progress += speed * dt;
+    while (packet.progress >= 1) {
+      packet.progress -= 1;
+      packet.from = packet.to;
+      const next = nearestNeighbor(packet.from);
+      if (next === -1 || next === packet.from) {
+        packet.progress = Math.random();
+        return;
+      }
+      packet.to = next;
+      if (!ensurePacketTarget(packet)) return;
+    }
+  }
+
+  function drawPacketRunners(vx, vy) {
+    if (!CONFIG.runnersEnabled || !CONFIG.runnerChain) return;
+    packetRunners.forEach(packet => {
+      if (!ensurePacketTarget(packet)) return;
+      const pa = particles[packet.from];
+      const pb = particles[packet.to];
+      if (!pa || !pb) return;
+      const zPair = ((pa.z || 0) + (pb.z || 0)) * 0.5;
+      const layerConfig = CONFIG.layers[pa.layer] || {};
+      const reach = (layerConfig.linkDist || 120) + (CONFIG.extraReach || 0);
+      const dist = Math.hypot(pa.x - pb.x, pa.y - pb.y);
+      const alpha = Math.max(CONFIG.minLinkAlpha || 0.18, 1 - Math.min(1, dist / reach));
+      let pax = pa.x, pay = pa.y, pbx = pb.x, pby = pb.y;
+      if (CONFIG.parallaxEnabled) {
+        const s = CONFIG.parallaxStrength || 18;
+        const za = (pa.z - 0.5) * s;
+        const zb = (pb.z - 0.5) * s;
+        pax += -vx * za; pay += -vy * za;
+        pbx += -vx * zb; pby += -vy * zb;
+      }
+      drawRunner({ x: pax, y: pay }, { x: pbx, y: pby }, packet.progress, zPair, alpha);
+    });
+  }
+
   function step(ts) {
     if (pauseReasons.size > 0) {
       rafId = 0;
@@ -397,40 +506,36 @@ export function initBGNet() {
       const p = particles[i];
       const L = CONFIG.layers[p.layer];
   
-      // Seeded flow so neighbors don't all move as one
-      const { vx: fx, vy: fy } = flowVec(
-        p.x + p.seed * 13.7,
-        p.y - p.seed * 9.1,
-        t,
-        CONFIG.fieldScale,
-        CONFIG.fieldSpeed * L.speed
-      );
-  
-      // Optional micro-jitter for extra organic motion
-      if (CONFIG.jitter) {
-        p.vx += (Math.random() - 0.5) * CONFIG.jitter;
-        p.vy += (Math.random() - 0.5) * CONFIG.jitter;
+      if (CONFIG.flowStrength && CONFIG.fieldSpeed) {
+        const { vx: fx, vy: fy } = flowVec(
+          p.x + p.seed * 13.7,
+          p.y - p.seed * 9.1,
+          t,
+          CONFIG.fieldScale,
+          CONFIG.fieldSpeed * L.speed
+        );
+
+        if (CONFIG.jitter) {
+          p.vx += (Math.random() - 0.5) * CONFIG.jitter;
+          p.vy += (Math.random() - 0.5) * CONFIG.jitter;
+        }
+
+        const damp = Math.pow(CONFIG.damping, dt * 60);
+        const gain = (CONFIG.flowStrength * L.speed) * (dt * 60);
+        p.vx = p.vx * damp + fx * gain;
+        p.vy = p.vy * damp + fy * gain;
+
+        const sp = Math.hypot(p.vx, p.vy);
+        if (sp > CONFIG.maxSpeed) {
+          const s = CONFIG.maxSpeed / sp;
+          p.vx *= s;
+          p.vy *= s;
+        }
+
+        p.x += p.vx;
+        p.y += p.vy;
       }
-  
-      // Pure flow + damping (no anchor)
-      const damp = Math.pow(CONFIG.damping, dt * 60);                     // time-scaled damping
-      const gain = (CONFIG.flowStrength * L.speed) * (dt * 60);           // time-scaled push
-      p.vx = p.vx * damp + fx * gain;
-      p.vy = p.vy * damp + fy * gain;
-  
-  
-      // --- cap particle speed so they never accelerate indefinitely ---
-      const sp = Math.hypot(p.vx, p.vy);
-      if (sp > CONFIG.maxSpeed) {
-        const s = CONFIG.maxSpeed / sp;
-        p.vx *= s;
-        p.vy *= s;
-      }
-  
-      // Integrate
-      p.x += p.vx;
-      p.y += p.vy;
-  
+
       // Keep inside region using chosen mode
       contain(p);
   
@@ -585,7 +690,7 @@ export function initBGNet() {
             ctx.moveTo(pax, pay);
             ctx.lineTo(pbx, pby);
             ctx.stroke();
-            if (CONFIG.runnersEnabled) {
+            if (CONFIG.runnersEnabled && !CONFIG.runnerChain) {
               const seed = pairSeed(a, b);
               const zPair = ((pa.z || 0) + (pb.z || 0)) * 0.5;
               const spd = (CONFIG.runnerSpeed || 0.3) * (0.9 + 0.2 * zPair);
@@ -630,6 +735,11 @@ export function initBGNet() {
       }
     }
   
+    if (CONFIG.runnersEnabled && CONFIG.runnerChain) {
+      packetRunners.forEach(packet => advancePacket(packet, dt));
+      drawPacketRunners(vx, vy);
+    }
+
     // Optional triangle mesh accents (light, random)
     if (CONFIG.drawTriangles) {
       const start = layerIndexOffsets[0] || 0;
@@ -682,12 +792,11 @@ export function initBGNet() {
     const loadPreset = { density: 0.00013, glow: 8, linkDist: 110 };
     applyPreset(loadPreset);
 
-    CONFIG.fieldSpeed = 0.00020;
-    CONFIG.flowStrength = 0.40;
-    CONFIG.damping = 0.995;
-    CONFIG.layers.forEach((layer, index) => {
-      const scale = index === 0 ? 0.80 : 0.70;
-      layer.speed *= scale;
+    CONFIG.fieldSpeed = 0;
+    CONFIG.flowStrength = 0;
+    CONFIG.damping = 1;
+    CONFIG.layers.forEach((layer) => {
+      layer.speed = layer.speed ?? 0;
     });
 
     const hiDPI = (window.devicePixelRatio || 1) > 2;
@@ -697,7 +806,7 @@ export function initBGNet() {
       CONFIG.runnerGlow     = Math.min(CONFIG.runnerGlow ?? 8, 6);
       CONFIG.runnersPerLink = Math.min(CONFIG.runnersPerLink ?? 2, 1);
       CONFIG.runnerSpeed    = Math.min(CONFIG.runnerSpeed ?? 0.3, 0.22);
-      CONFIG.flowStrength   = Math.min(CONFIG.flowStrength ?? 0.04, 0.028);
+      CONFIG.flowStrength   = 0;
     }
 
     const css = getComputedStyle(document.documentElement);
