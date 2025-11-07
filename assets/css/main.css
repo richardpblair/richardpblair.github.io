@@ -16,13 +16,6 @@
   --heading-font: var(--default-font);
   --nav-font: var(--default-font);
 }
-/* Twinkle knobs */
-:root{
-  --twinkle-opacity: 0.08;  /* a touch subtler */
-  --twinkle-scale: 1400px;   /* slightly larger sparkle “grain” */
-  --twinkle-speed: 36s;     /* slower drift */
-}
-
 
 /* Global Colors - The following color variables are used throughout the website. Updating them here will change the color scheme of the entire website */
 :root { 
@@ -54,35 +47,10 @@
   --gold-line: #ffdf8a;
 }
 
-/* Color Presets - These classes override global colors when applied to any section or element, providing reuse of the sam color scheme. */
-
-.light-background {
-  --background-color: #293341;
-  --surface-color: #4b607f;
-}
-
-.dark-background {
-  --background-color: #1c2737;
-  --default-color: #ffffff;
-  --heading-color: #ffffff;
-  --surface-color: #151f2b;
-  --contrast-color: #ffffff;
-}
-
 /* Smooth scroll */
 :root {
   scroll-behavior: smooth;
 }
-
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
-  }
-}
-
 
 /*--------------------------------------------------------------
 # General Styling & Shared Classes
@@ -119,7 +87,7 @@ h6 {
 --------------------------------------------------------------*/
 .header {
   color: var(--default-color);
-  background-color: var(--background-color);
+  background-color: var(--contrast-color);
   position: fixed;
   top: 0;
   left: 0;
@@ -129,7 +97,7 @@ h6 {
   transition: all ease-in-out 0.3s;
   overflow-y: auto;
   z-index: 997;
-  box-shadow: 0 0 20px 0px var(--li-blue-light);
+  box-shadow: 0 0 5px 0px var(--accent-color);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -152,22 +120,37 @@ h6 {
   margin-right: 8px;
 }
 
-.header .logo h1 {
-  font-size: 30px;
-  margin: 0;
-  font-weight: 400;
-  color: var(--accent-color);
-  text-shadow: 0 0 2px var(--default-color);
-}
-
 .header .logo .sitename {
   font-size: 30px;
   margin: 0;
   font-weight: 400;
   color: var(--accent-color);
-  text-shadow: 0 0 3px var(--default-color);
+  text-shadow: 0 0 2px var(--default-color);
   margin-bottom: 10px;
 }
+
+.header .army-image {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.header .army-image img{
+  margin: 25px auto;
+  display: block;
+  border-radius: 20px;
+  max-width: 125px;
+  box-shadow: 0 0 5px;
+}
+
+.header .army-image .veteran-text{
+  font-size: 30px;
+  margin: 10px 0 0 0;
+  font-weight: 400;
+  color: var(--accent-color);
+  text-shadow: 0 0 2px var(--default-color);
+  }
 
 .header .social-links {
   margin-top: auto;
@@ -262,93 +245,6 @@ body.nav-open {
   }
 }
 
-.header,
-.sidebar,
-.offcanvas,
-aside.sidebar {
-  background: linear-gradient(
-    180deg,
-    var(--li-blue-dark) 50%,
-    var(--li-blue) 80%,
-    var(--li-blue-light) 99%
-  );
-  color: #fff;
-}
-
-/* --- NEW CODE FOR VETERAN STATUS --- */
-.header .logo-wrapper {
-  margin-bottom: 20px; /* Space below the name/status block */
-}
-
-.header .veteran-status {
-  margin-top: 15px; /* Tiny space below the h1 */
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-/* Image Wrapper (for positioning if needed) */
-.header .veteran-status .veteran-logo-wrapper {
-  margin-bottom: 20px; /* Space between logo and text */
-}
-
-/* New Image Styling with Gold Filter */
-.header .veteran-status .veteran-logo { 
-  width: 135px;   /* Adjusted size for a badge look */
-  height: 135px;  /* Adjusted size for a badge look */
-  object-fit: contain;
-  margin-bottom: 20px;
- 
-  filter: drop-shadow(0 0 2px var(--default-color));
-}
-
-.header .veteran-status .veteran-text {
-  font-size: 28px;
-  font-weight: 400;
-  color: var(--accent-color);
-  letter-spacing: 0.5px;
-  text-transform: none;
-  font-family: var(--default-font);
-  text-shadow: 0 0 3px var(--default-color);
-}
-/* --- END NEW CODE FOR VETERAN STATUS --- */
-
-@media (max-width: 1199px) {
-  .header .social-links {
-    position: bottom;
-    bottom: 20px;
-    left: 0;
-    width: 100%;
-  }
-}
-
-/* Background visual layers must not intercept taps and must sit behind */
-.bg-overlay{
-  position: fixed; inset: 0;
-  z-index: -3;            /* <= furthest back */
-  pointer-events: none;
-}
-
-.twinkle-overlay{
-  position: fixed; inset: 0;
-  z-index: -1;            /* <= twinkle above particles, still behind content */
-  pointer-events: none;
-}
-
-@media (max-width: 576px) {
-  .twinkle-overlay { animation: none !important; opacity: 0.05 !important; }
-}
-
-@media (min-width: 1600px) {
-  .hero .hero-image .image-wrapper .floating-card {
-    animation: none !important;                /* stop bobbing */
-    box-shadow: 0 6px 18px rgba(0,0,0,.25);    /* lighter shadow */
-  }
-  .hero .hero-image .image-wrapper .main-image {
-    box-shadow: 0 14px 40px rgba(0,0,0,.18);   /* lighter than 0 20px 60px */
-  }
-}
-
 /*--------------------------------------------------------------
 # Navigation Menu
 --------------------------------------------------------------*/
@@ -375,7 +271,7 @@ aside.sidebar {
 .navmenu a:focus {
   color: var(--nav-color);
   padding: 15px 10px;
-  font-family: var(--default-font);
+  font-family: var(--nav-font);
   font-size: 25px;
   font-weight: 400;
   display: flex;
@@ -387,8 +283,24 @@ aside.sidebar {
 
 .navmenu a .navicon,
 .navmenu a:focus .navicon {
-  font-size: 25px;
+  font-size: 20px;
   margin-right: 10px;
+}
+
+.navmenu a .toggle-dropdown,
+.navmenu a:focus .toggle-dropdown {
+  font-size: 12px;
+  line-height: 0;
+  margin-left: auto;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: 0.3s;
+  flex-shrink: 0;
+  background-color: color-mix(in srgb, var(--accent-color), transparent 90%);
 }
 
 .navmenu a .toggle-dropdown:hover,
@@ -422,7 +334,7 @@ aside.sidebar {
 
 .navmenu .dropdown a,
 .navmenu .dropdown a:focus {
-  color: var(--nav-dropdown-color);
+  color: --nav-dropdown-color;
 }
 
 .navmenu .dropdown a:hover,
@@ -457,7 +369,7 @@ aside.sidebar {
 --------------------------------------------------------------*/
 .footer {
   color: var(--default-color);
-  background-color: var(--background-color);
+  background-color: var(--contrast-color);
   font-size: 14px;
   text-align: center;
   padding: 30px 0;
@@ -473,7 +385,7 @@ aside.sidebar {
 }
 
 .footer p {
-  font-size: 15px;
+  font-size: 15;
   font-style: italic;
   padding: 0;
   margin: 0 0 30px 0;
@@ -560,8 +472,8 @@ aside.sidebar {
   bottom: -15px;
   z-index: 99999;
   background-color: var(--accent-color);
-  width: 50px;
-  height: 50px;
+  width: 44px;
+  height: 44px;
   border-radius: 50px;
   transition: all 0.4s;
 }
@@ -589,18 +501,6 @@ aside.sidebar {
 @media screen and (max-width: 768px) {
   [data-aos-delay] {
     transition-delay: 0 !important;
-  }
-}
-
-@media (max-width: 768px) {
-  [data-aos] { transition-duration: 400ms !important; }
-}
-
-@media (max-width: 576px) {
-  [data-aos] {
-    opacity: 1 !important;
-    transform: none !important;
-    transition: none !important;
   }
 }
 
@@ -648,78 +548,11 @@ aside.sidebar {
 --------------------------------------------------------------*/
 section,
 .section {
-  background: var(--li-blue-dark), transparent 50;
   color: var(--default-color);
+  background-color: var(--background-color);
   padding: 60px 0;
   overflow: clip;
 }
-
-.about.section,
-.skills.section,
-.resume.section,
-.portfolio.section,
-.contact.section {
-  content-visibility: auto;
-  contain-intrinsic-size: 1000px; /* reserve space to prevent jumps */
-}
-
-.bg-overlay{
-  position: fixed;
-  inset: 0;
-  z-index: -3;            /* moved behind particles */
-  pointer-events: none;
-
-  background:
-    linear-gradient(
-      to right,
-      var(--li-blue-dark) 0%,
-      var(--li-blue) 25%,
-    ),
-    radial-gradient(1100px 700px at 80% 20%, rgba(255,255,255,0.05), transparent 20%),
-    radial-gradient(900px 600px  at 20% 80%, rgba(255,255,255,0.03), transparent 20%);
-  mix-blend-mode: normal;
-}
-
-/* Metallic twinkle overlay */
-.twinkle-overlay{
-  position: fixed;
-  inset: 0;
-  z-index: -1;                 /* above overlay, below content */
-  pointer-events: none;
-  opacity: var(--twinkle-opacity, 0.18);
-  mix-blend-mode: screen;      /* brightens only bright/gold parts */
-  background-size:
-    var(--twinkle-scale, 320px) var(--twinkle-scale, 320px),
-    var(--twinkle-scale, 420px) var(--twinkle-scale, 420px),
-    var(--twinkle-scale, 560px) var(--twinkle-scale, 560px);
-  background-position: 0 0, 0 0, 0 0;
-  background-image:
-    radial-gradient(closest-side, rgba(255,255,255,.12), rgba(255,255,255,0) 70%),
-    radial-gradient(closest-side, rgba(255,215,130,.10), rgba(255,215,130,0) 70%),
-    radial-gradient(closest-side, rgba(255,255,255,.08), rgba(255,255,255,0) 70%);
-  animation:
-    twinkleShift var(--twinkle-speed, 18s) linear infinite,
-    twinklePulse 4s ease-in-out infinite alternate;
-}
-
-@keyframes twinkleShift{
-  0%   { background-position: 0    0,      0    0,      0    0; }
-  100% { background-position: 600px 400px, -500px 300px, 350px -450px; }
-}
-
-@keyframes twinklePulse{
-  0%   { opacity: calc(var(--twinkle-opacity, 0.18) * 0.85); }
-  100% { opacity: calc(var(--twinkle-opacity, 0.18) * 1.15); }
-}
-
-
-/* Accessibility: honor OS “Reduce Motion”, unless you opt-in for debugging */
-@media (prefers-reduced-motion: reduce){
-  body:not([data-anim="on"]) .bg-overlay{
-    display: none !important;
-  }
-}
-
 
 /*--------------------------------------------------------------
 # Global Section Titles
@@ -772,7 +605,7 @@ section,
 # Hero Section
 --------------------------------------------------------------*/
 .hero {
-  padding: clamp(100px, 12vh, 120px) 0;
+  padding: 120px 0;
   min-height: 100vh;
   display: flex;
   align-items: center;
@@ -783,20 +616,15 @@ section,
 .hero .container {
   position: relative;
   z-index: 2;
-  padding: clamp(56px, 8vw, 80px) 20px;
-}
-
-.hero .row {
-  row-gap: 3.5rem;
+  padding: 80px 15px;
 }
 
 .hero .hero-content h1 {
-  font-size: clamp(2.5rem, 1.6rem + 2.6vw, 3.5rem);
-  font-weight: 300;
-  line-height: 1.15;
-  margin-bottom: 1.75rem;
+  font-size: 3.5rem;
+  font-weight: 400;
+  line-height: 1.2;
+  margin-bottom: 2rem;
   color: var(--heading-color);
-  text-wrap: balance;
 }
 
 .hero .hero-content h1 .accent-text {
@@ -815,12 +643,29 @@ section,
   background: linear-gradient(90deg, var(--accent-color), color-mix(in srgb, var(--accent-color), transparent 50%));
 }
 
+.hero .hero-content .typed {
+  font-weight: 400;
+  color: var(--accent-color);
+}
+
+@media (max-width: 992px) {
+  .hero .hero-content h1 {
+    font-size: 2.8rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero .hero-content h1 {
+    font-size: 2.2rem;
+  }
+}
+
 .hero .hero-content .hero-description {
   font-size: 1.125rem;
   line-height: 1.8;
   color: color-mix(in srgb, var(--default-color), transparent 20%);
-  margin-bottom: 2.5rem;
-  max-width: min(38rem, 100%);
+  margin-bottom: 3rem;
+  max-width: 90%;
 }
 
 @media (max-width: 768px) {
@@ -833,7 +678,7 @@ section,
 .hero .hero-content .hero-actions {
   display: flex;
   gap: 1.5rem;
-  margin-bottom: 3.25rem;
+  margin-bottom: 4rem;
 }
 
 @media (max-width: 576px) {
@@ -851,7 +696,7 @@ section,
   font-weight: 500;
   text-decoration: none;
   transition: all 0.3s ease;
-  border: 2px solid var(--accent-color);
+  border: px solid var(--accent-color);
 }
 
 .hero .hero-content .hero-actions .btn-primary:hover {
@@ -893,7 +738,6 @@ section,
   .hero .hero-content .hero-stats {
     flex-direction: column;
     gap: 1.5rem;
-    align-items: stretch;
   }
 }
 
@@ -913,24 +757,21 @@ section,
   font-weight: 400;
 }
 
-.hero .hero-image {
-  position: relative;
+.hero-image {
+  perspective: 800px; /* gives a 3D sense of depth */
 }
 
-.hero .hero-image .image-wrapper {
-  position: relative;
-  max-width: clamp(360px, 42vw, 500px);
+.hero-image .main-image {
+  display: block;
   margin: 0 auto;
-}
-
-.hero .hero-image .image-wrapper .main-image {
-  border-radius: 12px;
-  box-shadow: 0 20px 60px color-mix(in srgb, var(--heading-color), transparent 85%);
-  transition: transform 0.3s ease;
-}
-
-.hero .hero-image .image-wrapper .main-image:hover {
-  transform: scale(1.02);
+  max-width: 100%;
+  height: auto;
+  filter: 
+    drop-shadow(0 0 18px var(--accent-color))
+    drop-shadow(0 0 15px var(--default-color));
+  transform: rotateY(0deg) rotateX(0deg);
+  transition: transform 0.1s ease-out;
+  transform-style: preserve-3d;
 }
 
 .hero .hero-image .image-wrapper .floating-card {
@@ -942,16 +783,12 @@ section,
   display: flex;
   align-items: center;
   gap: 0.75rem;
-  font-size: 1.1rem;
+  font-size: 0.875rem;
   font-weight: 500;
   color: var(--heading-color);
   transition: all 0.3s ease;
 }
 
-.hero .hero-image .image-wrapper .floating-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 15px 40px color-mix(in srgb, var(--heading-color), transparent 85%);
-}
 
 .hero .hero-image .image-wrapper .floating-card i {
   font-size: 1.25rem;
@@ -972,14 +809,14 @@ section,
 
 @media (max-width: 768px) {
   .hero .hero-image .image-wrapper .floating-card.card-1 {
-    left: 1%;
+    left: 0;
     top: 10%;
   }
 }
 
 .hero .hero-image .image-wrapper .floating-card.card-2 {
   top: 60%;
-  right: -5%;
+  right: -15%;
   z-index: 3;
 }
 
@@ -998,64 +835,19 @@ section,
 
 .hero .hero-image .image-wrapper .floating-card.card-3 {
   bottom: 15%;
-  left: 0%;
+  left: -10%;
   z-index: 3;
 }
 
 @media (max-width: 992px) {
   .hero .hero-image .image-wrapper .floating-card.card-3 {
-    left: 0%;
-  }
-}
-
-@media (max-width: 768px) {
-  .hero .row {
-    row-gap: 2.5rem;
-  }
-}
-
-@media (max-width: 576px) {
-  body.nav-open {
-    padding-right: 0;
-  }
-
-  .hero {
-    padding: 80px 0 60px;
-    min-height: auto;
-  }
-
-  .hero .container {
-    padding: 40px 20px;
-  }
-
-  .hero .hero-content {
-    text-align: left;
-    gap: 1.25rem;
-  }
-
-  .hero .hero-content h1 {
-    margin-bottom: 1.5rem;
-  }
-
-  .hero .hero-content .hero-actions {
-    flex-direction: column;
-    gap: 0.75rem;
-    margin-bottom: 2.5rem;
-  }
-
-  .hero .hero-image .image-wrapper {
-    max-width: 320px;
-  }
-
-  .hero .hero-image .image-wrapper .floating-card {
-    padding: 0.75rem 1rem;
-    font-size: 1rem;
+    left: -5%;
   }
 }
 
 @media (max-width: 768px) {
   .hero .hero-image .image-wrapper .floating-card.card-3 {
-    left: 0%;
+    left: 0;
     bottom: 5%;
   }
 }
@@ -1067,29 +859,12 @@ section,
   }
 }
 
-@media (max-width: 480px) {
-  .hero .hero-image .image-wrapper .floating-card {
-    transform: translateY(0) !important;
-  }
-}
-
-
-.typed {
-  color: var(--accent-color);
-  display: inline-block;       /* Prevent collapse */
-  min-width: 8ch;              /* Adjust based on longest word (Tomorrow! = 9ch) */
-  line-height: 1.1em;          /* Keep vertical space stable */
-  white-space: nowrap;         /* Prevent wrapping */
-  vertical-align: top;         /* Align smoothly with baseline */
-  transition: opacity 0.2s ease;
-}
-
 /*--------------------------------------------------------------
 # About Section
 --------------------------------------------------------------*/
 .about {
-  padding-top: 60px;
-  padding-bottom: 60px;
+  padding-top: 120px;
+  padding-bottom: 120px;
 }
 
 .about .intro-header {
@@ -1152,10 +927,19 @@ section,
   color: color-mix(in srgb, var(--default-color), transparent 20%);
 }
 
-.about .profile-section .profile-meta .status .status-indicator {
+.about .profile-section .profile-meta .status .status-indicator-work{
   width: 8px;
   height: 8px;
   background-color: #10b981;
+  border-radius: 50%;
+  margin-right: 0.5rem;
+  animation: pulse 2s infinite;
+}
+
+.about .profile-section .profile-meta .status .status-indicator-project{
+  width: 8px;
+  height: 8px;
+  background-color: #b91010;
   border-radius: 50%;
   margin-right: 0.5rem;
   animation: pulse 2s infinite;
@@ -1236,7 +1020,7 @@ section,
   left: -20px;
   font-size: 5rem;
   font-weight: 300;
-  color: var(--accent-color);
+  color: color-mix(in srgb, var(--accent-color), transparent 80%);
   line-height: 1;
 }
 
@@ -1245,7 +1029,7 @@ section,
   line-height: 1.7;
   font-style: italic;
   font-weight: 300;
-  color: var(--accent-color);
+  color: var(--default-color);
   margin: 0;
   position: relative;
   z-index: 1;
@@ -1381,10 +1165,181 @@ section,
 }
 
 /*--------------------------------------------------------------
+# Stats Section
+--------------------------------------------------------------*/
+.stats {
+  padding: 120px 0;
+}
+
+.stats .stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 80px;
+  margin-bottom: 120px;
+  text-align: center;
+}
+
+.stats .stat-item .stat-number {
+  font-family: var(--heading-font);
+  font-size: 72px;
+  font-weight: 300;
+  color: var(--heading-color);
+  line-height: 1;
+  margin-bottom: 20px;
+  letter-spacing: -2px;
+}
+
+.stats .stat-item .stat-number span {
+  display: inline-block;
+}
+
+.stats .stat-item .stat-label {
+  font-size: 16px;
+  color: var(--default-color);
+  opacity: 0.7;
+  margin: 0;
+  line-height: 1.6;
+  font-weight: 400;
+}
+
+.stats .achievements-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 60px;
+}
+
+.stats .achievement {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  padding: 40px 0;
+  border-top: 1px solid color-mix(in srgb, var(--default-color), transparent 90%);
+}
+
+.stats .achievement .achievement-icon {
+  flex-shrink: 0;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: color-mix(in srgb, var(--accent-color), transparent 95%);
+  border-radius: 8px;
+  margin-top: 5px;
+}
+
+.stats .achievement .achievement-icon i {
+  font-size: 24px;
+  color: var(--accent-color);
+}
+
+.stats .achievement .achievement-content h4 {
+  font-family: var(--heading-font);
+  font-size: 20px;
+  font-weight: 400;
+  color: var(--heading-color);
+  margin-bottom: 8px;
+  line-height: 1.3;
+}
+
+.stats .achievement .achievement-content p {
+  font-size: 15px;
+  color: var(--default-color);
+  opacity: 0.7;
+  margin: 0;
+  line-height: 1.6;
+}
+
+@media (max-width: 992px) {
+  .stats {
+    padding: 80px 0;
+  }
+
+  .stats .stats-grid {
+    gap: 60px;
+    margin-bottom: 80px;
+  }
+
+  .stats .stat-item .stat-number {
+    font-size: 56px;
+  }
+
+  .stats .achievements-row {
+    gap: 40px;
+  }
+
+  .stats .achievement {
+    padding: 30px 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .stats {
+    padding: 60px 0;
+  }
+
+  .stats .stats-grid {
+    grid-template-columns: 1fr;
+    gap: 50px;
+    margin-bottom: 60px;
+  }
+
+  .stats .stat-item .stat-number {
+    font-size: 48px;
+  }
+
+  .stats .stat-item .stat-label {
+    font-size: 15px;
+  }
+
+  .stats .achievements-row {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .stats .achievement {
+    padding: 25px 0;
+    gap: 16px;
+  }
+
+  .stats .achievement .achievement-icon {
+    width: 45px;
+    height: 45px;
+  }
+
+  .stats .achievement .achievement-icon i {
+    font-size: 20px;
+  }
+
+  .stats .achievement .achievement-content h4 {
+    font-size: 18px;
+  }
+
+  .stats .achievement .achievement-content p {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 576px) {
+  .stats .stat-item .stat-number {
+    font-size: 40px;
+  }
+
+  .stats .achievement .achievement-icon {
+    width: 40px;
+    height: 40px;
+  }
+
+  .stats .achievement .achievement-icon i {
+    font-size: 18px;
+  }
+}
+
+/*--------------------------------------------------------------
 # Skills Section
 --------------------------------------------------------------*/
 .skills {
-  --section-spacing: 60px;
+  --section-spacing: 80px;
   --category-spacing: 60px;
   --skill-spacing: 24px;
   --progress-height: 2px;
@@ -2071,16 +2026,11 @@ section,
   cursor: pointer;
   font-size: 16px;
   font-weight: 300;
-  color: color-mix(in srgb, var(--default-color), transparent 20%);
+  color: color-mix(in srgb, var(--default-color), transparent 40%);
   transition: all 0.4s ease;
   position: relative;
   padding: 12px 0;
   font-family: var(--heading-font);
-}
-
-.portfolio .portfolio-filters li:focus-visible {
-  outline: 2px solid var(--accent-color);
-  outline-offset: 4px;
 }
 
 .portfolio .portfolio-filters li::after {
@@ -2092,15 +2042,15 @@ section,
   width: 0;
   height: 1px;
   background: var(--accent-color);
-  transition: width 0.2s ease;
+  transition: width 0.4s ease;
 }
 
 .portfolio .portfolio-filters li:hover {
-  color: var(--accent-color);
+  color: var(--heading-color);
 }
 
 .portfolio .portfolio-filters li.filter-active {
-  color: var(--accent-color);
+  color: var(--heading-color);
 }
 
 .portfolio .portfolio-filters li.filter-active::after {
@@ -2112,41 +2062,31 @@ section,
 }
 
 .portfolio .portfolio-card {
-  background: var(--surface-color);
-  border: 1px solid color-mix(in srgb, var(--default-color), transparent 85%);
-  border-radius: 10px;
-  padding: 1rem;
-  transition: all 0.3s ease;
+  background: transparent;
+  border: none;
+  transition: all 0.4s ease;
   height: 100%;
   display: flex;
   flex-direction: column;
-  box-shadow: 0 2px 8px color-mix(in srgb, var(--default-color), transparent 90%);
 }
 
 .portfolio .portfolio-card:hover {
-  transform: translateY(-6px);
-  border-color: var(--accent-color);
-  box-shadow: 0 8px 24px color-mix(in srgb, var(--accent-color), transparent 80%);
+  transform: translateY(-8px);
 }
-
 
 .portfolio .portfolio-image {
   position: relative;
-  width: 100%;
-  height: 100%;
   overflow: hidden;
-  border-radius: 10px;
+  border-radius: 8px;
   margin-bottom: 32px;
   flex-shrink: 0;
 }
 
 .portfolio .portfolio-image img {
   width: 100%;
-  height: 100%;
-  object-fit: contain;
-  object-position: center;
-  display: block;
-  transition: all 0.4s ease;
+  height: 300px;
+  object-fit: cover;
+  transition: all 0.6s ease;
 }
 
 @media (max-width: 768px) {
@@ -2161,7 +2101,7 @@ section,
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(255, 223, 138, 0.7);
+  background: rgba(0, 0, 0, 0.7);
   opacity: 0;
   transition: all 0.4s ease;
   display: flex;
@@ -2255,6 +2195,29 @@ section,
   flex-grow: 1;
 }
 
+.portfolio .isotope-container .portfolio-item:nth-child(1) .portfolio-image img,
+.portfolio .isotope-container .portfolio-item:nth-child(2) .portfolio-image img {
+  height: 350px;
+}
+
+@media (max-width: 768px) {
+
+  .portfolio .isotope-container .portfolio-item:nth-child(1) .portfolio-image img,
+  .portfolio .isotope-container .portfolio-item:nth-child(2) .portfolio-image img {
+    height: 280px;
+  }
+}
+
+.portfolio .isotope-container .portfolio-item:nth-child(4) .portfolio-image img {
+  height: 280px;
+}
+
+@media (max-width: 768px) {
+  .portfolio .isotope-container .portfolio-item:nth-child(4) .portfolio-image img {
+    height: 250px;
+  }
+}
+
 @media (max-width: 992px) {
   .portfolio {
     padding: 80px 0;
@@ -2276,417 +2239,6 @@ section,
 
   .portfolio .portfolio-card:hover {
     transform: none;
-  }
-}
-
-/*--------------------------------------------------------------
-# Services Section
---------------------------------------------------------------*/
-.services {
-  padding: 120px 0;
-}
-
-.services .service-item {
-  padding: 60px 40px;
-  height: 100%;
-  border-radius: 8px;
-  transition: all 0.4s ease;
-  position: relative;
-}
-
-.services .service-item:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 20px 60px color-mix(in srgb, var(--default-color), transparent 90%);
-}
-
-@media (max-width: 768px) {
-  .services .service-item {
-    padding: 40px 30px;
-  }
-}
-
-.services .service-icon {
-  width: 80px;
-  height: 80px;
-  background: color-mix(in srgb, var(--accent-color), transparent 90%);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 40px;
-  transition: all 0.4s ease;
-}
-
-.services .service-icon i {
-  font-size: 32px;
-  color: var(--accent-color);
-  transition: all 0.4s ease;
-}
-
-@media (max-width: 768px) {
-  .services .service-icon {
-    width: 60px;
-    height: 60px;
-    margin-bottom: 30px;
-  }
-
-  .services .service-icon i {
-    font-size: 24px;
-  }
-}
-
-.services .service-content h3 {
-  font-size: 28px;
-  font-weight: 300;
-  margin-bottom: 20px;
-  line-height: 1.3;
-}
-
-.services .service-content h3 a {
-  color: var(--heading-color);
-  text-decoration: none;
-  transition: all 0.3s ease;
-}
-
-.services .service-content h3 a:hover {
-  color: var(--accent-color);
-}
-
-@media (max-width: 768px) {
-  .services .service-content h3 {
-    font-size: 24px;
-    margin-bottom: 16px;
-  }
-}
-
-.services .service-content p {
-  font-size: 16px;
-  line-height: 1.7;
-  color: color-mix(in srgb, var(--default-color), transparent 20%);
-  margin-bottom: 30px;
-}
-
-@media (max-width: 768px) {
-  .services .service-content p {
-    font-size: 15px;
-    margin-bottom: 24px;
-  }
-}
-
-.services .read-more {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  color: var(--accent-color);
-  text-decoration: none;
-  font-weight: 500;
-  font-size: 14px;
-  letter-spacing: 0.5px;
-  text-transform: uppercase;
-  transition: all 0.3s ease;
-}
-
-.services .read-more i {
-  font-size: 14px;
-  transition: all 0.3s ease;
-}
-
-.services .read-more:hover {
-  color: var(--heading-color);
-  transform: translateX(4px);
-}
-
-.services .read-more:hover i {
-  transform: translateX(4px);
-}
-
-.services .service-item:hover .service-icon {
-  background: var(--accent-color);
-}
-
-.services .service-item:hover .service-icon i {
-  color: var(--contrast-color);
-  transform: scale(1.1);
-}
-
-@media (max-width: 992px) {
-  .services .row {
-    gap: 40px !important;
-  }
-}
-
-@media (max-width: 768px) {
-  .services .row {
-    gap: 30px !important;
-  }
-}
-
-/*--------------------------------------------------------------
-# Testimonials Section
---------------------------------------------------------------*/
-.testimonials .testimonials-slider {
-  max-width: 900px;
-  margin: 0 auto;
-  position: relative;
-}
-
-.testimonials .swiper-wrapper {
-  height: auto !important;
-}
-
-.testimonials .testimonial-slide {
-  padding: 3.5rem 3rem;
-  text-align: center;
-  position: relative;
-  min-height: 400px;
-  border-radius: 25px;
-  background: linear-gradient(135deg, var(--surface-color), color-mix(in srgb, var(--accent-color), transparent 97%));
-  border: 1px solid color-mix(in srgb, var(--default-color), transparent 90%);
-  border-top: 4px solid var(--accent-color);
-}
-
-.testimonials .testimonial-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 2rem;
-}
-
-.testimonials .stars-rating {
-  display: flex;
-  gap: 0.5rem;
-}
-
-.testimonials .stars-rating i {
-  color: #ffc107;
-  font-size: 1.25rem;
-}
-
-.testimonials .quote-icon {
-  width: 60px;
-  height: 60px;
-  background: linear-gradient(135deg, var(--accent-color), color-mix(in srgb, var(--accent-color), var(--heading-color) 20%));
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 8px 25px color-mix(in srgb, var(--accent-color), transparent 70%);
-}
-
-.testimonials .quote-icon i {
-  color: var(--contrast-color);
-  font-size: 1.5rem;
-}
-
-.testimonials .testimonial-body {
-  margin: 2.5rem 0;
-}
-
-.testimonials .testimonial-body p {
-  font-size: 1.25rem;
-  line-height: 1.8;
-  font-style: italic;
-  color: var(--heading-color);
-  margin: 0;
-  position: relative;
-}
-
-.testimonials .testimonial-footer {
-  margin-top: 2.5rem;
-}
-
-.testimonials .author-info {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 1.5rem;
-}
-
-.testimonials .author-avatar {
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 4px solid var(--accent-color);
-  box-shadow: 0 8px 25px color-mix(in srgb, var(--accent-color), transparent 70%);
-}
-
-.testimonials .author-details {
-  text-align: left;
-}
-
-.testimonials .author-details h4 {
-  font-size: 1.375rem;
-  margin-bottom: 0.5rem;
-  color: var(--heading-color);
-}
-
-.testimonials .author-details .role {
-  display: block;
-  font-size: 1rem;
-  color: var(--accent-color);
-  font-weight: 600;
-  margin-bottom: 0.25rem;
-}
-
-.testimonials .author-details .company {
-  display: block;
-  font-size: 0.9375rem;
-  color: color-mix(in srgb, var(--heading-color), transparent 40%);
-}
-
-.testimonials .swiper-navigation-wrapper {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 2rem;
-  margin-top: 3rem;
-}
-
-.testimonials .swiper-pagination {
-  position: static !important;
-  margin: 0;
-}
-
-.testimonials .swiper-pagination .swiper-pagination-bullet {
-  width: 12px;
-  height: 12px;
-  background: color-mix(in srgb, var(--default-color), transparent 70%);
-  opacity: 1;
-  transition: all 0.3s ease;
-}
-
-.testimonials .swiper-pagination .swiper-pagination-bullet.swiper-pagination-bullet-active {
-  background: var(--accent-color);
-  transform: scale(1.2);
-}
-
-.testimonials .swiper-button-prev,
-.testimonials .swiper-button-next {
-  position: static !important;
-  width: 50px;
-  height: 50px;
-  margin: 0;
-  flex-shrink: 0;
-  border-radius: 50%;
-  background: var(--accent-color);
-  transition: all 0.3s ease;
-}
-
-.testimonials .swiper-button-prev:after,
-.testimonials .swiper-button-next:after {
-  font-size: 1.25rem;
-  color: var(--contrast-color);
-  font-weight: bold;
-}
-
-.testimonials .swiper-button-prev:hover,
-.testimonials .swiper-button-next:hover {
-  transform: translateY(-2px);
-}
-
-@media (max-width: 991.98px) {
-  .testimonials .testimonial-slide {
-    padding: 2.5rem 2rem;
-    min-height: 350px;
-  }
-
-  .testimonials .testimonial-body p {
-    font-size: 1.125rem;
-  }
-
-  .testimonials .author-avatar {
-    width: 70px;
-    height: 70px;
-  }
-
-  .testimonials .author-details h4 {
-    font-size: 1.25rem;
-  }
-
-  .testimonials .quote-icon {
-    width: 50px;
-    height: 50px;
-  }
-
-  .testimonials .quote-icon i {
-    font-size: 1.25rem;
-  }
-
-  .testimonials .swiper-button-prev,
-  .testimonials .swiper-button-next {
-    width: 45px;
-    height: 45px;
-  }
-
-  .testimonials .swiper-button-prev:after,
-  .testimonials .swiper-button-next:after {
-    font-size: 1.125rem;
-  }
-}
-
-@media (max-width: 767.98px) {
-  .testimonials .testimonial-slide {
-    padding: 2rem 1.5rem;
-    min-height: 300px;
-  }
-
-  .testimonials .testimonial-header {
-    flex-direction: column;
-    gap: 1.5rem;
-    margin-bottom: 1.5rem;
-  }
-
-  .testimonials .testimonial-body {
-    margin: 2rem 0;
-  }
-
-  .testimonials .testimonial-body p {
-    font-size: 1rem;
-    line-height: 1.6;
-  }
-
-  .testimonials .author-info {
-    flex-direction: column;
-    gap: 1rem;
-    text-align: center;
-  }
-
-  .testimonials .author-details {
-    text-align: center;
-  }
-
-  .testimonials .author-details h4 {
-    font-size: 1.125rem;
-  }
-
-  .testimonials .author-details .role {
-    font-size: 0.9375rem;
-  }
-
-  .testimonials .author-details .company {
-    font-size: 0.875rem;
-  }
-
-  .testimonials .swiper-navigation-wrapper {
-    gap: 1.5rem;
-    margin-top: 2rem;
-  }
-
-  .testimonials .swiper-pagination .swiper-pagination-bullet {
-    width: 10px;
-    height: 10px;
-  }
-
-  .testimonials .swiper-button-prev,
-  .testimonials .swiper-button-next {
-    width: 40px;
-    height: 40px;
-  }
-
-  .testimonials .swiper-button-prev:after,
-  .testimonials .swiper-button-next:after {
-    font-size: 1rem;
   }
 }
 
@@ -2991,7 +2543,7 @@ section,
   border-radius: 6px;
   width: 100%;
   height: 400px;
-  object-fit: contain;
+  object-fit: cover;
 }
 
 .portfolio-details .visual-showcase {
@@ -3054,7 +2606,7 @@ section,
 }
 
 .portfolio-details .content-section .main-content p:last-child {
-  margin-bottom: 2rem;
+  margin-bottom: 0;
 }
 
 .portfolio-details .content-section .project-specs .spec-item {
@@ -3086,7 +2638,7 @@ section,
 }
 
 .portfolio-details .process-timeline .timeline-header {
-  text-align: left;
+  text-align: center;
   margin-bottom: 4rem;
 }
 
@@ -3101,7 +2653,7 @@ section,
 
 .portfolio-details .process-timeline .timeline-steps {
   max-width: 800px;
-  margin: 0 !important;
+  margin: 0 auto;
 }
 
 .portfolio-details .process-timeline .timeline-steps .timeline-item {
@@ -3111,7 +2663,7 @@ section,
 }
 
 .portfolio-details .process-timeline .timeline-steps .timeline-item:last-child {
-  margin-bottom: 10rem;
+  margin-bottom: 0;
 }
 
 .portfolio-details .process-timeline .timeline-steps .timeline-item .step-marker {
@@ -3168,7 +2720,7 @@ section,
 }
 
 .portfolio-details .tools-section {
-  margin-bottom: 10rem;
+  margin-bottom: var(--section-spacing);
 }
 
 .portfolio-details .tools-section h2 {
@@ -3441,19 +2993,14 @@ section,
     font-size: 1.1rem;
   }
 
- .portfolio-details .process-timeline .timeline-steps .timeline-item {
-    text-align: left !important;
-    flex-direction: row !important; /* number left, text right */
-    align-items: flex-start;
+  .portfolio-details .process-timeline .timeline-steps .timeline-item {
+    flex-direction: column;
+    text-align: center;
   }
 
   .portfolio-details .process-timeline .timeline-steps .timeline-item .step-marker {
-    margin-right: 1.5rem !important;
-    margin-bottom: 0 !important;
-  }
-
-  .portfolio-details .process-timeline .timeline-steps .timeline-item .step-content {
-  text-align: left !important;
+    margin-right: 0;
+    margin-bottom: 1rem;
   }
 
   .portfolio-details .process-timeline .timeline-steps .timeline-item .step-marker::after {
@@ -3490,125 +3037,6 @@ section,
     margin-left: -15px;
     margin-right: -15px;
     border-radius: 0;
-  }
-}
-
-@media (max-width: 768px) {
-  .portfolio-details .process-timeline .timeline-steps .timeline-item {
-    flex-direction: row;
-    align-items: flex-start;
-    text-align: left;
-  }
-
-  .portfolio-details .process-timeline .timeline-steps .timeline-item .step-marker {
-    margin-right: 1rem;
-    margin-bottom: 0;
-  }
-
-  .portfolio-details .process-timeline .timeline-steps .timeline-item .step-content {
-    flex: 1;
-    text-align: left;
-  }
-}
-/*--------------------------------------------------------------
-# Quick Stats Section – Unified Color + Stylish Separation
---------------------------------------------------------------*/
-.section.quick-stats {
-  /* solid, same as page */
-  background: #262e45 !important; /* (same as your --background-color) */
-  border: none !important;
-  box-shadow: none !important;
-  backdrop-filter: none !important;
-
-  /* subtle top/bottom separators */
-  position: relative;
-  isolation: isolate; /* ensures pseudo-elements layer correctly */
-}
-
-.section.quick-stats::before,
-.section.quick-stats::after {
-  content: "";
-  display: block;
-  height: 1px;
-  /* a soft highlight line; adjust alpha to taste */
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.10), transparent);
-}
-
-.section.quick-stats::before {
-  margin-bottom: 1.25rem;
-}
-
-.section.quick-stats::after {
-  margin-top: 1.25rem;
-}
-
-.quick-stats.section {
-  background: linear-gradient(to right, #262e45 0%, #262e45 100%) !important;
-  border: none !important;
-  backdrop-filter: none !important;
-  padding: 2.5rem 0;
-  position: relative;
-  z-index: 1;
-}
-
-/* ✨ Subtle top & bottom glow dividers */
-.quick-stats.section::before,
-.quick-stats.section::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  width: 100%;
-  height: 2px;
-  background: linear-gradient(
-    to right,
-    transparent,
-    rgba(255, 209, 102, 0.35),
-    transparent
-  );
-  z-index: 0;
-}
-
-.quick-stats.section::before {
-  top: 0;
-  box-shadow: 0 -8px 24px rgba(255, 209, 102, 0.1);
-}
-
-.quick-stats.section::after {
-  bottom: 0;
-  box-shadow: 0 8px 24px rgba(255, 209, 102, 0.1);
-}
-.quick-stats {
-  margin-top: 2rem;
-  margin-bottom: 2rem;
-}
-
-.quick-stats .card {
-  background: color-mix(in srgb, var(--surface-color), transparent 10%);
-  border: 1px solid color-mix(in srgb, var(--accent-color), transparent 80%);
-  border-radius: 12px;
-  text-align: center;
-  transition: all 0.3s ease;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
-}
-
-.quick-stats .card h6 {
-  color: var(--accent-color);
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  margin-bottom: 0.5rem;
-  font-size: 0.9rem;
-}
-
-.quick-stats .card:hover {
-  transform: translateY(-4px);
-  border-color: var(--accent-color);
-  box-shadow: 0 10px 30px color-mix(in srgb, var(--accent-color), transparent 80%);
-}
-
-@media (max-width: 992px) {
-  .quick-stats .card {
-    margin-bottom: 1rem;
   }
 }
 
@@ -3888,625 +3316,20 @@ section,
 /*--------------------------------------------------------------
 # Starter Section Section
 --------------------------------------------------------------*/
-
-/* ===================== */
-/* Hero 3D tilt + clouds */
-/* ===================== */
-
-/* Tuning variables (adjust later) */
-:root{
-  --tilt-max-deg: 16;       /* max rotation for the main image */
-  --tilt-scale: 1.02;       /* tiny zoom during hover/tilt */
-  --tilt-damping: 0.15;     /* 0.05 = very smooth, 0.2 = snappier */
-  --parallax-shift: 10px;   /* how far the cards parallax while you tilt */
-  --cloud-blur: 14px;       /* softness of the cloud under cards */
-  --cloud-alpha: 0.30;      /* opacity of cloud blob */
-  --bob-range: 10px;        /* vertical bobbing distance */
-  --bob-speed-1: 6s;        /* card-1 bob cycle */
-  --bob-speed-2: 7.5s;      /* card-2 bob cycle */
-  --bob-speed-3: 5.8s;      /* card-3 bob cycle */
-}
-
-/* Give the wrapper a 3D context; doesn't change layout */
-.hero .hero-image .image-wrapper{
-  perspective: 900px;
-  transform-style: preserve-3d;
-  will-change: transform;
-}
-
-/* Main image is the thing we rotate in JS */
-.hero .hero-image .image-wrapper .main-image{
-  transform-style: preserve-3d;
-  backface-visibility: hidden;
-  will-change: transform, box-shadow;
-  transition: box-shadow .25s ease;
-}
-
-/* Soft "lift" when tilting (shadow deepens slightly) */
-.hero .hero-image .image-wrapper.tilting .main-image{
-  box-shadow: 0 28px 80px color-mix(in srgb, var(--heading-color, #000), transparent 82%);
-}
-
-/* ================= */
-/* Floating card FX  */
-/* ================= */
-.hero .hero-image .image-wrapper .floating-card{
-  /* keep your absolute positions; we only add gentle motion */
-  transform: translate3d(0,0,0);
-  will-change: transform, filter;
-}
-
-/* Cloudy cushion under each card (pure CSS, no images) */
-.hero .hero-image .image-wrapper .floating-card::before{
-  content: "";
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  bottom: -18px;
-  width: 140%;
-  height: 32px;
-  pointer-events: none;
-  filter: blur(var(--cloud-blur));
-  opacity: var(--cloud-alpha);
-  /* layered radial blobs = simple cloud */
-  background:
-    radial-gradient(60% 80% at 30% 50%, #fff8 20%, transparent 55%),
-    radial-gradient(70% 90% at 70% 50%, #fff8 20%, transparent 55%);
-}
-
-/* Gentle up-down bobbing (anchored around your existing coordinates) */
-@keyframes bob {
-  0%   { transform: translate3d(0,  0, 0); }
-  50%  { transform: translate3d(0, calc(-1 * var(--bob-range)), 0); }
-  100% { transform: translate3d(0,  0, 0); }
-}
-
-/* Each card gets its own tempo so they don't sync */
-.hero .hero-image .image-wrapper .floating-card.card-1{
-  animation: bob var(--bob-speed-1) ease-in-out infinite;
-}
-.hero .hero-image .image-wrapper .floating-card.card-2{
-  animation: bob var(--bob-speed-2) ease-in-out infinite;
-}
-.hero .hero-image .image-wrapper .floating-card.card-3{
-  animation: bob var(--bob-speed-3) ease-in-out infinite;
-}
-
-/* Parallax shift is applied by JS via CSS vars, but we provide defaults */
-.hero .hero-image .image-wrapper{
-  --parX: 0px;
-  --parY: 0px;
-}
-.hero .hero-image .image-wrapper .floating-card{
-  /* adds a tiny parallax on tilt without changing anchor coords */
-  translate: var(--parX) var(--parY);
-}
-
-/* Respect Reduced Motion */
-@media (prefers-reduced-motion: reduce){
-  .hero .hero-image .image-wrapper .floating-card{
-    animation: none !important;
-  }
-}
-.hero .hero-image .image-wrapper .floating-card{
-  translate: 0 0 !important; /* ensures no parallax shift is applied */
-}
-/* Cloud under the shield (main-image) */
-.hero .hero-image .image-wrapper .main-image{
-  position: relative;    /* anchor pseudo-element */
-  z-index: 2;            /* keep shield above its cloud */
-  isolation: isolate;    /* clean stacking context */
-}
-
-/* Soft white cloud pad for the shield */
-.hero .hero-image .image-wrapper .main-image::after{
-  content: "";
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  bottom: -18px;                 /* lower = move cloud down */
-  width: 160%;                   /* wider/narrower cloud */
-  height: 40px;                  /* thicker/thinner cloud */
-  pointer-events: none;
-
-  /* Two overlapping radial blobs = cloud */
-  background:
-    radial-gradient(60% 80% at 30% 50%, rgba(255,255,255,0.75) 22%, transparent 60%),
-    radial-gradient(70% 90% at 70% 50%, rgba(255,255,255,0.65) 22%, transparent 60%);
-  filter: blur(var(--cloud-blur, 14px));
-  opacity: var(--cloud-alpha, 0.30);
-  z-index: -1;                   /* under the shield */
-}
-
-/* Optional: gentle glow + natural drop shadow to lift the shield */
-.hero .hero-image .image-wrapper .main-image{
-  filter:
-    drop-shadow(0 16px 24px rgba(255,255,255,0.22))   /* soft white glow */
-    drop-shadow(0 22px 46px rgba(0,0,0,0.22));        /* natural shadow */
-}
-/* Avoid transform fighting with JS tilt */
-.hero .hero-image .image-wrapper .main-image:hover {
-  transform: none !important;
-}
-/* Cloud under the shield (main image) */
-.hero .hero-image .image-wrapper .main-image{
-  position: relative;   /* anchor pseudo-element */
-  z-index: 2;           /* keep shield above its cloud */
-  isolation: isolate;   /* clean stacking context */
-  /* Optional lift: subtle glow + natural shadow (tweak to taste) */
-  filter:
-    drop-shadow(0 16px 24px rgba(255,255,255,0.20))   /* soft white glow */
-    drop-shadow(0 22px 46px rgba(0,0,0,0.22));        /* natural shadow */
-}
-
-/* Soft white cloud pad */
-.hero .hero-image .image-wrapper .main-image::after{
-  content: "";
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  bottom: -18px;             /* lower = move cloud down */
-  width: 160%;               /* wider/narrower cloud (relative to shield) */
-  height: 40px;              /* cloud thickness */
-  pointer-events: none;
-
-  /* Two overlapping radial “puffs” = cloud */
-  background:
-    radial-gradient(60% 80% at 30% 50%, rgba(255,255,255,0.75) 22%, transparent 60%),
-    radial-gradient(70% 90% at 70% 50%, rgba(255,255,255,0.65) 22%, transparent 60%);
-  /* Reuse your existing tuning vars if present; otherwise use fallbacks */
-  filter: blur(var(--cloud-blur, 14px));
-  opacity: var(--cloud-alpha, 0.30);
-  z-index: -1;               /* under the shield */
-}
-
-/* Avoid transform conflict: if hover scale exists, neutralize it so JS tilt stays crisp */
-.hero .hero-image .image-wrapper .main-image:hover{
-  transform: none !important;
-}
-/* ==== Remove ALL shield shadows/clouds ==== */
-.hero .hero-image .image-wrapper .main-image,
-.hero .hero-image .image-wrapper.tilting .main-image {
-  box-shadow: none !important;   /* kills base & tilting box-shadows */
-  filter: none !important;       /* kills both drop-shadows */
-}
-
-.hero .hero-image .image-wrapper .main-image::after {
-  display: none !important;      /* kills the white cloud pad */
-}
-
-/* ======================================== */
-/* Transparent backgrounds for non-hero sections */
-/* ======================================== */
-
-/* Make all sections except hero transparent */
-section:not(.hero),
-.section:not(.hero){
-  background: rgba(36, 42, 92, 0.20);  /* your blue base at 60% opacity */
-  backdrop-filter: blur(1px);        /* gives a frosted glass look */
-  box-shadow: none !important;
-}
-
-/* Optional: keep text readable if background is bright */
-section:not(.hero) h1,
-section:not(.hero) h2,
-section:not(.hero) h3,
-section:not(.hero) p {
-  color: var(--default-color);
-}
-
-/* =======================================================
-   FINAL OVERRIDE: Shield = clean dark shadow (no boxes)
-   Paste at the VERY END of main.css
-   ======================================================= */
-
-/* Ensure stacking order: shield above cards/clouds */
-.hero .hero-image .image-wrapper { position: relative; }
-.hero .hero-image .image-wrapper .main-image { z-index: 3; }
-.hero .hero-image .image-wrapper .floating-card { z-index: 1; }
-.hero .hero-image .image-wrapper .floating-card::before { z-index: -1; }
-
-/* Remove any boxy artifacts on the shield itself */
-.hero .hero-image .image-wrapper .main-image,
-.hero .hero-image .image-wrapper.tilting .main-image {
-  background: transparent !important;
-  border: 0 !important;
-  outline: 0 !important;
-
-  /* Kill ANY box-shadows that render as rectangles */
-  box-shadow: none !important;
-
-  /* Apply ONLY a soft, natural drop-shadow via filter */
-  filter:
-    drop-shadow(0 18px 36px rgba(255, 223, 138, 0.70))
-    drop-shadow(0 4px 8px rgba(255, 255, 255, 0.50)) !important;
-}
-
-/* Make sure NO pseudo-elements draw behind the shield */
-.hero .hero-image .image-wrapper .main-image::before,
-.hero .hero-image .image-wrapper .main-image::after {
-  content: none !important;
-  display: none !important;
-}
-
-/* If you previously hid a floating card behind the shield,
-   KEEP that rule (replace X with 1/2/3 as you identified) */
-/* .floating-card.card-X { display: none !important; } */
-
-/* Prevent any hover transform from fighting your JS tilt */
-.hero .hero-image .image-wrapper .main-image:hover {
-  transform: none !important;
-}
-/* ===============================
-   Shield behind cards + no hover snap
-   =============================== */
-
-/* Make sure the wrapper forms a stacking context */
-.hero .hero-image .image-wrapper { position: relative; }
-
-/* Put the shield (main-image) BEHIND the three cards */
-.hero .hero-image .image-wrapper .main-image {
-  position: relative;
-  z-index: 1;              /* behind cards */
-  pointer-events: none;    /* prevents :hover rules from firing = no snap-back */
-  /* keep whatever shadow you decided on; example: */
-  filter:
-    drop-shadow(0 18px 36px rgba(0,0,0,0.40))
-    drop-shadow(0 4px 8px rgba(0,0,0,0.25));
-}
-
-/* Ensure cards (and their clouds) render above the shield */
-.hero .hero-image .image-wrapper .floating-card {
-  position: absolute;      /* you already use abs positioning */
-  z-index: 3;              /* above the shield */
-}
-.hero .hero-image .image-wrapper .floating-card::before {
-  /* stays within the card's stacking context but that whole context
-     is above the shield thanks to the card's z-index */
-  z-index: -1;
-}
-
-/* Neutralize any hover styles that were changing transform/filters.
-   We DO NOT touch inline transforms from JS (higher priority). */
-.hero .hero-image .image-wrapper:hover .main-image,
-.hero .hero-image .image-wrapper .main-image:hover,
-.hero .hero-image .image-wrapper .main-image:focus,
-.hero .hero-image .image-wrapper .main-image:active {
-  /* Don’t set transform here (JS controls it).
-     Just ensure no CSS hover effects override visuals. */
-  box-shadow: none;
-  /* If you previously had hover-based filters, reset them: */
-  filter:
-    drop-shadow(0 18px 36px rgba(0,0,0,0.40))
-    drop-shadow(0 4px 8px rgba(0,0,0,0.25));
-}
-
-/* --- About → Resume gap fixes (put at file bottom) --- */
-
-/* A. Trim the large bottom margin on About's content wrapper */
-#about .main-content-wrapper {
-  margin-bottom: 24px !important;   /* was ~100px */
-}
-
-/* B. Tame the <hr class="my-5"> spacing & center it nicely */
-#about hr.my-5 {
-  margin: 1.25rem auto !important;  /* smaller vertical gap */
-  width: 60% !important;            /* even, centered divider */
-  max-width: 640px;                 /* optional ceiling */
-}
-
-/* C. If you still want a bit tighter stack overall, shave section paddings */
-#about.section    { padding-bottom: 40px !important; }  /* was 60px */
-#resume.section   { padding-top:    40px !important; }  /* was 60px */
-
-/* ======================================= */
-/* Section Dividers - 3/4 width centered */
-/* ======================================= */
-
 .section-divider {
   display: block;
-  width: 75%;                 /* 3/4 page width */
-  height: 2px;                /* line thickness */
-  margin: 20px auto;          /* spacing above and below, centered */
-  border: none;               /* removes default hr border */
+  width: 80%;         
+  height: 2px;             
+  margin: 20px auto;       
+  border: none;              
   background: linear-gradient(
     to right,
-    transparent,
-    var(--accent-color),
-    transparent
-  );                          /* glowing center fade */
-  box-shadow: 0 0 5px var(--accent-color); /* soft glow */
-  opacity: 0.7;               /* tone down brightness */
-}
-/* ===== Portfolio: even tile heights, isotope-friendly ===== */
-
-/* 1) Let Bootstrap row stretch columns (you already have align-items-stretch in HTML) */
-/* 2) Make each column act like a flex item holder */
-.portfolio-item {
-  display: flex;            /* don't touch .portfolio-container to avoid isotope conflicts */
-}
-
-.portfolio-item.is-hidden {
-  display: none !important;
-}
-
-/* 3) Make the card fill the column height and stack neatly */
-.portfolio-card {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-}
-
-/* 4) Normalize image block height (same top block on all cards) */
-.portfolio-card .portfolio-image {
-  aspect-ratio: 16 / 9;     /* pick 4/3 or 1/1 if you prefer */
-  overflow: hidden;
-}
-
-.portfolio-card .portfolio-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;        /* consistent crop without distortion */
-  display: block;
-}
-
-/* 5) Let the content stretch and push the description to a predictable size */
-.portfolio-card .portfolio-content {
-  display: flex;
-  flex-direction: column;
-  gap: .5rem;
-  padding: 1rem;            /* adjust if you already have padding elsewhere */
-  flex: 1;                  /* fill remaining height so cards match */
-}
-
-/* 6) Clamp long descriptions so they don't make cards taller */
-.portfolio-card .portfolio-description {
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 3;    /* show up to 3 lines; tweak as desired */
-  line-clamp: 3;
-  overflow: hidden;
-  min-height: calc(1.5em * 3); /* preserves equal height even when shorter */
-}
-
-/* === Portfolio thumbnails: simple, robust fit === */
-.portfolio .portfolio-image {
-  width: 100%;
-  overflow: hidden;
-  border-radius: 10px;
-  /* Important: use an aspect ratio to control the height of the image container */
-  aspect-ratio: 4 / 3; /* You can try 16 / 9 if you want wider thumbnails */
-  height: auto; /* Ensure height is determined by aspect-ratio, not fixed pixel value */
-  margin-bottom: 24px; /* Adjust spacing below the image */
-}
-
-.portfolio .portfolio-image img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  /* The key fix: use 'cover' to fill the container, cropping as needed */
-  object-fit: cover;
-  object-position: center;
-}
-
-/* Fix for the portfolio card to ensure even column stretching */
-.portfolio .portfolio-item {
-    display: flex;
-}
-
-.portfolio .portfolio-card {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-}
-/* Universal responsive images */
-img { max-width: 100%; height: auto; }
-
-/* Portfolio tiles: consistent aspect ratio + no stretching */
-.portfolio-image { position: relative; width: 100%; aspect-ratio: 16 / 10; overflow: hidden; }
-.portfolio-image img { width: 100%; height: 100%; object-fit: cover; display: block; }
-
-/* Ensure equal heights for portfolio cards on grid wrap */
-.portfolio-card { height: 100%; display: flex; flex-direction: column; }
-.portfolio-content { margin-top: auto; }
-
-/* Keyboard focus visibility (accessibility) */
-a:focus-visible, button:focus-visible { outline: 2px solid var(--accent-color); outline-offset: 2px; }
-
-/* Small-screen polish */
-@media (max-width: 576px) {
-    .hero {
-    padding: 80px 0 60px;
-    min-height: auto;
-  }
-
-  .hero .container {
-    padding: 40px 20px;
-  }
-
-  .hero .hero-actions { flex-direction: column; gap: 0.75rem; }
-  .hero .hero-content h1 { font-size: clamp(1.8rem, 4vw + 1rem, 2.2rem); }
-  
-  .header {
-    width: 100%;
-    max-width: none;
-  }
-
-  .header .profile-img img {
-    max-width: 180px;
-  }
-
-  .header .veteran-status .veteran-logo {
-    width: 110px;
-    height: 110px;
-  }
-}
-
-/* Respect reduce-motion for more elements */
-@media (prefers-reduced-motion: reduce) {
-  .hero .hero-image .image-wrapper .floating-card,
-  .skills .progress .progress-bar { transition: none !important; }
-  .twinkle-overlay { animation: none !important; }
-}
-
-/* ================================================= */
-/* Custom Ultrawide Breakpoint Optimizations (FIXED)
-/* ================================================= */
-
-/*
-  This code fixes the previous issue by re-including
-  Bootstrap's default container widths, then *adding*
-  our new, larger ones for ultrawide screens.
-*/
-
-/* Default: Mobile screens */
-.container {
-  max-width: 100%;
-  padding-right: var(--bs-gutter-x, 0.75rem);
-  padding-left: var(--bs-gutter-x, 0.75rem);
-  margin-right: auto;
-  margin-left: auto;
-}
-
-/* Small devices (landscape phones, 576px and up) */
-@media (min-width: 576px) {
-  .container {
-    max-width: 540px;
-  }
-}
-
-/* Medium devices (tablets, 768px and up) */
-@media (min-width: 768px) {
-  .container {
-    max-width: 720px;
-  }
-}
-
-/* Large devices (desktops, 992px and up) */
-@media (min-width: 992px) {
-  .container {
-    max-width: 960px;
-  }
-}
-
-/* X-Large devices (large desktops, 1200px and up) */
-@media (min-width: 1200px) {
-  .container {
-    max-width: 1140px;
-  }
-}
-
-/* XX-Large devices (larger desktops, 1400px and up) */
-@media (min-width: 1400px) {
-  .container {
-    max-width: 1320px;
-  }
-}
-
-/* === OUR NEW CUSTOM SIZES === */
-
-/* 1. For Widescreen Desktops (1600px and up) */
-@media (min-width: 1600px) {
-  .container {
-    max-width: 1540px;
-  }
-}
-
-/* 2. For Large Widescreen/4K (1920px and up) */
-@media (min-width: 1920px) {
-  .container {
-    max-width: 1700px;
-  }
-}
-
-/*--------------------------------------------------------------
-# Page Title — force solid background
---------------------------------------------------------------*/
-section.page-title {
-  /* your requested color (solid gradient) */
-  background: linear-gradient(to right, #262e45 0%, #262e45 100%) !important;
-  /* prevent any subtle blur/pane effects leaking in */
-  box-shadow: none !important;
-  backdrop-filter: none !important;
-  border: none !important;
-}
-
-section.page-title {
-  position: relative;
-  isolation: isolate;
-}
-
-section.page-title::after {
-  content: "";
-  display: block;
-  height: 2px;
-  margin-top: 18px; /* space below the title block */
-  background: linear-gradient(90deg, transparent, rgba(255,209,102,0.35), transparent);
-  /* soft glow */
-  box-shadow: 0 6px 18px rgba(255,209,102,0.12);
-}
-
-/*--------------------------------------------------------------
-# Page Title — Subtle Gradient + Gold Divider
---------------------------------------------------------------*/
-.page-title {
-  /* Gradient tint across your desired base color */
-  background: linear-gradient(
-    90deg,
-    #262e45 0%,
-    #2b3550 50%,   /* slightly lighter mid-tone */
-    #262e45 100%
-  ) !important;
-
-  /* Reset any “light-background” overrides */
-  --background-color: #262e45;
-  border: none !important;
-  backdrop-filter: none !important;
-  box-shadow: none !important;
-
-  position: relative;
-  isolation: isolate; /* ensures pseudo-element layers cleanly */
-}
-
-/* ✨ Add a golden divider under the Page Title */
-.page-title::after {
-  content: "";
-  display: block;
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 80%;
-  height: 2px;
-
-  /* Subtle gold-to-transparent gradient */
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(255, 209, 102, 0.8),
-    transparent
+    transparent 0%,
+    var(--accent-color)40%,
+    var(--accent-color)60%,
+    transparent 100%
   );
-
-  box-shadow: 0 6px 20px rgba(255, 209, 102, 0.15);
-  border-radius: 2px;
-}
-
-/*--------------------------------------------------------------
-# Footer — Page Color + Golden Top Divider
---------------------------------------------------------------*/
-.footer {
-  background: linear-gradient(
-    90deg,
-    #262e45 0%,
-    #2b3550 50%,
-    #262e45 100%
-  ) !important;
-
-  border: none;
-  box-shadow: none;
-  color: var(--default-color);
-  position: relative;
-  isolation: isolate;
+  opacity: 0.7;
 }
 
 /* Gold divider at top edge of footer */
@@ -4528,63 +3351,3 @@ section.page-title::after {
   border-radius: 2px;
 }
 
-/*--------------------------------------------------------------
-# Process Timeline — Force Left Alignment
---------------------------------------------------------------*/
-.portfolio-details .process-timeline .timeline-steps {
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-}
-
-.portfolio-details .process-timeline .timeline-steps .timeline-item {
-  display: flex !important;
-  flex-direction: row !important;  /* number left, text right */
-  align-items: flex-start !important;
-  text-align: left !important;
-  justify-content: flex-start !important;
-}
-
-.portfolio-details .process-timeline .timeline-steps .timeline-item .step-marker {
-  flex-shrink: 0;
-  width: 48px;
-  height: 48px;
-  margin-right: 1.5rem !important;
-  margin-bottom: 0 !important;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  color: #262e45;
-  font-weight: 700;
-  font-size: 1.25rem;
-}
-
-.portfolio-details .process-timeline .timeline-steps .timeline-item .step-content {
-  flex: 1;
-  text-align: left !important;
-}
-
-@media (max-width: 768px) {
-  .portfolio-details .process-timeline .timeline-steps .timeline-item {
-    flex-direction: row !important;
-    align-items: flex-start !important;
-    text-align: left !important;
-  }
-
-  .portfolio-details .process-timeline .timeline-steps .timeline-item .step-marker {
-    margin-right: 1rem !important;
-    margin-bottom: 0 !important;
-  }
-}
-
-@media (min-width: 2000px) {
-  .section-title h2::after,
-  .section-title h2::before {
-    /* tiny paint savings: reduce decorative underlines on massive screens */
-    opacity: .7;
-  }
-  .hero .hero-image .image-wrapper .floating-card {
-    filter: none !important; /* remove any subtle filters that can trigger GPU work */
-  }
-}
