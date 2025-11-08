@@ -757,6 +757,35 @@ section,
   font-weight: 400;
 }
 
+.hero-badges {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 20px;
+}
+
+.hero-badges .badges-item {
+  border-radius: 0;
+  padding: 0;
+}
+
+.hero-badges .badges-item:hover {
+  transform: translateY(-5px) scale(1.25);
+}
+
+.hero-badges .badge-img {
+  width: 80px;
+  height: auto;
+  filter: drop-shadow(0 0 15px var(--accent-color));
+  transition: filter 0.3s ease;
+}
+
+.hero-badges .badges-item:hover .badge-img {
+  filter: drop-shadow(0 0 10px var(--accent-color));
+}
+
 .hero-image {
   perspective: 800px; /* gives a 3D sense of depth */
 }
@@ -1020,16 +1049,16 @@ section,
   left: -20px;
   font-size: 5rem;
   font-weight: 300;
-  color: color-mix(in srgb, var(--accent-color), transparent 80%);
+  color: color-mix(in srgb, var(--accent-color), transparent 20%);
   line-height: 1;
 }
 
 .about .philosophy-quote p {
-  font-size: 1.2rem;
+  font-size: 1.5rem;
   line-height: 1.7;
   font-style: italic;
-  font-weight: 300;
-  color: var(--default-color);
+  font-weight: 400;
+  color: var(--accent-color);
   margin: 0;
   position: relative;
   z-index: 1;
