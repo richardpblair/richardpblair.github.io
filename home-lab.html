@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Home Lab - Breaking Things Safely | Richard Blair</title>
+  <meta name="description" content="A virtual cybersecurity home lab built in VirtualBox with pfSense, Windows, Ubuntu, Kali, and Windows Server for safe hands-on practice.">
+  <meta name="keywords" content="cybersecurity, home lab, virtualbox, pfsense, windows server, active directory, kali linux, ubuntu server">
+
+  <!-- Favicons -->
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- Main CSS File -->
+  <link href="assets/css/main.css" rel="stylesheet">
+</head>
+
+<body class="portfolio-details-page">
+
+  <header id="header" class="header dark-background d-flex flex-column justify-content-between">
+    <i class="header-toggle d-xl-none bi bi-list"></i>
+
+    <div class="header-top">
+      <div class="profile-img">
+        <img src="assets/img/profile/Headshot.webp" alt="Portrait of Richard Blair" class="img-fluid">
+      </div>
+
+      <a href="index.html" class="logo d-flex align-items-center justify-content-center">
+        <h1 class="sitename">Richard Blair</h1>
+      </a>
+
+      <div class="army-image">
+        <img src="assets/img/portfolio/army_logo.webp" alt="US Army Logo" class="veteran-logo">
+        <span class="veteran-text">US Army Veteran</span>
+      </div>
+    </div>
+
+    <nav id="navmenu" class="navmenu">
+      <ul>
+        <li><a href="#hero" class="active"><i class="bi bi-house navicon"></i>Home</a></li>
+        <li><a href="#about"><i class="bi bi-person navicon"></i> About</a></li>
+        <li><a href="#certifications"><i class="bi bi-bookmark-check navicon"></i> Certification</a></li>
+        <li><a href="#resume"><i class="bi bi-file-earmark-text navicon"></i> Resume</a></li>
+        <li><a href="#portfolio"><i class="bi bi-images navicon"></i> Portfolio</a></li>
+        <li><a href="#contact"><i class="bi bi-envelope navicon"></i> Contact</a></li>
+      </ul>
+    </nav>
+
+    <div class="social-links text-center">
+      <a href="https://github.com/richardpblair/richardpblair" class="github" aria-label="GitHub: richardpblair" target="_blank" rel="noopener noreferrer"><i class="bi bi-github"></i></a>
+      <a href="https://www.linkedin.com/in/richardpblair/" class="linkedin" aria-label="LinkedIn: Richard Blair" target="_blank" rel="noopener noreferrer"><i class="bi bi-linkedin"></i></a>
+    </div>
+  </header>
+
+  <main class="main">
+
+    <!-- Page Title -->
+    <div class="page-title light-background">
+      <div class="container">
+        <h1>Home Lab</h1>
+        <nav class="breadcrumbs">
+          <ol>
+            <li><a href="index.html">Home</a></li>
+            <li class="current">Home Lab</li>
+          </ol>
+        </nav>
+      </div>
+    </div><!-- End Page Title -->
+
+    <!-- Portfolio Details Section -->
+    <section id="portfolio-details" class="portfolio-details section">
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+        <!-- HERO -->
+        <div class="hero-section mb-5">
+          <div class="row align-items-center g-4">
+            <div class="col-lg-6" data-aos="fade-right">
+              <div class="project-header">
+                <div class="project-meta mb-2">
+                  <span class="category">Lab Setup & Portfolio</span>
+                  <span class="year">2026</span>
+                </div>
+                <h1 class="project-title">Breaking Things Safely: A Virtual Cybersecurity Home Lab</h1>
+                <p class="project-summary">
+                  I built a virtual cybersecurity home lab using Oracle VirtualBox and a pfSense firewall so I can practice
+                  networking, system administration, traffic analysis, and security testing — without my neighbors calling
+                  the FBI because my “learning” looks suspicious from the outside.
+                </p>
+
+                <div class="d-flex flex-wrap gap-2 mt-3">
+                  <span class="badge text-bg-dark"><i class="bi bi-router me-1"></i>pfSense</span>
+                  <span class="badge text-bg-dark"><i class="bi bi-pc-display me-1"></i>Windows 11</span>
+                  <span class="badge text-bg-dark"><i class="bi bi-terminal me-1"></i>Ubuntu Server</span>
+                  <span class="badge text-bg-dark"><i class="bi bi-bug me-1"></i>Kali Linux</span>
+                  <span class="badge text-bg-dark"><i class="bi bi-server me-1"></i>Windows Server 2022</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-6" data-aos="fade-left" data-aos-delay="200">
+              <div class="hero-image">
+                <img src="assets/img/portfolio/Homelab.png" alt="Home Lab Overview" class="img-fluid" loading="lazy">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- QUICK OVERVIEW -->
+        <div class="row g-4 mb-5">
+          <div class="col-lg-8">
+            <div class="p-4 border rounded-3 h-100">
+              <h2 class="h4 mb-3"><i class="bi bi-bullseye me-2"></i>Objective</h2>
+              <p class="mb-3">
+                The goal was to simulate a small enterprise network behind a firewall, using multiple operating systems and roles:
+                workstation, internal server, attacker box, and an Active Directory environment.
+              </p>
+              <ul class="mb-0">
+                <li>Windows 11 client workstation</li>
+                <li>Ubuntu Server (internal services + SSH)</li>
+                <li>pfSense firewall/gateway controlling traffic</li>
+                <li>Kali Linux attacker VM for future testing</li>
+                <li>Windows Server 2022 for Active Directory (next phase)</li>
+              </ul>
+              <!-- Source-backed details -->
+              <span class="d-none">ref</span>
+            </div>
+          </div>
+
+          <div class="col-lg-4">
+            <div class="p-4 border rounded-3 h-100">
+              <h2 class="h4 mb-3"><i class="bi bi-cpu me-2"></i>Host Specs</h2>
+              <ul class="mb-0">
+                <li><strong>CPU:</strong> AMD Ryzen 9 9950X</li>
+                <li><strong>RAM:</strong> 64 GB DDR5-6000</li>
+                <li><strong>Storage:</strong> 4 TB NVMe (RAID-5)</li>
+                <li><strong>VirtualBox:</strong> 7.2.4</li>
+              </ul>
+              <p class="small text-muted mt-3 mb-0">
+                Translation: my PC is basically a small datacenter with feelings.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- TOPOLOGY / NETWORK PLAN -->
+        <div class="mb-5">
+          <h2 class="h3 mb-3">Lab Topology</h2>
+          <p class="mb-4">
+            pfSense sits between the “Internet side” (NAT/WAN) and the internal lab network (LAN).
+            Everything in the lab lives on the internal network named <strong>Cyber</strong>.
+          </p>
+
+          <div class="row g-4 align-items-center">
+            <div class="col-lg-6">
+              <a href="assets/img/homelab/network.png" class="glightbox">
+                <img src="assets/img/homelab/network.png" class="img-fluid rounded" alt="Network diagram: pfSense between NAT/WAN and LAN">
+              </a>
+            </p>
+            </div>
+
+            <div class="col-lg-6">
+              <div class="table-responsive border rounded">
+                <table class="table mb-0 align-middle">
+                  <thead class="table-light">
+                    <tr>
+                      <th>Device</th>
+                      <th>OS</th>
+                      <th>IP Address</th>
+                      <th>Role</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>pfSense</td>
+                      <td>FreeBSD</td>
+                      <td>10.0.0.1</td>
+                      <td>Firewall / Gateway</td>
+                    </tr>
+                    <tr>
+                      <td>Windows 11</td>
+                      <td>Windows 11</td>
+                      <td>10.0.0.10</td>
+                      <td>Client / Workstation</td>
+                    </tr>
+                    <tr>
+                      <td>Ubuntu</td>
+                      <td>Ubuntu 24.04 LTS</td>
+                      <td>10.0.0.20</td>
+                      <td>Internal Server</td>
+                    </tr>
+                    <tr>
+                      <td>Kali</td>
+                      <td>Kali Linux 2025.3</td>
+                      <td>10.0.0.30</td>
+                      <td>Attacker VM</td>
+                    </tr>
+                    <tr>
+                      <td>Windows Server</td>
+                      <td>Windows Server 2022</td>
+                      <td>10.0.0.40</td>
+                      <td>Active Directory (Next Phase)</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- BUILD STEPS (ACCORDION) -->
+        <div class="mb-5">
+          <h2 class="h3 mb-3">Build Process (Step-by-Step)</h2>
+
+          <div class="accordion" id="labSteps">
+
+            <!-- Step 1 -->
+            <div class="accordion-item">
+              <h3 class="accordion-header" id="step1Heading">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#step1" aria-expanded="true" aria-controls="step1">
+                  Step 1: Plan the Lab (Before You Summon the VM Swarm)
+                </button>
+              </h3>
+              <div id="step1" class="accordion-collapse collapse show" aria-labelledby="step1Heading" data-bs-parent="#labSteps">
+                <div class="accordion-body">
+                  <p>
+                    I mapped out the network first: pfSense on the edge, internal systems behind it on the <strong>Cyber</strong> network.
+                    This made it easy to keep the lab isolated and consistent.
+                  </p>
+                  <p class="mb-0">
+                    <strong>Deliverable:</strong> a network diagram + IP plan before creating any VMs.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Step 2 -->
+            <div class="accordion-item">
+              <h3 class="accordion-header" id="step2Heading">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#step2" aria-expanded="false" aria-controls="step2">
+                  Step 2: Create the VMs in VirtualBox
+                </button>
+              </h3>
+              <div id="step2" class="accordion-collapse collapse" aria-labelledby="step2Heading" data-bs-parent="#labSteps">
+                <div class="accordion-body">
+                  <p>
+                    I installed VirtualBox and created each VM with reasonable resources and the right network mode.
+                    Every internal VM used <strong>Internal Network: Cyber</strong>. pfSense used two adapters: one for WAN/NAT and one for LAN/Cyber.
+                  </p>
+
+                  <div class="row g-3">
+                    <div class="col-md-6">
+                      <div class="p-3 border rounded h-100">
+                        <h4 class="h6 mb-2">Windows 11</h4>
+                        <ul class="mb-0 small">
+                          <li>4096 MB RAM, 2 CPUs</li>
+                          <li>80 GB disk</li>
+                          <li>Network: Internal Network (Cyber)</li>
+                        </ul>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="p-3 border rounded h-100">
+                        <h4 class="h6 mb-2">Ubuntu 24.04 LTS</h4>
+                        <ul class="mb-0 small">
+                          <li>2048 MB RAM, 2 CPUs</li>
+                          <li>25 GB disk</li>
+                          <li>Network: Internal Network (Cyber)</li>
+                        </ul>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="p-3 border rounded h-100">
+                        <h4 class="h6 mb-2">Kali Linux</h4>
+                        <ul class="mb-0 small">
+                          <li>4096 MB RAM, 2 CPUs</li>
+                          <li>25 GB disk</li>
+                          <li>Network: Internal Network (Cyber)</li>
+                        </ul>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="p-3 border rounded h-100">
+                        <h4 class="h6 mb-2">Windows Server 2022</h4>
+                        <ul class="mb-0 small">
+                          <li>4096 MB RAM, 2 CPUs</li>
+                          <li>50 GB disk</li>
+                          <li>Network: Internal Network (Cyber)</li>
+                        </ul>
+                      </div>
+                    </div>
+                    <div class="col-12">
+                      <div class="p-3 border rounded">
+                        <h4 class="h6 mb-2">pfSense (Netgate)</h4>
+                        <ul class="mb-0 small">
+                          <li>2048 MB RAM</li>
+                          <li>20 GB disk</li>
+                          <li><strong>Two adapters:</strong> WAN (NAT) + LAN (Internal Network: Cyber)</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="mt-4">
+                    <a href="assets/img/homelab/networkconfig.png" class="glightbox">
+                      <img src="assets/img/homelab/networkconfig.png" class="img-fluid rounded" alt="VirtualBox network configuration screenshot" loading="lazy">
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Step 3 -->
+            <div class="accordion-item">
+              <h3 class="accordion-header" id="step3Heading">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#step3" aria-expanded="false" aria-controls="step3">
+                  Step 3: Install Operating Systems + Guest Additions
+                </button>
+              </h3>
+              <div id="step3" class="accordion-collapse collapse" aria-labelledby="step3Heading" data-bs-parent="#labSteps">
+                <div class="accordion-body">
+                  <p>
+                    OS installs were straightforward. After install, I updated systems and verified pfSense had WAN and LAN configured.
+                    I also installed VirtualBox Guest Additions to make resizing work smoothly (ultrawide monitor problems).
+                  </p>
+
+                  <div class="alert alert-info mb-4" role="alert">
+                    <i class="bi bi-info-circle me-2"></i>
+                    <strong>Tip:</strong> In VirtualBox: <code>Devices &gt; Insert Guest Additions CD image…</code> then follow prompts and reboot.
+                  </div>
+
+                  <div class="row g-3">
+                    <div class="col-md-6">
+                      <a href="assets/img/homelab/windowsfull.png" class="glightbox">
+                        <img src="assets/img/homelab/windowsfull.png" class="img-fluid rounded" alt="Windows 11 installed screenshot" loading="lazy">
+                      </a>
+                    </div>
+                    <div class="col-md-6">
+                      <a href="assets/img/homelabubuntufull.png" class="glightbox">
+                        <img src="assets/img/homelab/ubuntufull.png" class="img-fluid rounded" alt="Ubuntu installed screenshot" loading="lazy">
+                      </a>
+                    </div>
+                    <div class="col-md-6">
+                      <a href="assets/img/homelab/kalifull.png" class="glightbox">
+                        <img src="assets/img/homelab/kalifull.png" class="img-fluid rounded" alt="Kali installed screenshot" loading="lazy">
+                      </a>
+                    </div>
+                    <div class="col-md-6">
+                      <a href="assets/img/homelab/serverfull.png" class="glightbox">
+                        <img src="assets/img/homelab/serverfull.png" class="img-fluid rounded" alt="Windows Server installed screenshot" loading="lazy">
+                      </a>
+                    </div>
+                    <div class="col-12">
+                      <a href="assets/img/homelab/pfsensefull.png" class="glightbox">
+                        <img src="assets/img/homelab/pfsensefull.png" class="img-fluid rounded" alt="pfSense installed screenshot" loading="lazy">
+                      </a>
+                    </div>
+                    <div class="col-12">
+                      <a href="assets/img/homelab/guestaddition.png" class="glightbox">
+                        <img src="assets/img/homelab/guestaddition.png" class="img-fluid rounded" alt="Guest Additions screenshot" loading="lazy">
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Step 4 -->
+            <div class="accordion-item">
+              <h3 class="accordion-header" id="step4Heading">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#step4" aria-expanded="false" aria-controls="step4">
+                  Step 4: Network Testing (Make the Machines Talk)
+                </button>
+              </h3>
+              <div id="step4" class="accordion-collapse collapse" aria-labelledby="step4Heading" data-bs-parent="#labSteps">
+                <div class="accordion-body">
+                  <p>
+                    I verified IP addresses and connectivity between systems, then confirmed traffic was flowing through pfSense.
+                  </p>
+
+                  <div class="row g-3">
+                    <div class="col-lg-6">
+                      <div class="p-3 border rounded h-100">
+                        <h4 class="h6 mb-2">Commands Used</h4>
+                        <ul class="mb-0">
+                          <li><strong>Windows:</strong> <code>ipconfig</code></li>
+                          <li><strong>Ubuntu:</strong> <code>ip addr show</code></li>
+                          <li><strong>Ping test:</strong> <code>ping 10.0.0.20</code></li>
+                        </ul>
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="p-3 border rounded h-100">
+                        <h4 class="h6 mb-2">Result</h4>
+                        <p class="mb-0">
+                          Successful pings between Windows and Ubuntu confirmed the internal network was working
+                          and routed correctly via pfSense.
+                        </p>
+                      </div>
+                    </div>
+                    <div class="col-12">
+                      <a href="assets/img/homelab/bidirectional ping.png" class="glightbox">
+                        <img src="assets/img/homelab/bidirectional ping.png" class="img-fluid rounded" alt="Bidirectional ping screenshot" loading="lazy">
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Step 5 -->
+            <div class="accordion-item">
+              <h3 class="accordion-header" id="step5Heading">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#step5" aria-expanded="false" aria-controls="step5">
+                  Step 5: Experiments (Proof It Works)
+                </button>
+              </h3>
+              <div id="step5" class="accordion-collapse collapse" aria-labelledby="step5Heading" data-bs-parent="#labSteps">
+                <div class="accordion-body">
+                  <p>
+                    Once networking was stable, I tested remote access and outbound routing through pfSense.
+                  </p>
+
+                  <div class="row g-3">
+                    <div class="col-lg-6">
+                      <div class="p-3 border rounded h-100">
+                        <h4 class="h6 mb-2">Windows → Ubuntu (SSH)</h4>
+                        <p class="mb-2">Command:</p>
+                        <pre class="mb-0"><code>ssh boston@10.0.0.20</code></pre>
+                      </div>
+                    </div>
+
+                    <div class="col-lg-6">
+                      <div class="p-3 border rounded h-100">
+                        <h4 class="h6 mb-2">Ubuntu → Internet (Ping)</h4>
+                        <p class="mb-2">Command:</p>
+                        <pre class="mb-0"><code>ping 8.8.8.8</code></pre>
+                      </div>
+                    </div>
+
+                    <div class="col-12">
+                      <a href="assets/img/homelab/ssh.png" class="glightbox">
+                        <img src="assets/img/homelab/ssh.png" class="img-fluid rounded" alt="SSH from Windows to Ubuntu screenshot" loading="lazy">
+                      </a>
+                    </div>
+                    <div class="col-12">
+                      <a href="assets/img/homelab/ping.png" class="glightbox">
+                        <img src="assets/img/homelab/ping.png" class="img-fluid rounded" alt="Ping 8.8.8.8 screenshot" loading="lazy">
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Step 6 -->
+            <div class="accordion-item">
+              <h3 class="accordion-header" id="step6Heading">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#step6" aria-expanded="false" aria-controls="step6">
+                  Step 6: Reflection + Next Steps
+                </button>
+              </h3>
+              <div id="step6" class="accordion-collapse collapse" aria-labelledby="step6Heading" data-bs-parent="#labSteps">
+                <div class="accordion-body">
+                  <div class="row g-4">
+                    <div class="col-lg-6">
+                      <div class="p-3 border rounded h-100">
+                        <h4 class="h6 mb-2">What I Learned</h4>
+                        <ul class="mb-0">
+                          <li>VirtualBox networking modes are the make-or-break of any lab setup.</li>
+                          <li>pfSense is both awesome and intimidating (like a final boss with a firewall UI).</li>
+                          <li>Documentation + screenshots make rebuilding labs way easier.</li>
+                        </ul>
+                      </div>
+                    </div>
+
+                    <div class="col-lg-6">
+                      <div class="p-3 border rounded h-100">
+                        <h4 class="h6 mb-2">Next Steps (Planned)</h4>
+                        <ul class="mb-0">
+                          <li>Promote Windows Server to a Domain Controller and join Windows 11 to the domain.</li>
+                          <li>Practice DHCP, DNS, and Group Policy in the lab.</li>
+                          <li>Simulate attacks with Kali Linux inside a safe subnet.</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="alert alert-warning mt-4 mb-0" role="alert">
+                    <i class="bi bi-shield-exclamation me-2"></i>
+                    <strong>Safety Note:</strong> All testing stays in an isolated subnet behind pfSense. No “oops” packets go wandering into the real world.
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- OPTIONAL: REPO LINK / CTA -->
+        <div class="p-4 border rounded-3">
+          <div class="row align-items-center g-3">
+            <div class="col-lg-8">
+              <h2 class="h4 mb-2">Want the full build notes + screenshots?</h2>
+              <p class="mb-0">
+                This post summarizes the build, but the repo contains the detailed step-by-step notes and images used during setup.
+              </p>
+            </div>
+            <div class="col-lg-4 text-lg-end">
+              <a class="btn btn-dark" href="https://github.com/richardpblair/Home-Lab-Setup" target="_blank" rel="noopener noreferrer">
+                <i class="bi bi-github me-2"></i>View Repo
+              </a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section><!-- /Portfolio Details Section -->
+
+  </main>
+
+  <footer id="footer" class="footer light-background">
+    <div class="container">
+      <h3 class="sitename">Richard Blair</h3>
+      <p>Cybersecurity Student • Continuous Learner • Mission-Driven Innovator<br>Building a safer digital world, one project at a time.</p>
+      <div class="social-links d-flex justify-content-center">
+        <a href="https://github.com/richardpblair/richardpblair" class="github" aria-label="GitHub: richardpblair" target="_blank" rel="noopener noreferrer"><i class="bi bi-github"></i></a>
+        <a href="https://www.linkedin.com/in/richardpblair/" class="linkedin" aria-label="LinkedIn: Richard Blair" target="_blank" rel="noopener noreferrer"><i class="bi bi-linkedin"></i></a>
+      </div>
+      <div class="container">
+        <div class="copyright">
+          <span>Copyright</span> <strong class="px-1 sitename">Richard Blair</strong> <span>All Rights Reserved</span>
+        </div>
+        <div class="credits">
+          Designed by <a href="https://bootstrapmade.com/mypage-bootstrap-personal-template/" rel="noopener noreferrer">BootstrapMade with template MyPage</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scroll Top -->
+  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Preloader -->
+  <div id="preloader"></div>
+
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
+  <script src="assets/vendor/typed.js/typed.umd.js"></script>
+  <script src="assets/vendor/waypoints/noframework.waypoints.js"></script>
+  <script src="assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
+  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+
+  <!-- Main JS File -->
+  <script src="assets/js/main.js"></script>
+
+</body>
+</html>

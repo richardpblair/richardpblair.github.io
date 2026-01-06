@@ -2633,8 +2633,8 @@ section,
 
 .portfolio-details .hero-section .hero-image img {
   border-radius: 6px;
-  width: 100%;
-  height: 400px;
+  width: auto;
+  height: 450px;
   object-fit: cover;
 }
 
@@ -2964,7 +2964,7 @@ section,
 }
 
 .portfolio-details .project-nav {
-  border-top: 1px solid color-mix(in srgb, var(--default-color), transparent 90%);
+  border-top: 1px solid color-mix(in srgb, var(--accent-color), transparent 90%);
   padding-top: 3rem;
 }
 
@@ -3132,276 +3132,71 @@ section,
   }
 }
 
-/*--------------------------------------------------------------
-# Service Details Section
---------------------------------------------------------------*/
-.service-details .service-content .service-hero {
-  margin-bottom: 4rem;
+/* 1) Cards/boxes (Objective / Host Specs): give them a dark surface */
+.portfolio-details .border.rounded-3,
+.portfolio-details .border.rounded {
+  background: color-mix(in srgb, var(--surface-color), transparent 35%);
+  border-color: color-mix(in srgb, var(--accent-color), transparent 75%) !important;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.22);
 }
 
-.service-details .service-content .service-hero h2 {
-  font-size: 2.5rem;
-  font-weight: 300;
-  margin-bottom: 1.5rem;
-  line-height: 1.2;
+/* 2) Fix “text-muted” being unreadable on dark backgrounds */
+.portfolio-details .text-muted {
+  color: color-mix(in srgb, var(--default-color), transparent 40%) !important;
 }
 
-@media (max-width: 768px) {
-  .service-details .service-content .service-hero h2 {
-    font-size: 2rem;
-  }
+/* 3) Hero image: make it match the “portfolio” vibe */
+.portfolio-details .hero-section .hero-image img {
+  border-radius: 12px;              /* was 6px */
+  border: 1px solid color-mix(in srgb, var(--accent-color), transparent 75%);
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.35);
 }
 
-.service-details .service-content .service-hero .lead {
-  font-size: 1.2rem;
-  line-height: 1.7;
-  color: color-mix(in srgb, var(--default-color), transparent 20%);
-  margin-bottom: 0;
+/* 4) Table: your screenshot shows a bright white table — make it dark */
+.portfolio-details .table-responsive {
+  border-radius: 12px;
+  overflow: hidden; /* keeps rounded corners clean */
+  border: 1px solid color-mix(in srgb, var(--accent-color), transparent 75%);
 }
 
-.service-details .service-content .service-image {
-  margin-bottom: 4rem;
-}
-
-.service-details .service-content .service-image img {
-  border-radius: 8px;
-  box-shadow: 0 10px 40px color-mix(in srgb, var(--default-color), transparent 90%);
-}
-
-.service-details .service-content .service-description {
-  margin-bottom: 4rem;
-}
-
-.service-details .service-content .service-description h3 {
-  font-size: 1.8rem;
-  font-weight: 300;
-  margin-bottom: 1.5rem;
-}
-
-.service-details .service-content .service-description>p {
-  font-size: 1.1rem;
-  line-height: 1.8;
-  margin-bottom: 3rem;
-  color: color-mix(in srgb, var(--default-color), transparent 15%);
-}
-
-.service-details .service-content .service-description .features-list {
-  display: grid;
-  gap: 2rem;
-}
-
-.service-details .service-content .service-description .features-list .feature-item {
-  display: flex;
-  align-items: flex-start;
-  gap: 1.5rem;
-}
-
-.service-details .service-content .service-description .features-list .feature-item i {
-  font-size: 1.5rem;
-  color: var(--accent-color);
-  margin-top: 0.25rem;
-  flex-shrink: 0;
-}
-
-.service-details .service-content .service-description .features-list .feature-item h4 {
-  font-size: 1.2rem;
-  font-weight: 400;
-  margin-bottom: 0.5rem;
-}
-
-.service-details .service-content .service-description .features-list .feature-item p {
-  margin-bottom: 0;
-  line-height: 1.6;
-  color: color-mix(in srgb, var(--default-color), transparent 25%);
-}
-
-.service-details .service-content .process-section h3 {
-  font-size: 1.8rem;
-  font-weight: 300;
-  margin-bottom: 3rem;
-}
-
-.service-details .service-content .process-section .process-steps {
-  display: grid;
-  gap: 2.5rem;
-}
-
-.service-details .service-content .process-section .process-steps .step {
-  display: flex;
-  align-items: flex-start;
-  gap: 2rem;
-}
-
-.service-details .service-content .process-section .process-steps .step .step-number {
-  font-size: 2rem;
-  font-weight: 200;
-  color: var(--accent-color);
-  line-height: 1;
-  flex-shrink: 0;
-  width: 3rem;
-}
-
-.service-details .service-content .process-section .process-steps .step h4 {
-  font-size: 1.3rem;
-  font-weight: 400;
-  margin-bottom: 0.75rem;
-}
-
-.service-details .service-content .process-section .process-steps .step p {
-  margin-bottom: 0;
-  line-height: 1.7;
-  color: color-mix(in srgb, var(--default-color), transparent 25%);
-}
-
-.service-details .service-sidebar {
-  position: sticky;
-  top: 2rem;
-}
-
-.service-details .service-sidebar>div {
-  background-color: var(--surface-color);
-  padding: 2rem;
-  border-radius: 8px;
-  margin-bottom: 2rem;
-  box-shadow: 0 5px 20px color-mix(in srgb, var(--default-color), transparent 95%);
-}
-
-.service-details .service-sidebar>div:last-child {
-  margin-bottom: 0;
-}
-
-.service-details .service-sidebar .service-info h4 {
-  font-size: 1.3rem;
-  font-weight: 400;
-  margin-bottom: 1.5rem;
-}
-
-.service-details .service-sidebar .service-info .info-list {
-  list-style: none;
-  padding: 0;
+/* Base table surface */
+.portfolio-details table.table {
   margin: 0;
+  color: var(--default-color);
+  background: color-mix(in srgb, var(--surface-color), transparent 55%);
 }
 
-.service-details .service-sidebar .service-info .info-list li {
-  padding: 0.75rem 0;
-  border-bottom: 1px solid color-mix(in srgb, var(--default-color), transparent 90%);
-  font-size: 0.95rem;
+/* Header row (Bootstrap's .table-light is forcing a light scheme) */
+.portfolio-details .table thead.table-light {
+  --bs-table-bg: color-mix(in srgb, var(--surface-color), transparent 35%);
+  --bs-table-color: var(--heading-color);
 }
 
-.service-details .service-sidebar .service-info .info-list li:last-child {
-  border-bottom: none;
-  padding-bottom: 0;
+/* Cell borders + spacing */
+.portfolio-details .table th,
+.portfolio-details .table td {
+  border-color: color-mix(in srgb, var(--accent-color), transparent 75%);
+  vertical-align: middle;
 }
 
-.service-details .service-sidebar .service-info .info-list li strong {
-  color: var(--heading-color);
-  font-weight: 500;
+/* Hover row effect (subtle) */
+.portfolio-details .table tbody tr:hover {
+  background: color-mix(in srgb, var(--accent-color), transparent 92%);
 }
 
-.service-details .service-sidebar .testimonial-block {
-  text-align: center;
+/* 5) Badges used as “chips” under the hero — make them consistent */
+.portfolio-details .badge.text-bg-dark {
+  background: color-mix(in srgb, var(--surface-color), transparent 20%) !important;
+  border: 1px solid color-mix(in srgb, var(--accent-color), transparent 75%);
+  font-weight: 600;
+  padding: 0.45rem 0.65rem;
+  border-radius: 999px;
 }
 
-.service-details .service-sidebar .testimonial-block .quote-icon {
-  margin-bottom: 1.5rem;
-}
-
-.service-details .service-sidebar .testimonial-block .quote-icon i {
-  font-size: 2.5rem;
-  color: var(--accent-color);
-  opacity: 0.6;
-}
-
-.service-details .service-sidebar .testimonial-block blockquote {
-  font-style: italic;
-  font-size: 1.05rem;
-  line-height: 1.7;
-  margin-bottom: 2rem;
-  color: color-mix(in srgb, var(--default-color), transparent 15%);
-}
-
-.service-details .service-sidebar .testimonial-block .testimonial-author {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  justify-content: center;
-}
-
-.service-details .service-sidebar .testimonial-block .testimonial-author .author-image {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  object-fit: cover;
-}
-
-.service-details .service-sidebar .testimonial-block .testimonial-author .author-info {
-  text-align: left;
-}
-
-.service-details .service-sidebar .testimonial-block .testimonial-author .author-info h5 {
-  font-size: 1rem;
-  font-weight: 500;
-  margin-bottom: 0.25rem;
-}
-
-.service-details .service-sidebar .testimonial-block .testimonial-author .author-info span {
-  font-size: 0.9rem;
-  color: color-mix(in srgb, var(--default-color), transparent 40%);
-}
-
-.service-details .service-sidebar .cta-block {
-  text-align: center;
-}
-
-.service-details .service-sidebar .cta-block h4 {
-  font-size: 1.3rem;
-  font-weight: 400;
-  margin-bottom: 1rem;
-}
-
-.service-details .service-sidebar .cta-block p {
-  margin-bottom: 2rem;
-  line-height: 1.6;
-  color: color-mix(in srgb, var(--default-color), transparent 25%);
-}
-
-.service-details .service-sidebar .cta-block .btn {
-  padding: 0.8rem 2rem;
-  border-radius: 6px;
-  font-weight: 400;
-  text-decoration: none;
-  display: inline-block;
-  margin: 0 0.5rem 1rem;
-  transition: all 0.3s ease;
-}
-
-.service-details .service-sidebar .cta-block .btn.btn-primary {
-  background-color: var(--accent-color);
-  color: var(--contrast-color);
-  border: 1px solid var(--accent-color);
-}
-
-.service-details .service-sidebar .cta-block .btn.btn-primary:hover {
-  background-color: color-mix(in srgb, var(--accent-color), black 10%);
-  transform: translateY(-2px);
-}
-
-.service-details .service-sidebar .cta-block .btn.btn-outline {
-  background-color: transparent;
-  color: var(--accent-color);
-  border: 1px solid var(--accent-color);
-}
-
-.service-details .service-sidebar .cta-block .btn.btn-outline:hover {
-  background-color: var(--accent-color);
-  color: var(--contrast-color);
-  transform: translateY(-2px);
-}
-
+/* 6) Optional: make big H1 behave better on smaller screens */
 @media (max-width: 992px) {
-  .service-details .service-sidebar {
-    position: static;
-    margin-top: 3rem;
+  .portfolio-details .hero-section .project-header .project-title {
+    font-size: clamp(2.2rem, 6vw, 2.9rem);
   }
 }
 
