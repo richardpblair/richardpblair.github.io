@@ -2582,7 +2582,7 @@ section,
 
 .portfolio-details .hero-section .project-header .project-meta .category,
 .portfolio-details .hero-section .project-header .project-meta .year {
-  font-size: 0.8rem;
+  font-size:1rem;
   font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 0.1em;
@@ -2599,7 +2599,7 @@ section,
   margin-bottom: 1.5rem;
   color: var(--heading-color);
   letter-spacing: -0.02em;
-  font-family: var(--heading-font);
+  font-family: var(--);
 }
 
 .portfolio-details .hero-section .project-header .project-summary {
@@ -3140,6 +3140,15 @@ section,
   box-shadow: 0 10px 28px rgba(0, 0, 0, 0.22);
 }
 
+.portfolio-details .accordion-card,
+.portfolio-details .border.rounded {
+  padding: 10px;
+  background: color-mix(in srgb, var(--default-color), transparent 35%);
+  border: 1px solid color-mix(in srgb, var(--surface-color), transparent 75%) !important;
+  border-radius: 10px;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.22);
+}
+
 /* 2) Fix “text-muted” being unreadable on dark backgrounds */
 .portfolio-details .text-muted {
   color: color-mix(in srgb, var(--default-color), transparent 40%) !important;
@@ -3156,7 +3165,7 @@ section,
 .portfolio-details .table-responsive {
   border-radius: 12px;
   overflow: hidden; /* keeps rounded corners clean */
-  border: 1px solid color-mix(in srgb, var(--accent-color), transparent 75%);
+  border: 1px solid color-mix(in srgb, var(--surface-color), transparent 75%);
 }
 
 /* Base table surface */
@@ -3164,6 +3173,7 @@ section,
   margin: 0;
   color: var(--default-color);
   background: color-mix(in srgb, var(--surface-color), transparent 55%);
+  border: 1px solid color-mix(in srgb, var(--accent-color), transparent 75%);
 }
 
 /* Header row (Bootstrap's .table-light is forcing a light scheme) */
@@ -3187,7 +3197,7 @@ section,
 /* 5) Badges used as “chips” under the hero — make them consistent */
 .portfolio-details .badge.text-bg-dark {
   background: color-mix(in srgb, var(--surface-color), transparent 20%) !important;
-  border: 1px solid color-mix(in srgb, var(--accent-color), transparent 75%);
+  border: 1px solid color-mix(in srgb, var(--gold-2), transparent 75%);
   font-weight: 600;
   padding: 0.45rem 0.65rem;
   border-radius: 999px;

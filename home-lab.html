@@ -51,12 +51,12 @@
 
     <nav id="navmenu" class="navmenu">
       <ul>
-        <li><a href="#hero" class="active"><i class="bi bi-house navicon"></i>Home</a></li>
-        <li><a href="#about"><i class="bi bi-person navicon"></i> About</a></li>
-        <li><a href="#certifications"><i class="bi bi-bookmark-check navicon"></i> Certification</a></li>
-        <li><a href="#resume"><i class="bi bi-file-earmark-text navicon"></i> Resume</a></li>
-        <li><a href="#portfolio"><i class="bi bi-images navicon"></i> Portfolio</a></li>
-        <li><a href="#contact"><i class="bi bi-envelope navicon"></i> Contact</a></li>
+        <li><a href="https://richardpblair.github.io/#hero" class="active"><i class="bi bi-house navicon"></i>Home</a></li>
+        <li><a href="https://richardpblair.github.io/#about"><i class="bi bi-person navicon"></i> About</a></li>
+        <li><a href="https://richardpblair.github.io/#certifications"><i class="bi bi-bookmark-check navicon"></i> Certification</a></li>
+        <li><a href="https://richardpblair.github.io/#resume"><i class="bi bi-file-earmark-text navicon"></i> Resume</a></li>
+        <li><a href="https://richardpblair.github.io/#portfolio"><i class="bi bi-images navicon"></i> Portfolio</a></li>
+        <li><a href="https://richardpblair.github.io/#contact"><i class="bi bi-envelope navicon"></i> Contact</a></li>
       </ul>
     </nav>
 
@@ -67,19 +67,6 @@
   </header>
 
   <main class="main">
-
-    <!-- Page Title -->
-    <div class="page-title light-background">
-      <div class="container">
-        <h1>Home Lab</h1>
-        <nav class="breadcrumbs">
-          <ol>
-            <li><a href="index.html">Home</a></li>
-            <li class="current">Home Lab</li>
-          </ol>
-        </nav>
-      </div>
-    </div><!-- End Page Title -->
 
     <!-- Portfolio Details Section -->
     <section id="portfolio-details" class="portfolio-details section">
@@ -169,11 +156,10 @@
               <a href="assets/img/homelab/network.png" class="glightbox">
                 <img src="assets/img/homelab/network.png" class="img-fluid rounded" alt="Network diagram: pfSense between NAT/WAN and LAN">
               </a>
-            </p>
             </div>
 
             <div class="col-lg-6">
-              <div class="table-responsive border rounded">
+              <div class="table-responsive rounded">
                 <table class="table mb-0 align-middle">
                   <thead class="table-light">
                     <tr>
@@ -263,7 +249,7 @@
 
                   <div class="row g-3">
                     <div class="col-md-6">
-                      <div class="p-3 border rounded h-100">
+                      <div class="accordion-card">
                         <h4 class="h6 mb-2">Windows 11</h4>
                         <ul class="mb-0 small">
                           <li>4096 MB RAM, 2 CPUs</li>
@@ -273,7 +259,7 @@
                       </div>
                     </div>
                     <div class="col-md-6">
-                      <div class="p-3 border rounded h-100">
+                      <div class="accordion-card">
                         <h4 class="h6 mb-2">Ubuntu 24.04 LTS</h4>
                         <ul class="mb-0 small">
                           <li>2048 MB RAM, 2 CPUs</li>
@@ -283,7 +269,7 @@
                       </div>
                     </div>
                     <div class="col-md-6">
-                      <div class="p-3 border rounded h-100">
+                      <div class="accordion-card">
                         <h4 class="h6 mb-2">Kali Linux</h4>
                         <ul class="mb-0 small">
                           <li>4096 MB RAM, 2 CPUs</li>
@@ -293,7 +279,7 @@
                       </div>
                     </div>
                     <div class="col-md-6">
-                      <div class="p-3 border rounded h-100">
+                      <div class="accordion-card">
                         <h4 class="h6 mb-2">Windows Server 2022</h4>
                         <ul class="mb-0 small">
                           <li>4096 MB RAM, 2 CPUs</li>
@@ -303,7 +289,7 @@
                       </div>
                     </div>
                     <div class="col-12">
-                      <div class="p-3 border rounded">
+                      <div class="accordion-card">
                         <h4 class="h6 mb-2">pfSense (Netgate)</h4>
                         <ul class="mb-0 small">
                           <li>2048 MB RAM</li>
@@ -393,7 +379,7 @@
 
                   <div class="row g-3">
                     <div class="col-lg-6">
-                      <div class="p-3 border rounded h-100">
+                      <div class="accordion-card">
                         <h4 class="h6 mb-2">Commands Used</h4>
                         <ul class="mb-0">
                           <li><strong>Windows:</strong> <code>ipconfig</code></li>
@@ -403,7 +389,7 @@
                       </div>
                     </div>
                     <div class="col-lg-6">
-                      <div class="p-3 border rounded h-100">
+                      <div class="accordion-card">
                         <h4 class="h6 mb-2">Result</h4>
                         <p class="mb-0">
                           Successful pings between Windows and Ubuntu confirmed the internal network was working
@@ -436,18 +422,18 @@
 
                   <div class="row g-3">
                     <div class="col-lg-6">
-                      <div class="p-3 border rounded h-100">
+                      <div class="accordion-card">
                         <h4 class="h6 mb-2">Windows → Ubuntu (SSH)</h4>
                         <p class="mb-2">Command:</p>
-                        <pre class="mb-0"><code>ssh boston@10.0.0.20</code></pre>
+                        <p><code>ssh boston@10.0.0.20</code></p>
                       </div>
                     </div>
 
                     <div class="col-lg-6">
-                      <div class="p-3 border rounded h-100">
+                      <div class="accordion-card">
                         <h4 class="h6 mb-2">Ubuntu → Internet (Ping)</h4>
                         <p class="mb-2">Command:</p>
-                        <pre class="mb-0"><code>ping 8.8.8.8</code></pre>
+                        <p><code>ping 8.8.8.8</code></p>
                       </div>
                     </div>
 
@@ -477,7 +463,7 @@
                 <div class="accordion-body">
                   <div class="row g-4">
                     <div class="col-lg-6">
-                      <div class="p-3 border rounded h-100">
+                      <div class="accordion-card">
                         <h4 class="h6 mb-2">What I Learned</h4>
                         <ul class="mb-0">
                           <li>VirtualBox networking modes are the make-or-break of any lab setup.</li>
@@ -488,7 +474,7 @@
                     </div>
 
                     <div class="col-lg-6">
-                      <div class="p-3 border rounded h-100">
+                      <div class="accordion-card">
                         <h4 class="h6 mb-2">Next Steps (Planned)</h4>
                         <ul class="mb-0">
                           <li>Promote Windows Server to a Domain Controller and join Windows 11 to the domain.</li>
@@ -506,7 +492,6 @@
                 </div>
               </div>
             </div>
-
           </div>
         </div>
 
