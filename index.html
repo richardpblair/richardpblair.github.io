@@ -43,7 +43,7 @@
 
     <div class="header-top">
       <div class="profile-img">
-        <img src="assets/img/profile/Headshot.webp" alt="Portait of Richard BLair" class="img-fluid">
+        <img src="assets/img/profile/Headshot.webp" alt="Portrait of Richard Blair" class="img-fluid">
       </div>
 
       <a href="index.html" class="logo d-flex align-items-center justify-content-center">
@@ -68,7 +68,7 @@
     </nav>
 
     <div class="social-links text-center">
-      <a href="https://github.com/richardpblair/richardpblair" class="github" aria-label="GitHub: richardpblair" target="_blank" rel="noopener noreferrer"><i class="bi bi-github"></i></a>
+      <a href="https://github.com/richardpblair" class="github" aria-label="GitHub: richardpblair" target="_blank" rel="noopener noreferrer"><i class="bi bi-github"></i></a>
       <a href="https://www.linkedin.com/in/richardpblair/" class="linkedin" aria-label="LinkedIn: Richard Blair" target="_blank" rel="noopener noreferrer"><i class="bi bi-linkedin"></i></a>
     </div>
   </header>
@@ -117,10 +117,10 @@
           <div class="col-lg-6 order-1 order-lg-2">
             <div class="hero-image" data-aos="fade-up" data-aos-delay="300">
               <div class="image-wrapper">
-                <img src="assets/img/portfolio/Shield.webp" alt="Defence of Cyber World" class="img-fluid main-image">
+                <img src="assets/img/portfolio/Shield.webp" alt="Defense of Cyber World" class="img-fluid main-image">
                 <div class="floating-card card-1" data-aos="fade-up" data-aos-delay="600">
                   <i class="bi bi-clipboard-check"></i>
-                  <span>Risk Assesment</span>
+                  <span>Risk Assessment</span>
                 </div>
                 <div class="floating-card card-2" data-aos="fade-up" data-aos-delay="700">
                   <i class="bi bi-hdd-network"></i>
@@ -644,22 +644,22 @@
       </div>
 
       <div class="container" data-aos="fade-up" data-aos-delay="100">
-        <div class="portfolio-layout">
+        <div class="portfolio-layout isotope-layout" data-layout="masonry" data-default-filter="*" data-sort="original-order">
           <div class="filters-wrapper" data-aos="fade-up" data-aos-delay="200">
-            <ul class="portfolio-filters">
-              <li data-filter="all" class="filter-active" role="button" tabindex="0" aria-pressed="true">All Work</li>
-              <li data-filter="branding" role="button" tabindex="0" aria-pressed="false">Lab &amp; Portfolio</li>
-              <li data-filter="cloud" role="button" tabindex="0" aria-pressed="false">Cloud &amp; Infrastructure</li>
-              <li data-filter="tools" role="button" tabindex="0" aria-pressed="false">Tools &amp; Scripts</li>
-              <li data-filter="learning" role="button" tabindex="0" aria-pressed="false">Learning &amp; Education</li>
+            <ul class="isotope-filters portfolio-filters">
+              <li data-filter="*" class="filter-active">All Work</li>
+              <li data-filter=".filter-lab-portfolio">Lab &amp; Portfolio</li>
+              <li data-filter=".filter-cloud-infrastructure">Cloud &amp; Infrastructure</li>
+              <li data-filter=".filter-tools">Tools &amp; Scripts</li>
+              <li data-filter=".filter-learning">Learning &amp; Education</li>
             </ul>
           </div>
 
-          <div class="row gy-5 portfolio-container align-items-stretch" data-aos="fade-up" data-aos-delay="300">
-            <div class="col-12 col-md-6 col-lg-4 portfolio-item" data-category="branding">
+          <div class="row gy-5 portfolio-container isotope-container align-items-stretch" data-aos="fade-up" data-aos-delay="300">
+            <div class="col-12 col-md-6 col-lg-4 portfolio-item isotope-item filter-lab-portfolio">
               <div class="portfolio-card">
                 <div class="portfolio-image">
-                  <img src="assets/img/portfolio/Homelab.png" class="img-fluid" alt="Brand Identity Project" loading="lazy" decoding="async">
+                  <img src="assets/img/portfolio/Homelab.png" class="img-fluid" alt="Virtual cybersecurity home lab" loading="lazy" decoding="async">
                   <div class="portfolio-overlay">
                     <div class="portfolio-actions">
                       <a href="assets/img/portfolio/Homelab.png" class="glightbox action-btn preview-btn" title="Home Lab"><i class="bi bi-eye"></i></a>
@@ -680,7 +680,8 @@
               </div>
             </div>
 
-            <div class="col-12 col-md-6 col-lg-4 portfolio-item" data-category="branding">
+            <div class="col-12 col-md-6 col-lg-4 portfolio-item isotope-item filter-lab-portfolio">
+
               <div class="portfolio-card">
                 <div class="portfolio-image">
                   <img src="assets/img/portfolio/Github.png" class="img-fluid" alt="Digital Platform" loading="lazy" decoding="async">
@@ -836,10 +837,6 @@
   <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
   <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
   <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
-
-  <!-- Vendor JS (before main.js) -->
-  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/typed.js@2.1.0/dist/typed.umd.js"></script>
 
   <!-- Main JS File -->
   <script src="assets/js/main.js"></script>

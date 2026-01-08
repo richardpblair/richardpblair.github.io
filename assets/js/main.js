@@ -210,12 +210,6 @@
   window.addEventListener('load', navmenuScrollspy);
   document.addEventListener('scroll', navmenuScrollspy);
 
-  // Initialize AOS (Animate On Scroll)
-AOS.init({
-  duration: 1000,  // how long each fade lasts
-  once: true       // only trigger once
-});
-
 // Initialize Typed.js
 document.addEventListener("DOMContentLoaded", function () {
   const typedElement = document.querySelector(".typed");
