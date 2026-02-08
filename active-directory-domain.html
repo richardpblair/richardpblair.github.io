@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Building a Active Directory Domain | Richard Blair</title>
+  <meta name="description" content="Cybersecurity portfolio showcasing hands-on labs, Active Directory projects, home lab builds, networking, and security fundamentals by Richard Blair.">
+  <meta name="keywords" content="cybersecurity portfolio, active directory lab, home lab, windows server, networking, pfSense, virtualbox, IT labs, system administration">
+
+  <!-- Favicons -->
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- Main CSS File -->
+  <link href="assets/css/main.css" rel="stylesheet">
+</head>
+
+<body class="portfolio-details-page">
+
+  <header id="header" class="header dark-background d-flex flex-column justify-content-between">
+    <i class="header-toggle d-xl-none bi bi-list"></i>
+
+    <div class="header-top">
+      <div class="profile-img">
+        <img src="assets/img/profile/Headshot.webp" alt="Portrait of Richard Blair" class="img-fluid">
+      </div>
+
+      <a href="index.html" class="logo d-flex align-items-center justify-content-center">
+        <h1 class="sitename">Richard Blair</h1>
+      </a>
+
+      <div class="army-image">
+        <img src="assets/img/portfolio/army_logo.webp" alt="US Army Logo" class="veteran-logo">
+        <span class="veteran-text">US Army Veteran</span>
+      </div>
+    </div>
+
+    <nav id="navmenu" class="navmenu">
+      <ul>
+        <li><a href="https://richardpblair.github.io/#hero" class="active"><i class="bi bi-house navicon"></i>Home</a></li>
+        <li><a href="https://richardpblair.github.io/#about"><i class="bi bi-person navicon"></i> About</a></li>
+        <li><a href="https://richardpblair.github.io/#certifications"><i class="bi bi-bookmark-check navicon"></i> Certification</a></li>
+        <li><a href="https://richardpblair.github.io/#resume"><i class="bi bi-file-earmark-text navicon"></i> Resume</a></li>
+        <li><a href="https://richardpblair.github.io/#portfolio"><i class="bi bi-images navicon"></i> Portfolio</a></li>
+        <li><a href="https://richardpblair.github.io/#contact"><i class="bi bi-envelope navicon"></i> Contact</a></li>
+      </ul>
+    </nav>
+
+    <div class="social-links text-center">
+      <a href="https://github.com/richardpblair/richardpblair" class="github" aria-label="GitHub: richardpblair" target="_blank" rel="noopener noreferrer"><i class="bi bi-github"></i></a>
+      <a href="https://www.linkedin.com/in/richardpblair/" class="linkedin" aria-label="LinkedIn: Richard Blair" target="_blank" rel="noopener noreferrer"><i class="bi bi-linkedin"></i></a>
+    </div>
+  </header>
+
+  <main class="main">
+
+    <!-- Portfolio Details Section -->
+    <section id="portfolio-details" class="portfolio-details section">
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+        <!-- HERO -->
+        <div class="hero-section mb-5">
+          <div class="row align-items-center g-4">
+            <div class="col-lg-6" data-aos="fade-right">
+              <div class="project-header">
+                <div class="project-meta mb-2">
+                  <span class="category">Lab Setup & Portfolio</span>
+                  <span class="year">2026</span>
+                </div>
+                <h1 class="project-title">Active Directory: I Built It So I Could Break It</h1>
+                <p class="project-summary">
+                  I built an Active Directory domain to gain hands-on experience with how it works, how it’s structured, and how it’s managed. 
+                  This lab also serves as a foundation for future projects focused on securing Active Directory and exploring common misconfigurations 
+                  and historical vulnerabilities.
+                </p>
+
+                <div class="d-flex flex-wrap gap-2 mt-3">
+                  <span class="badge text-bg-dark"><i class="bi bi-diagram-3 me-1"></i>Active Directory</span>
+                  <span class="badge text-bg-dark"><i class="bi bi-pc-display me-1"></i>Windows 11 Pro</span>
+                  <span class="badge text-bg-dark"><i class="bi bi-server me-1"></i>Windows Server 2022</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-6" data-aos="fade-left" data-aos-delay="200">
+              <div class="hero-image">
+                <img src="assets/img/active_directory/Active directory Cover.png" alt="Active Directory Domain" class="img-fluid" loading="lazy">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- QUICK OVERVIEW -->
+        <div class="row g-4 mb-5">
+          <div class="col-lg-8">
+            <div class="p-4 border rounded-3 h-100">
+              <h2 class="h4 mb-3"><i class="bi bi-bullseye me-2"></i>Project Overview</h2>
+              <p class="mb-3">
+                In a previous project, <em>“Breaking Things Safely: A Virtual Cybersecurity Home Lab,”</em> I installed a Windows Server 2022 virtual machine and assigned
+                 it the IP address <strong>10.0.0.40</strong>. In this project, I’ll complete the setup by promoting that server to a Domain Controller and DNS server. 
+                 Once Active Directory is running, I will create Organizational Units to organize objects, create a domain user, add a Windows 11 Pro 
+                 virtual machine, and join it to the domain.
+              </p>
+              <ul class="mb-0">
+                <li>Adding AD DC</li>
+                <li>Adding Users</li>
+                <li>Adding Workstation</li>
+                <li>Group Policy</li>
+                <li>Security Groups</li>
+              </ul>
+              <!-- Source-backed details -->
+              <span class="d-none">ref</span>
+            </div>
+          </div>
+
+          <div class="col-lg-4">
+            <div class="p-4 border rounded-3 h-100">
+              <h2 class="h4 mb-3"><i class="bi bi-cpu me-2"></i>Tools & Technologies</h2>
+              <ul class="mb-0">
+                <li><strong>Windows Server 2022</strong> - Active Directory Domain Services (AD DS) and DNS</li>
+                <li><strong>Windows 11 Pro</strong> Domain-joind workstation for testing policies and access</li>
+                <li><strong>Core Technologies</strong> - GPO, OU, Security Groups, NTFS File System Permisions</li>
+                <li><strong>Aministrative Tools</strong> - Server Manager, ADUC, GPMC, DNS Manager</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- BUILD STEPS (ACCORDION) -->
+        <div class="mb-5">
+          <h2 class="h3 mb-3">Build Process (Step-by-Step)</h2>
+
+          <div class="accordion" id="labSteps">
+
+            <!-- Step 1 -->
+            <div class="accordion-item">
+              <h3 class="accordion-header" id="step1Heading">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#step1" aria-expanded="true" aria-controls="step1">
+                  Step 1: Adding AD DC
+                </button>
+              </h3>
+              <div id="step1" class="accordion-collapse collapse show" aria-labelledby="step1Heading" data-bs-parent="#labSteps">
+                <div class="accordion-body">
+                  <p>
+                    I renamed the Windows Server 2022 VM to Cyber AD DC Server, then started it and logged in with the credentials created during installation. 
+                    In Server Manager, I navigated to Local Server, selected Ethernet, and configured a static IP address of <strong>10.0.0.40</strong> per my network diagram. 
+                    I also set the preferred DNS server to <strong>10.0.0.40</strong>, because Active Directory is tightly integrated with DNS and relies on internal service 
+                    records to locate domain services such as authentication, LDAP, and Kerberos.
+                  </p>
+                  <div class="col-md-6">
+                    <figure class="figure">
+                      <a href="assets\img\active_directory\Screenshot 2026-02-05 153615.png" class="glightbox">
+                        <img src="assets\img\active_directory\Screenshot 2026-02-05 153615.png" class="img-fluid rounded" alt="VirtualBox network configuration screenshot" loading="lazy">
+                      </a>
+                      <figcaption class="figure-caption text center">
+                        Configuring a static IPv4 address and DNS settings on the Windows Server 2022 Domain Controller
+                      </figcaption>
+                    </figure>
+                  </div>
+                  <br>
+                  <p>
+                     Next, I added the Active Directory role. From <strong>Manage > Add Roles and Features</strong>, I selected <strong>Active Directory Domain Services</strong> and proceeded through the wizard. 
+                     After reviewing the selections, I installed the role. Once installation was completed, I promoted the server to a Domain Controller by selecting <strong>Add a new 
+                     forest</strong> and naming the root domain <strong>cyberlabstx.com</strong>. I chose <strong>Windows Server 2016</strong> as the forest and domain functional level, enabled DNS, and configured the 
+                     Directory Services Restore Mode (DSRM) password. After reviewing the final configuration, I completed the promotion process.
+                  </p>
+                  <div class="row g-3">
+                    <div class="col-md-6">
+                      <figure class="figure">
+                        <a href="assets/img/active_directory/Screenshot 2026-01-27 142115.png" class="glightbox">
+                          <img src="assets/img/active_directory/Screenshot 2026-01-27 142115.png" class="img-fluid rounded" alt="VirtualBox network configuration screenshot" loading="lazy">
+                        </a>
+                        <figcaption class="figure-caption text center">
+                          Add Role and Features Wizard first page
+                        </figcaption>
+                      </figure>
+                    </div>
+                    <div class="col-md-6">
+                      <figure class="figure"> 
+                        <a href="assets/img/active_directory/Screenshot 2026-01-27 142344.png" class="glightbox">
+                            <img src="assets/img/active_directory/Screenshot 2026-01-27 142344.png" class="img-fluid rounded" alt="VirtualBox network configuration screenshot" loading="lazy">
+                        </a>
+                        <figcaption class="figure caption text center">
+                          Selecting Active Directory Domain Services
+                        </figcaption>
+                      </figure>
+                    </div>
+                    <div class="col-md-6"> 
+                      <figure class="figure">
+                        <a href="assets/img/active_directory/Screenshot 2026-01-27 142604.png" class="glightbox">
+                          <img src="assets/img/active_directory/Screenshot 2026-01-27 142604.png" class="img-fluid rounded" alt="VirtualBox network configuration screenshot" loading="lazy">
+                        </a>
+                        <Figcaption class="figure caption text center">
+                          Option to promote the server to an Active Directory Domain Controller after installing AD DS
+                        </Figcaption>
+                      </figure>  
+                    </div>
+                    <div class="col-md-6"> 
+                      <figure class="figure">
+                        <a href="assets/img/active_directory/Screenshot 2026-01-27 143148.png" class="glightbox">
+                          <img src="assets/img/active_directory/Screenshot 2026-01-27 143148.png" class="img-fluid rounded" alt="VirtualBox network configuration screenshot" loading="lazy">
+                        </a>
+                        <figcaption class="figure caption text center">
+                          Creating a new Active Directory forest and defining the root domain as cybertexaslab.com
+                        </figcaption>
+                    </div>
+                    <div class="col-md-6">
+                      <figure class="figure">  
+                        <a href="assets/img/active_directory/Screenshot 2026-01-27 143238.png" class="glightbox">
+                          <img src="assets/img/active_directory/Screenshot 2026-01-27 143238.png" class="img-fluid rounded" alt="VirtualBox network configuration screenshot" loading="lazy">
+                        </a>
+                        <figcaption class="figure caption text center">
+                          Configuring Domain Controller options, including DNS installation and setting the Directory Services Restore Mode (DSRM) password
+                        </figcaption>
+                      </figure>
+                    </div>
+                    <div class="col-md-6">
+                      <figure class="figure"> 
+                        <a href="assets/img/active_directory/Screenshot 2026-01-27 143539.png" class="glightbox">
+                          <img src="assets/img/active_directory/Screenshot 2026-01-27 143539.png" class="img-fluid rounded" alt="VirtualBox network configuration screenshot" loading="lazy">
+                        </a>
+                          <figcaption class="figure caption text center">
+                          Reviewing prerequisite checks and validation results before installing the Active Directory Domain Controller
+                        </figcaption>
+                      </figure>
+                    </div>
+                  </div>
+                  <br>
+                  <p>
+                    To verify the installation, I opened <strong >DNS</strong> from Server Manager. In DNS Manager, I navigated to <strong>Lookup Zones > cyberlabstx.com</strong> and confirmed the presence 
+                    of the <strong>_tcp</strong> and <strong>_udp</strong> service records, indicating that Active Directory and DNS were successfully integrated.
+                  <p>
+                  <div class="col-md-6">
+                    <figure class="figure">  
+                      <a href="assets/img/active_directory/Screenshot 2026-01-27 150109.png" class="glightbox">
+                        <img src="assets/img/active_directory/Screenshot 2026-01-27 150109.png" class="img-fluid rounded" alt="VirtualBox network configuration screenshot" loading="lazy">
+                      </a>
+                      <figcaption class="figure caption text center">
+                        Verifying Active Directory DNS service records (_tcp and _udp) after Domain Controller installation
+                      </figcaption>
+                    </figure>
+                  </div>  
+                </div>
+              </div>
+            </div>
+
+            <!-- Step 2 -->
+            <div class="accordion-item">
+              <h3 class="accordion-header" id="step2Heading">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#step2" aria-expanded="false" aria-controls="step2">
+                  Step 2: Adding Users
+                </button>
+              </h3>
+              <div id="step2" class="accordion-collapse collapse" aria-labelledby="step2Heading" data-bs-parent="#labSteps">
+                <div class="accordion-body">
+                  <p>
+                    Once AD DC was up, it was time to start adding Organizational Units (OU). I began by going to <strong>Tools</strong> and then <strong>Active Directory 
+                    Users and Computers</strong>.
+                  </p>
+                  <div class="col-md-6">
+                    <figure class="figure">  
+                      <a href="assets/img/active_directory/Screenshot 2026-01-27 150109.png" class="glightbox">
+                        <img src="assets/img/active_directory/Screenshot 2026-01-27 150109.png" class="img-fluid rounded" alt="VirtualBox network configuration screenshot" loading="lazy">
+                      </a>
+                      <figcaption class="figure caption text center">
+                        Opening Active Directory Users and Computers from Server Manager to manage domain objects,
+                      </figcaption>
+                    </figure>
+                  </div> 
+                  <br>
+                  <p>
+                    I started by right-clicking on cyberlabstx.com and selecting New > Organizational Unit and creating the following OUs:
+                  </p>
+                  <ul class="mb-0">
+                    <li>Admins</li>
+                    <li>Domin Users</li>
+                    <li>Groups</li>
+                    <li>Servers</li>
+                    <li>Workstation</li>
+                  </ul>
+                  <br>
+                  <div class="row g-3">
+                    <div class="col-md-6">
+                      <figure class="figure">  
+                        <a href="assets/img/active_directory/Screenshot 2026-02-03 195005.png" class="glightbox">
+                          <img src="assets/img/active_directory/Screenshot 2026-02-03 195005.png" class="img-fluid rounded" alt="VirtualBox network configuration screenshot" loading="lazy">
+                        </a>
+                        <figcaption class="figure caption text center">
+                          Creating a new Organizational Unit (OU) in Active Directory Users and Computers.
+                        </figcaption>
+                      </figure>
+                    </div>
+                    <div class="col-md-6">
+                      <figure class="figure">  
+                        <a href="assets/img/active_directory/Screenshot 2026-02-03 195837.png" class="glightbox">
+                          <img src="assets/img/active_directory/Screenshot 2026-02-03 195837.png" class="img-fluid rounded" alt="VirtualBox network configuration screenshot" loading="lazy">
+                        </a>
+                        <figcaption class="figure caption text center">
+                          Five new Organizational Units (OUs) were created to logically organize users, groups, servers, and workstations
+                        </figcaption>
+                      </figure>
+                    </div>
+                  </div>
+                  <br>
+                  <p>
+                    With the OU structure in place, I proceeded to create a domain user account to validate authentication and policy application. I right-clicked <strong>Domain Users > New > User</strong>, then created one for myself. 
+                    I filled out the information and clicked <strong>Next</strong>, and then filled out the password information, unchecking the “User must change password at next logon and clicking “Password never expires”. 
+                    (Just this time) and next. For now, that’s it. I will be creating more later in this project.
+                  </p>
+                  <br>
+                  <div class="col-md-6">
+                    <figure class="figure">  
+                      <a href="assets/img/active_directory/Screenshot 2026-02-03 195958.png" class="glightbox">
+                        <img src="assets/img/active_directory/Screenshot 2026-02-03 195958.png" class="img-fluid rounded" alt="VirtualBox network configuration screenshot" loading="lazy">
+                      </a>
+                      <figcaption class="figure caption text center">
+                        Creating a new User in Active Directory Users and Computers.
+                      </figcaption>
+                    </figure>
+                  </div>
+                  <br>
+                  <div class="row g-3">
+                    <div class="col-md-6">
+                      <figure class="figure">  
+                        <a href="assets/img/active_directory/Screenshot 2026-02-03 200033.png" class="glightbox">
+                          <img src="assets/img/active_directory/Screenshot 2026-02-03 200033.png" class="img-fluid rounded" alt="VirtualBox network configuration screenshot" loading="lazy">
+                        </a>
+                        <figcaption class="figure caption text center">
+                          Creating a new domain user account by entering user identity and logon information.
+                        </figcaption>
+                      </figure>
+                    </div>
+                    <div class="col-md-6">
+                      <figure class="figure">  
+                        <a href="assets/img/active_directory/Screenshot 2026-02-03 200120.png" class="glightbox">
+                          <img src="assets/img/active_directory/Screenshot 2026-02-03 200120.png" class="img-fluid rounded" alt="VirtualBox network configuration screenshot" loading="lazy">
+                        </a>
+                        <figcaption class="figure caption text center">
+                          Configuring the user account password and defining password-related account options.
+                        </figcaption>
+                      </figure>
+                    </div>
+                  </div>
+                </div>                
+              </div>
+            </div>
+            <!-- Step 3 -->
+            <div class="accordion-item">
+              <h3 class="accordion-header" id="step3Heading">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#step3" aria-expanded="false" aria-controls="step3">
+                  Step 3: Adding Workstation
+                </button>
+              </h3>
+              <div id="step3" class="accordion-collapse collapse" aria-labelledby="step3Heading" data-bs-parent="#labSteps">
+                <div class="accordion-body">
+                  <p>
+                    At this point, the only Windows VM I had created was a Windows 11 Home. Which can’t be added to a Domain, so I had to create a new VM using Windows 11 Pro. 
+                    After setting it up, I gave it a static IP address of 10.0.0.15 and a preferred DNS of 10.0.0.40. I right-clicked the Windows > System and the Advanced 
+                    System Settings. In this panel, I went to the Computer Name tab, clicked Change select domain, entered cyberlabstx.com, entered my administrator credentials, 
+                    The configuration was successfully completed. I went back to my Cyber AD DC Server and verified that CYBERPC1 had been successfully added under AD Users and 
+                    Computers > Computers. I then moved it to the workstation OU.
+                  </p>
+                  <div class="col-md-6">
+                    <figure class="figure">  
+                      <a href="assets/img/active_directory/Screenshot 2026-02-05 072634.png" class="glightbox">
+                        <img src="assets/img/active_directory/Screenshot 2026-02-05 072634.png" class="img-fluid rounded" alt="VirtualBox network configuration screenshot" loading="lazy">
+                      </a>
+                      <figcaption class="figure caption text center">
+                        Successfully showing the new workstation has been added to the Active  Directory domian.
+                      </figcaption>
+                    </figure>
+                  </div>                  
+                </div>
+              </div>
+            </div>
+
+            <!-- Step 4 -->
+            <div class="accordion-item">
+              <h3 class="accordion-header" id="step4Heading">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#step4" aria-expanded="false" aria-controls="step4">
+                  Step 4: Creating a Group Policy
+                </button>
+              </h3>
+              <div id="step4" class="accordion-collapse collapse" aria-labelledby="step4Heading" data-bs-parent="#labSteps">
+                <div class="accordion-body">
+                  <p>
+                    With a domain user and workstation properly placed in their respective Organizational Units, I configured Group Policy Objects (GPOs) to enforce centralized controls.
+                  </p>
+                  <div id="workstation">
+                    <h4 class="h4 mb-4">Workstations</h4>
+                      <p>Open <strong>Tools > Group Policy Management</strong> here you will expand Forest > Domains > cyberlabstx.com. I right-clicked the <strong>Workstation</strong> 
+                        OU and clicked <strong>Create a GPO in this domain, and link it here…</strong> I named it “GPO workstations Lockscreen”. I right-clicked the GPO, clicked <strong>EDIT</strong>, 
+                        and navigated through the editor to Computer Configuration > Policies>Windows Settings > Security Settings > Local Policies > Security Options. I found “Interactive 
+                        logon: Machine inactivity limit” and set the limit to 600 sec. I went back to my CYBERPC1, opened the terminal, executed  <span style="font-style: italic; background-color: rgb(233, 233, 233);">
+                         gpupdate /force </span>, waited 10 min, and the 
+                        screen locked as expected.</p>
+                    <div class="col-md-6">
+                      <figure class="figure">  
+                        <a href="assets/img/active_directory/Screenshot 2026-02-05 075747.png" class="glightbox">
+                          <img src="assets/img/active_directory/Screenshot 2026-02-05 075747.png" class="img-fluid rounded" alt="VirtualBox network configuration screenshot" loading="lazy">
+                        </a>
+                        <figcaption class="figure caption text center">
+                          Configuring a Group Policy to enforce a workstation screen lock after 600 seconds (10 minutes) of inactivity.
+                        </figcaption>
+                      </figure>
+                    </div>
+                  </div>
+                  <div id="domain user">
+                    <h4 class="h4 mb-4">Domain Users</h4>
+                      <p>Open <strong>Tools > Group Policy Management</strong> here you will expand Forest > Domains > cyberlabstx.com. I right-clicked the Domain_User OU and clicked <strong>
+                        Create a GPO in this domain, and linked it here…</strong> I named it “GPO User Wallpaper”. I right-clicked the GPO, clicked <strong>EDIT</strong>, and navigated through
+                         the editor to User Configuration > Policies > Administrative Templates: Policy definitions > Desktop > Desktop. I opened “Desktop Wallpaper,” enabled it, and set the 
+                         wallpaper to <span style="font-style: italic; background-color: rgb(233, 233, 233);">\\CYBER-DC1\Wallpapers\cyberlabtx.jpg </span>, a custom wallpaper I made for this
+                          project. I then verfied over at CYBERPC1, updated the GP, logged out and back in, and got a blank screen.</p>
+                    <div class="row g-3">
+                      <div class="col-md-6">
+                        <figure class="figure">  
+                          <a href="assets/img/active_directory/Screenshot 2026-02-05 093033.png" class="glightbox">
+                            <img src="assets/img/active_directory/Screenshot 2026-02-05 093033.png" class="img-fluid rounded" alt="VirtualBox network configuration screenshot" loading="lazy">
+                          </a>
+                          <figcaption class="figure-caption text center">
+                            Configuring a Group Policy to set desktop background image to be displayed on all workstations.
+                          </figcaption>
+                        </figure>
+                      </div>
+                      <div class="col-md-6">
+                        <figure class="figure">  
+                          <a href="assets/img/active_directory/Screenshot 2026-02-05 080129.png" class="glightbox">
+                            <img src="assets/img/active_directory/Screenshot 2026-02-05 080129.png" class="img-fluid rounded" alt="VirtualBox network configuration screenshot" loading="lazy">
+                          </a>
+                          <figcaption class="figure-caption text center">
+                            Forcing a Group Policy update on CYBERPC1 using <span style="font-style: italic; background-color: rgb(233, 233, 233);">gpupdate /force</span>.
+                          </figcaption>
+                        </figure>
+                      </div>
+                    </div>
+                    <p>I knew something was wrong, so after searching online and consulting CHATGPT, I realized that even though I had shared the folder, Domain Users needed security permissions. 
+                      I clicked Security > Edit > Add, entered Domain Users, and set permissions for them. Switched back to CYBERPC1, updated the GP, logged out and back in, and got the correct background.</p>
+                    <p>This issue reinforced the importance of understanding that NTFS permissions are enforced independently of Group Policy and must explicitly allow access for domain users when using network-based resources.</p>                   
+                    <div class="row g-3">
+                      <div class="col-md-6">
+                        <figure class="figure">  
+                          <a href="assets/img/active_directory/Screenshot 2026-02-05 102350.png" class="glightbox">
+                            <img src="assets/img/active_directory/Screenshot 2026-02-05 102350.png" class="img-fluid rounded" alt="VirtualBox network configuration screenshot" loading="lazy">
+                          </a>
+                          <figcaption class="figure-caption text center">
+                            Using the command <span style="font-style: italic; background-color: rgb(233, 233, 233);">gpresult /r</span> to see if the group policy was being enforced.
+                          </figcaption>
+                        </figure>
+                      </div>
+                      <div class="col-md-6">
+                        <figure class="figure">  
+                          <a href="assets/img/active_directory/Screenshot 2026-02-05 120959.png" class="glightbox">
+                            <img src="assets/img/active_directory/Screenshot 2026-02-05 120959.png" class="img-fluid rounded" alt="VirtualBox network configuration screenshot" loading="lazy">
+                          </a>
+                          <figcaption class="figure-caption text center">
+                            The correct desktop background successfully enforced after resolving NTFS permissions.
+                          </figcaption>                          
+                        </figure>                        
+                      </div>
+                    </div>
+                  </div>                  
+                </div>
+              </div>
+            </div>
+
+            <!-- Step 5 -->
+            <div class="accordion-item">
+              <h3 class="accordion-header" id="step5Heading">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#step5" aria-expanded="false" aria-controls="step5">
+                  Step 5: Security Groups
+                </button>
+              </h3>
+              <div id="step5" class="accordion-collapse collapse" aria-labelledby="step5Heading" data-bs-parent="#labSteps">
+                <div class="accordion-body">
+                  <p>
+                    Now we connect people to roles. I created three department-based security groups (IT, HR, Finance) to represent organizational roles. I also created additional fictional 
+                    users to cyberlabstx.com and added them to groups. Access was granted exclusively through department-based security groups rather than individual user accounts, 
+                    in accordance with the role-based access control (RBAC) principle.
+                  </p>
+                  <ul>
+                    <li>Finance:</li>
+                      <ul>
+                        <li>Daniel Wright</li>
+                        <li>Kevin Brown</li>
+                        <li>Rachel Chen</li>
+                        <li> Susan Miller</li>
+                      </ul>
+                    <li>HR:</li>
+                      <ul>
+                        <li>Linda Roberts</li>
+                        <li>Mark Hill</li>
+                        <li>Nina Garcia</li>
+                      </ul>
+                    <li>IT:</li>
+                      <ul>
+                        <li>Alex Morgan</li>
+                        <li>Jamie Lee</li>
+                        <li>Sam Patel</li>
+                        <li>Taylor Nguyen</li>
+                      </ul>
+                  </ul>
+                  <div class="row g-3">
+                    <div class="col-md-6">
+                      <figure class="figure">  
+                        <a href="assets/img/active_directory/Screenshot 2026-02-08 083814.png" class="glightbox">
+                          <img src="assets/img/active_directory/Screenshot 2026-02-08 083814.png" class="img-fluid rounded" alt="VirtualBox network configuration screenshot" loading="lazy">
+                        </a>
+                        <figcaption class="figure caption text center">
+                          Three department-based security groups were created to manage access and policy assignment.
+                        </figcaption>
+                      </figure>
+                    </div>
+                    <div class="col-md-6">
+                      <figure class="figure">  
+                        <a href="assets/img/active_directory/Screenshot 2026-02-05 141949.png" class="glightbox">
+                          <img src="assets/img/active_directory/Screenshot 2026-02-05 141949.png" class="img-fluid rounded" alt="VirtualBox network configuration screenshot" loading="lazy">
+                        </a>
+                        <figcaption class="figure-caption text center">
+                          Four users were added to the finance security group.
+                        </figcaption>
+                      </figure>
+                    </div>
+                  </div>
+                  <p>I then created a folder in the C:\ drive and named it “Shares”. In that folder, I created 3 subfolders of Finance data, HR data, and IT data. I enabled sharing and 
+                    added the correct department to the security tabs. I switched over to CYBERPC1, logged in as Daniel Wright from finance, went to the file explorer, and typed in 
+                    <span style="font-style: italic; background-color: rgb(233, 233, 233);">\CYBER-DC1\Finance_Data</span>, and the folder opened. I logged out and back in with Linda Roberts 
+                    from HR, and was refused access, as shown below.</p>
+                  <div class="col-md-6">
+                    <figure class="figure">  
+                      <a href="assets/img/active_directory/Screenshot 2026-02-05 144855.png" class="glightbox">
+                        <img src="assets/img/active_directory/Screenshot 2026-02-05 144855.png" class="img-fluid rounded" alt="VirtualBox network configuration screenshot" loading="lazy">
+                      </a>
+                      <figcaption class="figure-caption text center">
+                        Access to the Finance shared folder was denied for an HR user due to security group restrictions.
+                      </figcaption>
+                    </figure>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+            
+        <div class="mb-5">
+          <h2 class="h3 mb-3">Lessons Learned</h2>
+          <ol>
+            <li>Active Directory is not just a single tool, but a system of integrated services that must function together. A misconfiguration in one area, such as DNS or permissions, 
+              can cause issues in other areas that may not be immediately obvious.</li>
+            <li>Organizational Units (OUs) allow administrators to apply Group Policy in a targeted and controlled manner without impacting unrelated objects. Proper OU design simplifies 
+              management and reduces repetitive administrative tasks when adding or removing users and computers.</li>
+            <li>User policies and computer policies serve different purposes. Computer policies apply to a system regardless of who is logged in, while user policies follow the user 
+              account and apply across domain-joined systems.</li>
+            <li>Windows edition matters when joining a domain. Attempting to join a Home edition system demonstrated that not all Windows editions support Active Directory, reinforcing
+              the importance of identifying operating system capabilities early in the deployment process.</li>
+            <li>Testing multiple scenarios is critical for validating access controls. Verifying permissions using different user accounts helped confirm that access was correctly assigned 
+              and denied based on group membership.</li>
+            <li>Troubleshooting is a core administrative skill. Resolving issues such as Group Policy not applying due to permission constraints emphasized the value of a methodical approach,
+               using tools like gpupdate and rsop to identify and resolve configuration problems.</li>
+          </ol>
+        </div>
+
+        <div class="mb-5">
+          <h2 class="h3 mb-3">Next Steps</h2>
+          <p>
+            Future iterations of this lab will focus on securing the Active Directory environment by implementing stronger password policies, account lockout rules, auditing, and simulated 
+            attack scenarios to further develop defensive and troubleshooting skills.
+          </p>
+        </div>
+
+          <!-- OPTIONAL: REPO LINK / CTA -->
+        <div class="p-4 border rounded-3">
+          <div class="row align-items-center g-3">
+            <div class="col-lg-8">
+              <h2 class="h4 mb-2">Want the full build notes + screenshots?</h2>
+              <p class="mb-0">
+                This post summarizes the build, but the repo contains the detailed step-by-step notes and images used during setup.
+              </p>
+            </div>
+            <div class="col-lg-4 text-lg-end">
+              <a class="btn btn-dark" href="https://github.com/richardpblair/Home-Lab-Setup" target="_blank" rel="noopener noreferrer">
+                <i class="bi bi-github me-2"></i>View Repo
+              </a>
+            </div>
+          </div>
+        </div>     
+      </div>
+    </section><!-- /Portfolio Details Section -->
+
+  </main>
+
+  <footer id="footer" class="footer light-background">
+    <div class="container">
+      <h3 class="sitename">Richard Blair</h3>
+      <p>Cybersecurity Student • Continuous Learner • Mission-Driven Innovator<br>Building a safer digital world, one project at a time.</p>
+      <div class="social-links d-flex justify-content-center">
+        <a href="https://github.com/richardpblair/richardpblair" class="github" aria-label="GitHub: richardpblair" target="_blank" rel="noopener noreferrer"><i class="bi bi-github"></i></a>
+        <a href="https://www.linkedin.com/in/richardpblair/" class="linkedin" aria-label="LinkedIn: Richard Blair" target="_blank" rel="noopener noreferrer"><i class="bi bi-linkedin"></i></a>
+      </div>
+      <div class="container">
+        <div class="copyright">
+          <span>Copyright</span> <strong class="px-1 sitename">Richard Blair</strong> <span>All Rights Reserved</span>
+        </div>
+        <div class="credits">
+          Designed by <a href="https://bootstrapmade.com/mypage-bootstrap-personal-template/" rel="noopener noreferrer">BootstrapMade with template MyPage</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scroll Top -->
+  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Preloader -->
+  <div id="preloader"></div>
+
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
+  <script src="assets/vendor/typed.js/typed.umd.js"></script>
+  <script src="assets/vendor/waypoints/noframework.waypoints.js"></script>
+  <script src="assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
+  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+
+  <!-- Main JS File -->
+  <script src="assets/js/main.js"></script>
+
+</body>
+</html>
